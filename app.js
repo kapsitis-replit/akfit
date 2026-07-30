@@ -19,6 +19,14 @@ function toggleTheme() {
     document.documentElement.classList.add('dark');
     localStorage.theme = 'dark';
   }
+  /* Spin the toggle so the sun/moon icon swap reads as a turn, not a hard cut. */
+  var tbtn = document.querySelector('button[onclick="toggleTheme()"]');
+  if (tbtn && tbtn.animate && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    tbtn.animate(
+      [{ transform: 'rotate(0deg)' }, { transform: 'rotate(180deg)' }],
+      { duration: 300, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' }
+    );
+  }
 }
 
 /* Scroll-driven entrance animations */
@@ -29,30 +37,35 @@ document.addEventListener('DOMContentLoaded', () => {
     el.style.animation = 'none';
   });
 
-  const isVisual = (el) => {
-    const className = typeof el.className === 'string' ? el.className : (el.className.baseVal || '');
-    if (/opacity-0(\s|$)|hidden(\s|$)|invisible(\s|$)/.test(className)) return false;
-    let hasDirectText = false;
-    for (const node of el.childNodes) {
-      if (node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 0) {
-        hasDirectText = true;
-        break;
-      }
-    }
-    const hasVisualStyles = /bg-(?!none|transparent)|border(?!-0|-none)|shadow(?!-none)/.test(className);
-    return hasDirectText ||
-      ['IMG', 'ICONIFY-ICON', 'SVG', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT', 'A', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'P', 'SPAN', 'LI', 'LABEL'].includes(el.tagName) ||
-      hasVisualStyles;
+  const classOf = (el) =>
+    typeof el.className === 'string' ? el.className : (el.className.baseVal || '');
+
+  // A reveal ROOT is a content block worth animating on its own — a card, a
+  // heading, a media item, a grid/flex cell — NOT every span or word inside it.
+  const isRevealRoot = (el) => {
+    if (el.nodeType !== 1) return false;
+    if (/opacity-0(\s|$)|hidden(\s|$)|invisible(\s|$)/.test(classOf(el))) return false;
+    // Sectioning containers are never a reveal root — only their inner cards are.
+    if (['SECTION', 'HEADER', 'FOOTER', 'MAIN', 'ARTICLE', 'ASIDE', 'NAV'].includes(el.tagName)) return false;
+    if (['H1', 'H2', 'H3'].includes(el.tagName)) return true;
+    if (['IMG', 'FIGURE', 'DETAILS'].includes(el.tagName)) return true;
+    const parentClass = el.parentElement ? classOf(el.parentElement) : '';
+    // direct cell of a grid/flex row: cards, stats, gallery tiles, process steps
+    if (/\b(grid|flex)\b/.test(parentClass)) return true;
+    // a standalone bordered + padded panel
+    if (/\bborder\b/.test(classOf(el)) && /\bp[xyt]?-\d/.test(classOf(el))) return true;
+    return false;
   };
 
-  const elements = document.querySelectorAll('body *');
-  elements.forEach(el => {
-    if (el.closest('.form-notification') || el.classList.contains('bg-noise') || ['SCRIPT', 'STYLE', 'NOSCRIPT'].includes(el.tagName)) return;
+  document.querySelectorAll('body *').forEach(el => {
+    if (['SCRIPT', 'STYLE', 'NOSCRIPT'].includes(el.tagName)) return;
+    if (el.closest('nav, footer, .form-notification')) return;   // present immediately
+    if (el.classList.contains('bg-noise')) return;
     if (el.tagName.toLowerCase() !== 'svg' && el.closest('svg')) return;
-    if (el.closest('button, a') && el.tagName !== 'BUTTON' && el.tagName !== 'A') return;
-    if (isVisual(el) && !el.classList.contains('scroll-hidden')) {
-      el.classList.add('scroll-hidden', 'scroll-transition');
-    }
+    if (!isRevealRoot(el)) return;
+    // skip anything already inside a tagged block — reveal the block, not its parts
+    if (el.parentElement && el.parentElement.closest('.scroll-hidden')) return;
+    el.classList.add('scroll-hidden', 'scroll-transition');
   });
 
   let batchIndex = 0;
@@ -60,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const delay = batchIndex * 90;
+        const delay = Math.min(batchIndex, 6) * 60;
         entry.target.style.transitionDelay = delay + 'ms';
         entry.target.classList.remove('scroll-hidden');
         observer.unobserve(entry.target);
