@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privātuma politika — AK Fitness</title>
+<meta name="description" content="SIA AKFITNESSLV privātuma politika — kādus personas datus apstrādājam, kādiem nolūkiem, uz kāda pamata un kādas ir Tavas tiesības.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#09090b; --panel:#111113; --line:#27272a; --line2:#3f3f46;
+    --red:#d70c32; --ink:#d4d4d8; --muted:#a1a1aa; --dim:#71717a;
+    --sans:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--black); color:var(--ink);
+    font-family:var(--sans); font-weight:400; font-size:15px; line-height:1.75;
+    -webkit-font-smoothing:antialiased;}
+  a{color:#fff; text-decoration:underline; text-underline-offset:3px;
+    text-decoration-color:var(--red); text-decoration-thickness:1px;}
+  a:hover{color:var(--red);}
+
+  header{border-bottom:1px solid var(--line);}
+  .head-in{max-width:820px; margin:0 auto; padding:26px 20px 22px 20px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;}
+  .head-in img{height:30px; width:auto; display:block;}
+  .head-in .back{font-family:var(--mono); font-size:10px; font-weight:600;
+    letter-spacing:.2em; text-transform:uppercase; color:var(--dim); text-decoration:none;}
+  .head-in .back:hover{color:#fff;}
+
+  .wrap{max-width:820px; margin:0 auto; padding:44px 20px 90px 20px;}
+  .eyebrow{font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--red); margin-bottom:10px;}
+  h1{font-size:40px; font-weight:600; letter-spacing:-.025em; text-transform:uppercase;
+    line-height:1.05; margin:0 0 18px 0; color:#fff;}
+  .rule{height:4px; width:72px; background:var(--red); margin:0 0 26px 0;}
+  .lede{font-size:16px; color:var(--muted); margin:0 0 14px 0; max-width:62ch;}
+  .meta{font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--dim); margin-top:22px; line-height:2;}
+
+  nav.toc{border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    margin:38px 0 44px 0; padding:22px 0;}
+  nav.toc ol{margin:0; padding:0; list-style:none; counter-reset:toc;
+    columns:2; column-gap:34px;}
+  nav.toc li{counter-increment:toc; margin-bottom:7px; break-inside:avoid;}
+  nav.toc a{font-size:13.5px; text-decoration:none; color:var(--muted);}
+  nav.toc a:hover{color:#fff;}
+  nav.toc a::before{content:counter(toc,decimal-leading-zero); font-family:var(--mono);
+    font-size:10px; color:var(--red); margin-right:10px; font-weight:600;}
+  @media (max-width:640px){ nav.toc ol{columns:1;} }
+
+  section{margin-bottom:46px; scroll-margin-top:20px;}
+  h2{font-size:21px; font-weight:600; letter-spacing:-.01em; text-transform:uppercase;
+    line-height:1.25; margin:0 0 14px 0; padding-left:14px; border-left:5px solid var(--red);
+    color:#fff;}
+  h3{font-size:13px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+    margin:26px 0 8px 0; color:#fff;}
+  p{margin:0 0 13px 0;}
+  strong{color:#fff; font-weight:600;}
+
+  ul{margin:0 0 14px 0; padding:0; list-style:none;}
+  ul li{position:relative; padding-left:20px; margin-bottom:8px;}
+  ul li::before{content:''; position:absolute; left:0; top:.78em;
+    width:8px; height:2px; background:var(--red);}
+
+  .tbl{width:100%; border-collapse:collapse; margin:10px 0 18px 0; font-size:13px;}
+  .tbl th{font-family:var(--mono); font-size:9px; font-weight:600; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--red); text-align:left;
+    padding:0 12px 10px 0; border-bottom:1px solid var(--line2); vertical-align:bottom;}
+  .tbl td{padding:12px 12px 12px 0; border-bottom:1px solid var(--line);
+    vertical-align:top; line-height:1.6; color:var(--ink);}
+  .tbl td:first-child{color:#fff; font-weight:600; width:26%;}
+  .tbl.four td:first-child{width:22%;}
+  @media (max-width:700px){
+    .tbl, .tbl tbody, .tbl tr, .tbl td{display:block; width:100%;}
+    .tbl thead{display:none;}
+    .tbl tr{border-bottom:1px solid var(--line2); padding:12px 0;}
+    .tbl td{border:none; padding:2px 0;}
+    .tbl td:first-child{width:auto; margin-bottom:4px;}
+    .tbl td[data-l]::before{content:attr(data-l) " — "; font-family:var(--mono);
+      font-size:9px; letter-spacing:.16em; text-transform:uppercase; color:var(--red);}
+  }
+
+  .note{border-left:4px solid var(--red); background:var(--panel);
+    padding:16px 18px; margin:18px 0; font-size:13.5px; color:var(--muted);}
+  .note p:last-child{margin-bottom:0;}
+  .todo{border-left:4px solid #ca8a04; background:#1a1608; color:#d6c68a;}
+
+  footer{border-top:1px solid var(--line); margin-top:20px;}
+  .foot-in{max-width:820px; margin:0 auto; padding:26px 20px 44px 20px;
+    font-family:var(--mono); font-size:9.5px; font-weight:500; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--dim); line-height:2;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-in">
+    <img src="ak-logo-white.png" alt="AK Fitness Coaching">
+    <a class="back" href="index.html">← Atpakaļ uz sākumu</a>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="eyebrow">Personas datu apstrāde</div>
+  <h1>Privātuma<br>politika</h1>
+  <div class="rule"></div>
+  <p class="lede">
+    Šajā dokumentā ir aprakstīts, kādus personas datus SIA AKFITNESSLV apstrādā, kādiem nolūkiem,
+    uz kāda tiesiskā pamata, cik ilgi tos glabā un kādas ir Tavas tiesības attiecībā uz šiem datiem.
+  </p>
+  <p class="lede">
+    Iesakām to izlasīt pirms anketas aizpildīšanas. Ja kaut kas nav skaidrs — jautā, un mēs
+    paskaidrosim.
+  </p>
+  <div class="meta">
+    Spēkā no: <span data-date="effective">[aizpilda publicējot]</span><br>
+    Versija: 1.0<br>
+    Pēdējie grozījumi: <span data-date="amended">[aizpilda publicējot]</span>
+  </div>
+
+  <div class="note todo">
+    <p><strong>Piezīme pirms publicēšanas.</strong> Šis ir strukturēts melnraksts, kas sagatavots
+    atbilstoši Vispārīgās datu aizsardzības regulas 13. un 14. panta prasībām. Kvadrātiekavās
+    atzīmētie lauki jāaizpilda, un dokuments pirms publicēšanas jāpārskata juristam, kurš pārzina
+    datu aizsardzības jomu. Šis teksts nav juridiska konsultācija.</p>
+  </div>
+
+  <nav class="toc">
+    <ol>
+      <li><a href="#parzinis">Kas apstrādā Tavus datus</a></li>
+      <li><a href="#dati">Kādus datus apstrādājam</a></li>
+      <li><a href="#nolūki">Nolūki un tiesiskais pamats</a></li>
+      <li><a href="#veselibas-dati">Veselības dati</a></li>
+      <li><a href="#avoti">No kurienes iegūstam datus</a></li>
+      <li><a href="#sanemeji">Kam datus nododam</a></li>
+      <li><a href="#arpus-es">Nodošana ārpus ES/EEZ</a></li>
+      <li><a href="#termini">Cik ilgi datus glabājam</a></li>
+      <li><a href="#drosiba">Drošības pasākumi</a></li>
+      <li><a href="#tiesibas">Tavas tiesības</a></li>
+      <li><a href="#profilesana">Automatizēta lēmumu pieņemšana</a></li>
+      <li><a href="#sikdatnes">Sīkdatnes un mājaslapa</a></li>
+      <li><a href="#sudzibas">Sūdzības</a></li>
+      <li><a href="#izmainas">Politikas izmaiņas</a></li>
+    </ol>
+  </nav>
+
+  <section id="parzinis">
+    <h2>1. Kas apstrādā Tavus datus</h2>
+    <p>Personas datu pārzinis ir:</p>
+    <table class="tbl">
+      <tr><td>Nosaukums</td><td data-l="Nosaukums">SIA "AK Fitness" (AKFITNESSLV)</td></tr>
+      <tr><td>Reģ. Nr.</td><td data-l="Reģ. Nr.">40203534097</td></tr>
+      <tr><td>Juridiskā adrese</td><td data-l="Adrese">Ģertrūdes iela 65A-9, Rīga, LV-1011, Latvija</td></tr>
+      <tr><td>E-pasts</td><td data-l="E-pasts"><a href="mailto:anna@akfitness.lv">anna@akfitness.lv</a></td></tr>
+      <tr><td>Mājaslapa</td><td data-l="Mājaslapa"><a href="https://www.akfitness.lv">akfitness.lv</a></td></tr>
+    </table>
+    <p>Visos jautājumos par personas datu apstrādi vari sazināties, rakstot uz norādīto e-pasta adresi.</p>
+    <div class="note todo">
+      <p>[APSTIPRINĀT] Datu aizsardzības speciālists nav iecelts. Ja apstrādes apjoms mainās,
+      jāizvērtē, vai tas joprojām atbilst Datu regulas 37. panta nosacījumiem.</p>
+    </div>
+  </section>
+
+  <section id="dati">
+    <h2>2. Kādus datus apstrādājam</h2>
+    <p>Atkarībā no tā, kā Tu ar mums sazinies un kādu pakalpojumu izmanto, apstrādājam šādas datu kategorijas:</p>
+    <table class="tbl">
+      <thead><tr><th>Kategorija</th><th>Kas tajā ietilpst</th></tr></thead>
+      <tbody>
+        <tr><td>Identifikācijas dati</td><td data-l="Kas ietilpst">Vārds, uzvārds, dzimšanas datums. Līguma noslēgšanai — arī personas kods un deklarētā adrese.</td></tr>
+        <tr><td>Kontaktinformācija</td><td data-l="Kas ietilpst">E-pasta adrese, tālruņa numurs, pilsēta, izvēlētais saziņas kanāls.</td></tr>
+        <tr><td>Veselības dati</td><td data-l="Kas ietilpst">Anketā sniegtās atbildes par veselības stāvokli, diagnozēm, traumām, medikamentiem, veselības skrīninga atbildes, kā arī Tavis iesniegtie medicīniskie dokumenti, ja tādus pievieno.</td></tr>
+        <tr><td>Treniņu un progresa dati</td><td data-l="Kas ietilpst">Treniņu izpilde, darba svari, atkārtojumi, piezīmes un komentāri, iknedēļas check-in atbildes, svars, apkārtmēri, progresa fotogrāfijas un video, dzīvesveida rādītāji (miegs, ūdens, uzturs), viedierīču dati, ja tos savieno.</td></tr>
+        <tr><td>Uztura dati</td><td data-l="Kas ietilpst">Uztura paradumi, ierobežojumi, alerģijas, ēdienreižu struktūra — tikai treniņu un uztura koučinga klientiem.</td></tr>
+        <tr><td>Līguma un norēķinu dati</td><td data-l="Kas ietilpst">Līguma dati, izvēlētais pakalpojums, rēķini, maksājumu vēsture, bankas maksājuma informācija.</td></tr>
+        <tr><td>Sarakstes dati</td><td data-l="Kas ietilpst">E-pasta un aplikācijas sarakste, jautājumi un atbildes.</td></tr>
+        <tr><td>Tehniskie dati</td><td data-l="Kas ietilpst">Mājaslapas apmeklējuma laikā — IP adrese un pārlūkprogrammas informācija, ko saņem tehnisko pakalpojumu sniedzēji (skat. 12. sadaļu).</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="nolūki">
+    <h2>3. Nolūki un tiesiskais pamats</h2>
+    <p>Katrai apstrādei ir konkrēts nolūks un tiesiskais pamats. Bez tiesiska pamata datus neapstrādājam.</p>
+    <table class="tbl four">
+      <thead><tr><th>Nolūks</th><th>Dati</th><th>Tiesiskais pamats</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Pieteikuma izskatīšana</td>
+          <td data-l="Dati">Kontaktinformācija, anketas atbildes</td>
+          <td data-l="Pamats">Pasākumi pirms līguma noslēgšanas pēc Tava pieprasījuma — Datu regulas 6.1.b</td>
+        </tr>
+        <tr>
+          <td>Treniņu un uztura programmas izveide un pielāgošana</td>
+          <td data-l="Dati">Treniņu dati, progresa dati, uztura dati</td>
+          <td data-l="Pamats">Līguma izpilde — Datu regulas 6.1.b</td>
+        </tr>
+        <tr>
+          <td>Veselības stāvokļa izvērtēšana pirms un laikā programmas</td>
+          <td data-l="Dati">Veselības dati, skrīninga atbildes</td>
+          <td data-l="Pamats">Tava skaidra piekrišana — Datu regulas 9.2.a</td>
+        </tr>
+        <tr>
+          <td>Saziņa ar Tevi</td>
+          <td data-l="Dati">Kontaktinformācija, sarakste</td>
+          <td data-l="Pamats">Līguma izpilde — Datu regulas 6.1.b</td>
+        </tr>
+        <tr>
+          <td>Rēķinu izrakstīšana un grāmatvedības uzskaite</td>
+          <td data-l="Dati">Identifikācijas dati, norēķinu dati</td>
+          <td data-l="Pamats">Juridisks pienākums — Datu regulas 6.1.c; Grāmatvedības likums</td>
+        </tr>
+        <tr>
+          <td>Progresa foto, video un atsauksmju izmantošana mārketingā</td>
+          <td data-l="Dati">Fotogrāfijas, video, atsauksmes, vārds</td>
+          <td data-l="Pamats">Tava atsevišķa, brīvprātīga piekrišana — Datu regulas 6.1.a</td>
+        </tr>
+        <tr>
+          <td>Strīdu risināšana un tiesisko interešu aizsardzība</td>
+          <td data-l="Dati">Līguma dati, sarakste, norēķinu dati</td>
+          <td data-l="Pamats">Mūsu leģitīmās intereses — Datu regulas 6.1.f</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Ja apstrāde balstās uz <strong>piekrišanu</strong>, Tu to vari atsaukt jebkurā brīdī. Atsaukums
+      neietekmē apstrādes likumību, kas veikta līdz atsaukuma brīdim.
+    </p>
+  </section>
+
+  <section id="veselibas-dati">
+    <h2>4. Veselības dati</h2>
+    <p>
+      Veselības dati ir <strong>īpašas kategorijas personas dati</strong>, un tiem piemērojam
+      paaugstinātu aizsardzību.
+    </p>
+    <ul>
+      <li>Tos apstrādājam <strong>tikai</strong> uz Tavas skaidras piekrišanas pamata, kuru sniedz,
+        aizpildot anketu.</li>
+      <li>Tos izmantojam <strong>tikai</strong> Tavas treniņu un uztura programmas izveidei,
+        pielāgošanai un Tavas drošības nodrošināšanai.</li>
+      <li>Tos <strong>nenododam</strong> trešajām personām mārketinga vai jebkādos citos nolūkos.</li>
+      <li>Piekļuve tiem ir tikai trenerei, kura strādā ar Tevi.</li>
+      <li>Piekrišanu vari atsaukt jebkurā brīdī. Tā kā bez šiem datiem nav iespējams izveidot drošu
+        programmu, atsaukums var nozīmēt, ka pakalpojuma sniegšana jāpārtrauc.</li>
+    </ul>
+    <div class="note">
+      <p>
+        Mēs neesam ārstniecības iestāde un nesniedzam medicīniskus pakalpojumus. Veselības skrīnings
+        tiek veikts, lai izvērtētu, vai fiziskās aktivitātes Tev ir drošas un vai pirms to uzsākšanas
+        būtu jākonsultējas ar ārstu.
+      </p>
+    </div>
+  </section>
+
+  <section id="avoti">
+    <h2>5. No kurienes iegūstam datus</h2>
+    <ul>
+      <li><strong>No Tevis</strong> — pieteikuma formā, anketā, līgumā, sarakstē un iknedēļas check-in.</li>
+      <li><strong>No treniņu platformas</strong> — dati, ko Tu pati ievadi CoachRx aplikācijā.</li>
+      <li><strong>No viedierīcēm</strong> — ja Tu pati izvēlies savienot Apple Health, Garmin, Oura
+        vai Cronometer ar CoachRx.</li>
+      <li><strong>No bankas</strong> — informācija par saņemtajiem maksājumiem.</li>
+    </ul>
+    <p>Datus no trešajām personām bez Tavas ziņas neiegūstam.</p>
+  </section>
+
+  <section id="sanemeji">
+    <h2>6. Kam datus nododam</h2>
+    <p>
+      Datus nenododam un nepārdodam nevienam mārketinga nolūkos. Tomēr pakalpojuma sniegšanai
+      izmantojam tehnoloģiju un pakalpojumu sniedzējus, kuri darbojas kā <strong>datu
+      apstrādātāji</strong> mūsu uzdevumā:
+    </p>
+    <table class="tbl four">
+      <thead><tr><th>Pakalpojums</th><th>Kādi dati</th><th>Nolūks</th></tr></thead>
+      <tbody>
+        <tr><td>CoachRx (OPEX Fitness LLC, ASV)</td><td data-l="Dati">Kontaktinformācija, treniņu un progresa dati, foto, sarakste</td><td data-l="Nolūks">Treniņu platforma</td></tr>
+        <tr><td>Anketu un automatizācijas sistēma (n8n, pašmitināts)</td><td data-l="Dati">Anketas atbildes, veselības dati, līguma dati</td><td data-l="Nolūks">Datu saņemšana, dokumentu sagatavošana</td></tr>
+        <tr><td>E-pasta pakalpojums</td><td data-l="Dati">Kontaktinformācija, sarakste, dokumenti</td><td data-l="Nolūks">Saziņa</td></tr>
+        <tr><td>Mājaslapas mitināšana</td><td data-l="Dati">Tehniskie dati</td><td data-l="Nolūks">Mājaslapas darbība</td></tr>
+        <tr><td>Banka un maksājumu pārbaude</td><td data-l="Dati">Norēķinu dati</td><td data-l="Nolūks">Maksājumu saņemšana un identificēšana</td></tr>
+        <tr><td>Grāmatvedības pakalpojumu sniedzējs</td><td data-l="Dati">Identifikācijas un norēķinu dati</td><td data-l="Nolūks">Grāmatvedības uzskaite</td></tr>
+      </tbody>
+    </table>
+    <p>
+      Ar katru apstrādātāju ir noslēgts datu apstrādes līgums atbilstoši Datu regulas 28. pantam,
+      kas nosaka, ka apstrādātājs drīkst apstrādāt datus tikai pēc mūsu norādījumiem un nodrošina
+      atbilstošus drošības pasākumus.
+    </p>
+    <p>
+      Datus varam nodot arī <strong>valsts un pašvaldību iestādēm</strong>, ja to paredz normatīvie
+      akti, kā arī <strong>juridisko pakalpojumu sniedzējiem</strong>, ja tas nepieciešams mūsu
+      tiesisko interešu aizsardzībai.
+    </p>
+    <div class="note todo">
+      <p>[RISINĀMS — CoachRx DPA] OPEX Fitness publicētajā datu apstrādes līgumā lomas ir
+      sadalītas pretēji tam, kā tās ir mūsu situācijā: dokumentā <em>OPEX ir pārzinis</em>, bet
+      parakstītājs (treneris) ir <em>apstrādātājs</em>. Mūsu gadījumā ir otrādi — pārzinis ir
+      AK Fitness, un CoachRx apstrādā datus mūsu uzdevumā. Dokuments arī satur atrunu, ka tas
+      negarantē atbilstību VDAR. Pirms publicēšanas jānoskaidro ar OPEX, vai ir pieejams
+      pārzinis→apstrādātājs līgums, un vai tas ir parakstīts. Pārējiem apstrādātājiem jānorāda
+      konkrēti nosaukumi.</p>
+    </div>
+  </section>
+
+  <section id="arpus-es">
+    <h2>7. Nodošana ārpus ES/EEZ</h2>
+    <p>
+      Treniņu platformu CoachRx nodrošina <strong>OPEX Fitness LLC</strong>, kas reģistrēta
+      Amerikas Savienotajās Valstīs. Tas nozīmē, ka daļa Tavu datu — kontaktinformācija, treniņu
+      un progresa dati, fotogrāfijas un sarakste aplikācijā — tiek apstrādāti ārpus Eiropas
+      Ekonomikas zonas.
+    </p>
+    <p>
+      Ar pakalpojuma sniedzēju noslēgtais datu apstrādes līgums paredz, ka datu nodošana ārpus
+      EEZ notiek, pamatojoties uz <strong>Eiropas Komisijas apstiprinātajām standarta līguma
+      klauzulām</strong>, un ka pakalpojuma sniedzējs nedrīkst piesaistīt apakšapstrādātājus bez
+      mūsu iepriekšējas piekrišanas. Pēc pakalpojuma izbeigšanas pakalpojuma sniedzējam dati
+      jādzēš 10 darba dienu laikā.
+    </p>
+    <p>
+      Ja vēlies uzzināt vairāk par konkrētajiem aizsardzības pasākumiem, raksti mums, un mēs
+      sniegsim pieejamo informāciju.
+    </p>
+    <div class="note todo">
+      <p>[RISINĀMS] Skat. piezīmi 6. sadaļā par CoachRx datu apstrādes līguma lomu sadalījumu.
+      Kamēr tas nav noskaidrots, šīs sadaļas apgalvojumi jāpārbauda.</p>
+    </div>
+  </section>
+
+  <section id="termini">
+    <h2>8. Cik ilgi datus glabājam</h2>
+    <p>Datus glabājam tikai tik ilgi, cik nepieciešams attiecīgajam nolūkam:</p>
+    <table class="tbl">
+      <thead><tr><th>Datu veids</th><th>Glabāšanas termiņš</th></tr></thead>
+      <tbody>
+        <tr><td>Pieteikums, kas nav pārtapis sadarbībā</td><td data-l="Termiņš">6 mēneši no pēdējās saziņas</td></tr>
+        <tr><td>Anketas un veselības dati</td><td data-l="Termiņš">Sadarbības laikā un 2 gadus pēc tās beigām</td></tr>
+        <tr><td>Treniņu un progresa dati</td><td data-l="Termiņš">Sadarbības laikā un 2 gadus pēc tās beigām</td></tr>
+        <tr><td>Progresa fotogrāfijas un video</td><td data-l="Termiņš">Sadarbības laikā; dzēšam pēc pieprasījuma jebkurā brīdī</td></tr>
+        <tr><td>Līgums un ar to saistītā sarakste</td><td data-l="Termiņš">10 gadi pēc līguma izbeigšanas (vispārējais prasības noilguma termiņš)</td></tr>
+        <tr><td>Grāmatvedības dokumenti un rēķini</td><td data-l="Termiņš">5 gadi (Grāmatvedības likums)</td></tr>
+        <tr><td>Mārketinga materiāli, kuriem sniegta piekrišana</td><td data-l="Termiņš">Līdz piekrišanas atsaukšanai</td></tr>
+      </tbody>
+    </table>
+    <p>Pēc termiņa beigām dati tiek neatgriezeniski dzēsti vai anonimizēti.</p>
+  </section>
+
+  <section id="drosiba">
+    <h2>9. Drošības pasākumi</h2>
+    <p>Lai aizsargātu Tavus datus, izmantojam tehniskus un organizatoriskus pasākumus:</p>
+    <ul>
+      <li>Piekļuve datiem tikai tām personām, kurām tā nepieciešama darba pienākumu veikšanai.</li>
+      <li>Šifrēta datu pārraide (HTTPS/TLS).</li>
+      <li>Paroļu politika un divfaktoru autentifikācija izmantotajās sistēmās.</li>
+      <li>Veselības dati tiek glabāti atsevišķi no publiski pieejamiem materiāliem.</li>
+      <li>Regulāra piekļuves tiesību pārskatīšana.</li>
+    </ul>
+    <p>
+      Neviena sistēma nav pilnībā droša, taču mēs veicam samērīgus pasākumus, lai risku samazinātu.
+      Ja notiek personas datu aizsardzības pārkāpums, kas var radīt augstu risku Tavām tiesībām un
+      brīvībām, mēs Tevi par to informēsim.
+    </p>
+  </section>
+
+  <section id="tiesibas">
+    <h2>10. Tavas tiesības</h2>
+    <p>Attiecībā uz saviem personas datiem Tev ir šādas tiesības:</p>
+    <table class="tbl">
+      <tbody>
+        <tr><td>Piekļuve</td><td data-l="Tiesības">Saņemt apstiprinājumu, vai apstrādājam Tavus datus, un saņemt to kopiju.</td></tr>
+        <tr><td>Labošana</td><td data-l="Tiesības">Prasīt neprecīzu datu labošanu vai nepilnīgu datu papildināšanu.</td></tr>
+        <tr><td>Dzēšana</td><td data-l="Tiesības">Prasīt datu dzēšanu, ja tiem vairs nav nolūka, ja atsauc piekrišanu vai ja apstrāde nav likumīga.</td></tr>
+        <tr><td>Apstrādes ierobežošana</td><td data-l="Tiesības">Prasīt apstrādes ierobežošanu noteiktos gadījumos, piemēram, apstrīdot datu precizitāti.</td></tr>
+        <tr><td>Iebilšana</td><td data-l="Tiesības">Iebilst pret apstrādi, kas balstīta uz leģitīmām interesēm.</td></tr>
+        <tr><td>Datu pārnesamība</td><td data-l="Tiesības">Saņemt datus strukturētā, plaši izmantotā formātā vai prasīt to nodošanu citam pārzinim.</td></tr>
+        <tr><td>Piekrišanas atsaukšana</td><td data-l="Tiesības">Atsaukt jebkuru sniegto piekrišanu, tostarp veselības datu apstrādei un mārketingam.</td></tr>
+      </tbody>
+    </table>
+    <h3>Kā šīs tiesības izmantot</h3>
+    <p>
+      Raksti uz <a href="mailto:anna@akfitness.lv">anna@akfitness.lv</a>. Lai aizsargātu Tavus datus,
+      varam lūgt apstiprināt Tavu identitāti. Atbildi sniegsim <strong>viena mēneša laikā</strong>
+      no pieprasījuma saņemšanas. Ja pieprasījums ir sarežģīts, šo termiņu varam pagarināt vēl par
+      diviem mēnešiem, par to Tevi informējot.
+    </p>
+    <p>Tiesību izmantošana ir bez maksas.</p>
+  </section>
+
+  <section id="profilesana">
+    <h2>11. Automatizēta lēmumu pieņemšana</h2>
+    <p>
+      Mēs neveicam automatizētu lēmumu pieņemšanu, kas radītu Tev tiesiskas sekas vai līdzīgi
+      būtiski Tevi ietekmētu.
+    </p>
+    <p>
+      Anketas iesniegšanas brīdī sistēma automātiski atzīmē veselības skrīninga atbildes, kurām
+      nepieciešama trenera uzmanība. <strong>Lēmumu par sadarbības uzsākšanu vienmēr pieņem
+      cilvēks</strong>, nevis sistēma.
+    </p>
+  </section>
+
+  <section id="sikdatnes">
+    <h2>12. Sīkdatnes un mājaslapa</h2>
+    <p>
+      Mājaslapa neizmanto analītikas vai reklāmas sīkdatnes un neveic apmeklētāju izsekošanu.
+    </p>
+    <p>
+      Anketas aizpildīšanas laikā pārlūkprogrammas lokālajā krātuvē tiek saglabātas Tavas atbildes,
+      lai Tu varētu turpināt aizpildīšanu vēlāk. Šie dati paliek Tavā ierīcē un tiek dzēsti pēc
+      anketas iesniegšanas.
+    </p>
+    <p>
+      Mājaslapa ielādē resursus no ārējiem pakalpojumu sniedzējiem — fontus, ikonas un attēlus.
+      Šādā gadījumā attiecīgais pakalpojuma sniedzējs var saņemt Tavu IP adresi un
+      pārlūkprogrammas informāciju.
+    </p>
+    <div class="note todo">
+      <p>[APSTIPRINĀT] Mājaslapa šobrīd ielādē Google Fonts, Iconify ikonas, Unsplash attēlus un
+      Supabase mitinātus attēlus. Google Fonts ielāde no Google serveriem nodod apmeklētāja IP
+      adresi Google — vairākās ES dalībvalstīs tas ir ticis atzīts par problemātisku. Ieteikums:
+      mitināt fontus lokāli, kas šo jautājumu novērš pavisam.</p>
+    </div>
+  </section>
+
+  <section id="sudzibas">
+    <h2>13. Sūdzības</h2>
+    <p>
+      Ja uzskati, ka Tavi dati tiek apstrādāti nelikumīgi, vispirms aicinām sazināties ar mums —
+      lielāko daļu jautājumu var atrisināt ātri.
+    </p>
+    <p>
+      Tev ir arī tiesības iesniegt sūdzību uzraudzības iestādei:
+    </p>
+    <table class="tbl">
+      <tr><td>Iestāde</td><td data-l="Iestāde">Datu valsts inspekcija</td></tr>
+      <tr><td>Adrese</td><td data-l="Adrese">Elijas iela 17, Rīga, LV-1050</td></tr>
+      <tr><td>Mājaslapa</td><td data-l="Mājaslapa"><a href="https://www.dvi.gov.lv">dvi.gov.lv</a></td></tr>
+    </table>
+  </section>
+
+  <section id="izmainas">
+    <h2>14. Politikas izmaiņas</h2>
+    <p>
+      Šo politiku laiku pa laikam varam papildināt — piemēram, ja mainās izmantotās sistēmas vai
+      pakalpojumi. Aktuālā versija vienmēr ir pieejama šajā lapā, un dokumenta sākumā ir norādīts
+      versijas numurs un spēkā stāšanās datums.
+    </p>
+    <p>
+      Par būtiskām izmaiņām, kas skar Tavus datus, informēsim Tevi individuāli — e-pastā vai
+      CoachRx aplikācijā.
+    </p>
+  </section>
+
+</div>
+
+<footer>
+  <div class="foot-in">
+    SIA AKFITNESSLV &nbsp;·&nbsp; Reģ. Nr. 40203534097 &nbsp;·&nbsp; Ģertrūdes iela 65A-9, Rīga, LV-1011<br>
+    <a href="mailto:anna@akfitness.lv" style="color:var(--muted);">anna@akfitness.lv</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.akfitness.lv" style="color:var(--muted);">akfitness.lv</a>
+  </div>
+</footer>
+
+</body>
+</html>

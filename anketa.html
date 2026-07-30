@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Anketa — AK Fitness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#09090b; --panel:#111113; --line:#27272a; --line2:#3f3f46;
+    --red:#d70c32; --ink:#e4e4e7; --muted:#a1a1aa; --dim:#71717a;
+    --sans:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--black); color:var(--ink);
+    font-family:var(--sans); font-weight:400; font-size:15px; line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:0 20px 80px 20px;}
+
+  /* ---- masthead ---- */
+  header{border-bottom:1px solid var(--line); margin-bottom:34px;}
+  .head-in{max-width:760px; margin:0 auto; padding:26px 20px 22px 20px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;}
+  .head-in img{height:30px; width:auto; display:block;}
+  .stepcount{font-family:var(--mono); font-size:10px; font-weight:600;
+    letter-spacing:.2em; text-transform:uppercase; color:var(--dim);}
+
+  /* ---- progress ---- */
+  .bar{height:2px; background:var(--line); margin-bottom:34px;}
+  .bar span{display:block; height:2px; background:var(--red); width:0; transition:width .25s ease;}
+
+  /* ---- section ---- */
+  .eyebrow{font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--red); margin-bottom:8px;}
+  h1{font-size:30px; font-weight:600; letter-spacing:-.02em; text-transform:uppercase;
+    line-height:1.15; margin:0 0 12px 0; padding-left:14px; border-left:5px solid var(--red);}
+  .lede{color:var(--muted); font-size:14.5px; margin:0 0 30px 0;}
+
+  .field{margin-bottom:26px;}
+  label.q{display:block; font-size:15px; font-weight:600; margin-bottom:4px; color:#fff;}
+  .hint{font-size:13px; color:var(--dim); margin-bottom:10px;}
+  .req{color:var(--red); font-weight:600;}
+
+  input[type=text],input[type=email],input[type=tel],input[type=date],
+  input[type=number],select,textarea{
+    width:100%; background:var(--panel); border:1px solid var(--line);
+    color:#fff; font-family:var(--sans); font-size:15px; padding:12px 14px;
+    border-radius:0; outline:none; transition:border-color .15s;
+  }
+  textarea{min-height:110px; resize:vertical; line-height:1.65;}
+  input:focus,select:focus,textarea:focus{border-color:var(--red);}
+  input.bad,select.bad,textarea.bad{border-color:var(--red); background:#1a0a0e;}
+  select{appearance:none; background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);
+    background-position:calc(100% - 20px) 50%, calc(100% - 14px) 50%;
+    background-size:6px 6px, 6px 6px; background-repeat:no-repeat;}
+
+  .opts{display:flex; flex-wrap:wrap; gap:8px;}
+  .opt{position:relative;}
+  .opt input{position:absolute; opacity:0; pointer-events:none;}
+  .opt span{display:block; border:1px solid var(--line); background:var(--panel);
+    padding:10px 16px; font-size:14px; cursor:pointer; transition:all .15s; user-select:none;}
+  .opt input:checked + span{border-color:var(--red); background:#1a0a0e; color:#fff; font-weight:600;}
+  .opt input:focus-visible + span{border-color:var(--red);}
+
+  .consent{display:flex; gap:12px; align-items:flex-start; border:1px solid var(--line);
+    background:var(--panel); padding:14px 16px; margin-bottom:12px; cursor:pointer;}
+  .consent input{margin:4px 0 0 0; width:16px; height:16px; accent-color:var(--red); flex:none;}
+  .consent p{margin:0; font-size:13.5px; line-height:1.6; color:var(--muted);}
+  .consent a{color:#fff; text-decoration:underline; text-underline-offset:3px;
+    text-decoration-color:var(--red);}
+  .consent.on{border-color:var(--line2);}
+
+  .note{border-left:4px solid var(--red); background:var(--panel);
+    padding:14px 16px; margin:0 0 24px 0; font-size:13.5px; color:var(--muted);}
+  .note p{margin:0;}
+  .err{color:var(--red); font-size:12.5px; font-family:var(--mono); letter-spacing:.06em;
+    text-transform:uppercase; margin-top:6px; display:none;}
+  .field.invalid .err{display:block;}
+
+  .parq{border-top:1px solid var(--line); padding-top:20px;}
+  .parq:first-of-type{border-top:none; padding-top:0;}
+
+  /* ---- nav ---- */
+  .nav{display:flex; justify-content:space-between; gap:12px; margin-top:40px;
+    border-top:1px solid var(--line); padding-top:24px;}
+  button{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:.16em;
+    text-transform:uppercase; padding:15px 28px; border:1px solid var(--line);
+    background:transparent; color:var(--muted); cursor:pointer; transition:all .15s;}
+  button:hover{border-color:var(--line2); color:#fff;}
+  button.primary{background:var(--red); border-color:var(--red); color:#fff;}
+  button.primary:hover{background:#b80a2a; border-color:#b80a2a;}
+  button[disabled]{opacity:.4; cursor:not-allowed;}
+  .saved{font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--dim); align-self:center;}
+
+  .done{text-align:center; padding:60px 0;}
+  .done h1{border:none; padding:0; display:inline-block;}
+  .hidden{display:none;}
+  @media (max-width:560px){
+    h1{font-size:24px;}
+    .nav{flex-direction:column-reverse;}
+    button{width:100%;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-in">
+    <img src="ak-logo-white.png" alt="AK Fitness Coaching">
+    <div class="stepcount" id="stepcount"></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="bar"><span id="progress"></span></div>
+  <form id="form" novalidate>
+    <div id="mount"></div>
+    <div class="nav" id="nav">
+      <button type="button" id="back">Atpakaļ</button>
+      <span class="saved" id="saved"></span>
+      <button type="button" id="next" class="primary">Tālāk</button>
+    </div>
+  </form>
+</div>
+
+<script>
+/* ============================================================
+   AK Fitness — intake + PAR-Q
+   Config: set WEBHOOK to the n8n production webhook URL.
+   Package is read from ?package=coaching_full | coaching_workouts
+   ============================================================ */
+const WEBHOOK   = '';           // e.g. 'https://akfitlv.zeabur.app/webhook/intake'
+const FORM_VER  = '2026.1';
+
+const params  = new URLSearchParams(location.search);
+const PACKAGE = params.get('package') || 'coaching_full';
+const HAS_NUTRITION = PACKAGE === 'coaching_full';
+
+/* ---------- storage that degrades gracefully ---------- */
+const mem = {};
+const store = {
+  get(k){ try { return localStorage.getItem(k); } catch(e){ return mem[k] ?? null; } },
+  set(k,v){ try { localStorage.setItem(k,v); } catch(e){ mem[k]=v; } },
+  del(k){ try { localStorage.removeItem(k); } catch(e){ delete mem[k]; } }
+};
+const KEY = 'akf_intake_' + PACKAGE;
+
+/* ---------- helpers ---------- */
+const esc = v => String(v ?? '')
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+  .replace(/"/g,'&quot;');
+
+const t  = (n,l,o={}) => Object.assign({name:n,label:l,type:'text'},o);
+const ta = (n,l,o={}) => Object.assign({name:n,label:l,type:'textarea'},o);
+const rad= (n,l,opts,o={}) => Object.assign({name:n,label:l,type:'radio',options:opts},o);
+const chk= (n,l,opts,o={}) => Object.assign({name:n,label:l,type:'checkbox',options:opts},o);
+
+const YESNO = ['Jā','Nē'];
+const parq = (n,l,flag) => ({
+  name:n, label:l, type:'radio', options:YESNO, required:true, parq:true, flag:flag,
+  followUp:{ name:n+'_detail', label:'Lūdzu, paskaidro sīkāk', type:'textarea',
+             required:true, showIf:v => v === 'Jā' }
+});
+
+/* ---------- schema ---------- */
+const SECTIONS = [
+{
+  key:'kontakti', eyebrow:'1. sadaļa', title:'Kontaktinformācija',
+  lede:'Sākam ar pamata informāciju. Uz norādīto e-pastu saņemsi CoachRx uzaicinājumu.',
+  fields:[
+    t('first_name','Vārds',{required:true}),
+    t('last_name','Uzvārds',{required:true}),
+    t('email','E-pasts',{required:true, inputType:'email'}),
+    t('phone','Telefona numurs',{required:true, inputType:'tel', hint:'Piemēram, +371 20000000'}),
+    t('birth_date','Dzimšanas datums',{required:true, inputType:'date'}),
+    t('city','Pilsēta vai novads',{required:true}),
+    rad('preferred_contact','Kā Tev ērtāk sazināties ikdienā?',
+        ['CoachRx aplikācija','E-pasts','WhatsApp','Instagram'],{required:true})
+  ]
+},
+{
+  key:'parq', eyebrow:'2. sadaļa', title:'Veselības skrīnings',
+  lede:'Standarta skrīnings pirms fizisko aktivitāšu uzsākšanas. Tas nav domāts, lai kādu nepielaistu pie treniņiem — tas palīdz saprast, kas jāņem vērā, veidojot programmu. Ja neesi droša, izvēlies "Jā" un paskaidro.',
+  fields:[
+    parq('parq_heart','Vai ārsts kādreiz ir teicis, ka Tev ir sirds slimība vai paaugstināts asinsspiediens?','stop'),
+    parq('parq_chest_pain','Vai Tu jūti sāpes krūtīs miera stāvoklī, ikdienas aktivitāšu laikā vai fiziskas slodzes laikā?','stop'),
+    parq('parq_dizziness','Vai pēdējo 12 mēnešu laikā Tev ir bijis reibonis ar līdzsvara zudumu vai samaņas zudums?','stop'),
+    parq('parq_supervised','Vai ārsts kādreiz ir teicis, ka fiziskās aktivitātes Tev drīkst veikt tikai ārsta uzraudzībā?','stop'),
+    parq('parq_chronic','Vai Tev ir diagnosticēta kāda hroniska saslimšana (izņemot sirds slimību vai paaugstinātu asinsspiedienu)?','review'),
+    parq('parq_medication','Vai Tu šobrīd lieto ārsta izrakstītus medikamentus hroniskas saslimšanas ārstēšanai?','review'),
+    parq('parq_joints','Vai Tev šobrīd ir vai pēdējo 12 mēnešu laikā ir bijušas kaulu, locītavu vai mīksto audu problēmas, kuras fiziskā slodze varētu pasliktināt?','review'),
+    parq('parq_pregnancy','Vai Tu šobrīd esi grūtniece vai esi dzemdējusi pēdējo 12 mēnešu laikā?','review'),
+    parq('parq_pelvic','Vai Tev ir urīna nesaturēšanas, iegurņa pamatnes vai vēdera preses diastāzes problēmas?','review'),
+    parq('parq_other','Vai ir kaut kas cits saistībā ar veselību, ko man vajadzētu zināt?','review')
+  ]
+},
+{
+  key:'veseliba', eyebrow:'3. sadaļa', title:'Veselība un ikdiena',
+  lede:'Šeit vari rakstīt brīvi — jo vairāk konteksta, jo precīzāka programma.',
+  fields:[
+    ta('health_history','Apraksti savu veselības stāvokli — vai ir kādas diagnozes? Kad pēdējo reizi veici asinsanalīzes un kādas tās bija?',{required:true}),
+    ta('injuries','Vai ir vai ir bijušas traumas? Kādas?',{required:true, hint:'Ja nav — uzraksti "nav".'}),
+    ta('supplements','Kādus uztura bagātinātājus vai vitamīnus lieto, ja lieto?'),
+    ta('medications_all','Vai lieto kādus medikamentus?',{hint:'Arī tos, kas nav saistīti ar hronisku saslimšanu.'}),
+    ta('daily_activity','Cik aktīva esi ikdienā? Kāda veida darbu strādā?',{required:true}),
+    rad('sleep_hours','Cik stundas vidēji guli naktī?',['Mazāk par 5','5–6','6–7','7–8','8 un vairāk'],{required:true}),
+    rad('sleep_quality','Kā novērtētu sava miega kvalitāti?',['1','2','3','4','5'],{required:true, hint:'1 — ļoti slikta, 5 — lieliska.'}),
+    rad('stress_level','Kāds ir Tavs stresa līmenis ikdienā?',['1','2','3','4','5'],{required:true, hint:'1 — zems, 5 — ļoti augsts.'})
+  ]
+},
+{
+  key:'treninu', eyebrow:'4. sadaļa', title:'Treniņu konteksts',
+  lede:'Šī informācija nosaka, kā izskatīsies Tava nedēļa un kādi vingrinājumi tajā būs.',
+  fields:[
+    t('height_cm','Augums (cm)',{required:true, inputType:'number', min:120, max:220}),
+    t('weight_kg','Svars (kg)',{required:true, inputType:'number', min:35, max:250, step:'0.1'}),
+    rad('training_location','Kur Tu trenēsies?',['Zālē','Mājās','Abi'],{required:true}),
+    t('gym_name','Kurā zālē? Nosaukums vai saite',{required:true,
+      showIf:d => d.training_location === 'Zālē' || d.training_location === 'Abi'}),
+    ta('home_equipment','Kāds inventārs Tev ir pieejams mājās?',{required:true,
+      hint:'Apraksti visu — hanteļu svaru kg, vai gumijas ir garas vai īsas, utt.',
+      showIf:d => d.training_location === 'Mājās' || d.training_location === 'Abi'}),
+    rad('sessions_per_week','Cik reizes nedēļā vari trenēties?',['2','3','4','5','6+'],{required:true}),
+    chk('available_days','Kuras dienas Tev parasti der treniņiem?',
+        ['P','O','T','C','Pk','S','Sv'],{required:true}),
+    rad('session_length','Cik ilgs treniņš Tev reāli ir iespējams?',
+        ['30–45 min','45–60 min','60–75 min','75+ min'],{required:true}),
+    rad('training_time','Kurā dienas laikā parasti trenējies?',
+        ['Rīts','Pusdienlaiks','Pēcpusdiena','Vakars','Mainīgi']),
+    ta('training_experience','Kāda ir Tava treniņu pieredze?',{required:true,
+      hint:'Apraksti, ko parasti dari treniņos, ar kādiem svariem utml.'}),
+    rad('wearable','Vai Tev ir fitnesa pulkstenis vai aproce?',
+        ['Nē','Apple Watch','Garmin','Oura','Fitbit','Cits'],{required:true}),
+    t('wearable_other','Kāda tieši?',{showIf:d => d.wearable === 'Cits', required:true})
+  ]
+},
+{
+  key:'uzturs', eyebrow:'5. sadaļa', title:'Uzturs',
+  lede:'Šī sadaļa attiecas uz Treniņu un uztura koučinga pakalpojumu.',
+  skip:!HAS_NUTRITION,
+  fields:[
+    chk('diet_restrictions','Vai Tev ir kādi uztura ierobežojumi?',
+        ['Nav','Veģetāriete','Vegāne','Bez glutēna','Bez laktozes','Cits'],{required:true}),
+    ta('allergies','Vai ir pārtikas alerģijas vai nepanesamības?'),
+    ta('food_dislikes','Kādus produktus Tu neēd vai ļoti nepatīk?'),
+    rad('meals_per_day','Cik ēdienreizes Tev ir tipiskā dienā?',
+        ['1–2','3','4–5','Nav noteikta ritma'],{required:true}),
+    rad('cooking_situation','Kā izskatās ēdiena gatavošana ikdienā?',
+        ['Gatavoju pati lielāko daļu','Daļēji gatavoju, daļēji ēdu ārā','Pārsvarā ēdu ārā vai gatavu'],{required:true}),
+    rad('alcohol','Cik bieži lieto alkoholu?',
+        ['Nelietoju','Retāk kā reizi mēnesī','1–3 reizes mēnesī','1–2 reizes nedēļā','Biežāk'],{required:true}),
+    rad('water_intake','Cik daudz ūdens vidēji izdzer dienā?',
+        ['Mazāk par 1 l','1–1.5 l','1.5–2.5 l','2.5 l un vairāk','Nezinu'],{required:true}),
+    ta('nutrition_history','Vai iepriekš esi skaitījusi kalorijas vai makro? Kāda bija pieredze?')
+  ]
+},
+{
+  key:'merki', eyebrow:'6. sadaļa', title:'Mērķi un motivācija',
+  lede:'Šī ir vissvarīgākā anketas daļa. Raksti tik daudz, cik gribas — te nav pareizo atbilžu.',
+  fields:[
+    ta('main_goal','Kāds būtu Tavs mērķis? Pēc iespējas precīzāk nodefinē to',{required:true}),
+    ta('three_goals','Uzraksti trīs konkrētus mērķus, kurus gribētu sasniegt mūsu sadarbībā',{required:true}),
+    ta('improve_specifics','Ko īpaši gribētu uzlabot savā izskatā, spēka parametros, kopējā fiziskā sagatavotībā?',{required:true}),
+    ta('previous_attempts','Ko Tu jau esi mēģinājusi darīt, lai sasniegtu mērķi?',{required:true,
+      hint:'Izaicinājumi, diētas, sadarbības ar citiem treneriem utt.'}),
+    ta('obstacles','Kādi ir Tavi klupšanas akmeņi ceļā uz veselīgu un aktīvu ikdienu?',{required:true}),
+    ta('progress_definition','Apraksti, kā Tu izvērtē savu progresu',{required:true}),
+    ta('expectations','Ko Tu sagaidītu no manis šīs sadarbības laikā?',{required:true}),
+    ta('why_us','Kāpēc izvēlējies manus pakalpojumus?'),
+    ta('anything_else','Vai ir vēl kas, ko man svarīgi zināt?')
+  ]
+},
+{
+  key:'piekrisanas', eyebrow:'7. sadaļa', title:'Piekrišanas',
+  lede:'Pēdējais solis. Pirmās trīs ir nepieciešamas, lai varētu sākt sadarbību. Ceturtā ir brīvprātīga un neietekmē pakalpojumu.',
+  fields:[
+    {name:'consent_health_data', type:'consent', required:true,
+     text:'Piekrītu, ka SIA AKFITNESSLV apstrādā manis norādītos veselības datus treniņu un uztura programmas izveidei. Saprotu, ka varu piekrišanu atsaukt jebkurā brīdī.'},
+    {name:'consent_terms', type:'consent', required:true,
+     text:'Esmu iepazinusies ar <a href="pakalpojuma-noteikumi.html" target="_blank">pakalpojuma noteikumiem</a> un <a href="privatuma-politika.html" target="_blank">privātuma politiku</a> un tiem piekrītu.'},
+    {name:'consent_liability', type:'consent', required:true,
+     text:'Apliecinu, ka sniegtā informācija ir patiesa un pilnīga, un ka trenējos uz savu atbildību. Saprotu, ka par jebkurām veselības izmaiņām man jāinformē trenere.'},
+    {name:'consent_media', type:'consent',
+     text:'Piekrītu, ka manus progresa foto, video un atsauksmes drīkst izmantot AK Fitness mārketinga materiālos.'},
+    {name:'consent_media_anonymous', type:'consent',
+     text:'Ja piekrītu iepriekšējam — tikai bez sejas un bez vārda.',
+     showIf:d => d.consent_media === true}
+  ]
+}
+].filter(s => !s.skip);
+
+/* ---------- state ---------- */
+let data = {};
+try { data = JSON.parse(store.get(KEY) || '{}'); } catch(e){ data = {}; }
+let step = 0;
+
+const mount = document.getElementById('mount');
+const $ = id => document.getElementById(id);
+
+const visible = (f) => !f.showIf || f.showIf(data);
+
+/* ---------- rendering ---------- */
+function fieldHTML(f){
+  const req = f.required ? ' <span class="req">*</span>' : '';
+  let control = '';
+  const v = data[f.name];
+
+  if(f.type === 'textarea'){
+    control = `<textarea name="${f.name}" rows="4">${v ? esc(v) : ''}</textarea>`;
+  } else if(f.type === 'radio' || f.type === 'checkbox'){
+    const multi = f.type === 'checkbox';
+    control = '<div class="opts">' + f.options.map((o,i) => {
+      const on = multi ? (Array.isArray(v) && v.includes(o)) : v === o;
+      return `<label class="opt"><input type="${multi?'checkbox':'radio'}" name="${f.name}"
+        value="${esc(o)}" ${on?'checked':''}><span>${esc(o)}</span></label>`;
+    }).join('') + '</div>';
+  } else if(f.type === 'consent'){
+    return `<div class="field" data-name="${f.name}">
+      <label class="consent ${v?'on':''}">
+        <input type="checkbox" name="${f.name}" ${v?'checked':''}>
+        <p>${f.text}${f.required?' <span class="req">*</span>':''}</p>
+      </label>
+      <div class="err">Šī piekrišana ir nepieciešama</div>
+    </div>`;
+  } else {
+    const type = f.inputType || 'text';
+    const extra = [f.min!=null?`min="${f.min}"`:'', f.max!=null?`max="${f.max}"`:'',
+                   f.step?`step="${f.step}"`:''].join(' ');
+    control = `<input type="${type}" name="${f.name}" value="${v?esc(v):''}" ${extra}>`;
+  }
+
+  return `<div class="field ${f.parq?'parq':''}" data-name="${f.name}">
+    <label class="q">${f.label}${req}</label>
+    ${f.hint?`<div class="hint">${f.hint}</div>`:''}
+    ${control}
+    <div class="err">Šis lauks ir jāaizpilda</div>
+  </div>`;
+}
+
+function render(){
+  const s = SECTIONS[step];
+  const fields = [];
+  s.fields.forEach(f => {
+    if(visible(f)) fields.push(f);
+    if(f.followUp && data[f.name] !== undefined){
+      const fu = Object.assign({}, f.followUp);
+      if(fu.showIf(data[f.name])) fields.push(fu);
+    }
+  });
+
+  mount.innerHTML = `
+    <div class="eyebrow">${s.eyebrow}</div>
+    <h1>${s.title}</h1>
+    ${s.lede?`<p class="lede">${s.lede}</p>`:''}
+    ${s.key==='parq'?`<div class="note"><p>Šie jautājumi ir veidoti pēc starptautiski
+      izmantota veselības skrīninga parauga. Atbildes redz tikai Tava trenere.</p></div>`:''}
+    ${fields.map(fieldHTML).join('')}`;
+
+  $('stepcount').textContent = `Solis ${step+1} / ${SECTIONS.length}`;
+  $('progress').style.width = ((step)/(SECTIONS.length-1)*100) + '%';
+  $('back').style.visibility = step === 0 ? 'hidden' : 'visible';
+  $('next').textContent = step === SECTIONS.length-1 ? 'Iesniegt anketu' : 'Tālāk';
+  window.scrollTo({top:0, behavior:'smooth'});
+  bind();
+}
+
+function bind(){
+  mount.querySelectorAll('input,textarea,select').forEach(el => {
+    const ev = (el.type==='radio'||el.type==='checkbox') ? 'change' : 'input';
+    el.addEventListener(ev, () => {
+      const f = currentFields().find(x => x.name === el.name);
+      if(el.type === 'checkbox' && f && f.type === 'checkbox'){
+        const on = [...mount.querySelectorAll(`input[name="${el.name}"]:checked`)].map(i=>i.value);
+        data[el.name] = on;
+      } else if(el.type === 'checkbox'){
+        data[el.name] = el.checked;
+      } else {
+        data[el.name] = el.value;
+      }
+      el.closest('.field')?.classList.remove('invalid');
+      save();
+      // conditionals & follow-ups need a re-render
+      if(needsRerender(el.name)) render();
+    });
+  });
+}
+
+function currentFields(){
+  const out = [];
+  SECTIONS[step].fields.forEach(f => { out.push(f); if(f.followUp) out.push(f.followUp); });
+  return out;
+}
+
+function needsRerender(name){
+  const triggers = ['training_location','wearable','consent_media'];
+  if(triggers.includes(name)) return true;
+  return SECTIONS[step].fields.some(f => f.followUp && f.name === name);
+}
+
+function validate(){
+  let ok = true;
+  const s = SECTIONS[step];
+  const check = (f) => {
+    if(!f.required) return;
+    const v = data[f.name];
+    const empty = v === undefined || v === '' || v === false ||
+                  (Array.isArray(v) && v.length === 0);
+    if(empty){
+      ok = false;
+      mount.querySelector(`.field[data-name="${f.name}"]`)?.classList.add('invalid');
+    }
+  };
+  s.fields.forEach(f => {
+    if(!visible(f)) return;
+    check(f);
+    if(f.followUp && f.followUp.showIf(data[f.name])) check(f.followUp);
+  });
+  if(!ok) mount.querySelector('.field.invalid')?.scrollIntoView({behavior:'smooth',block:'center'});
+  return ok;
+}
+
+/* ---------- persistence ---------- */
+let saveTimer;
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    store.set(KEY, JSON.stringify(data));
+    $('saved').textContent = 'Saglabāts';
+    setTimeout(()=>{ $('saved').textContent=''; }, 1800);
+  }, 400);
+}
+
+/* ---------- submit ---------- */
+function parqStatus(){
+  const stop   = ['parq_heart','parq_chest_pain','parq_dizziness','parq_supervised'];
+  const review = ['parq_chronic','parq_medication','parq_joints','parq_pregnancy',
+                  'parq_pelvic','parq_other'];
+  if(stop.some(k => data[k] === 'Jā'))   return 'MEDICAL_HOLD';
+  if(review.some(k => data[k] === 'Jā')) return 'COACH_REVIEW';
+  return 'CLEARED';
+}
+
+async function submit(){
+  const payload = Object.assign({}, data, {
+    package: PACKAGE,
+    parq_status: parqStatus(),
+    form_version: FORM_VER,
+    locale: 'lv',
+    submitted_at: new Date().toISOString()
+  });
+
+  $('next').disabled = true;
+  $('next').textContent = 'Sūta…';
+
+  try {
+    if(WEBHOOK){
+      const r = await fetch(WEBHOOK, {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
+      });
+      if(!r.ok) throw new Error('HTTP ' + r.status);
+    } else {
+      console.log('INTAKE PAYLOAD (webhook not configured):', payload);
+      await new Promise(r => setTimeout(r, 600));
+    }
+    store.del(KEY);
+    done();
+  } catch(e){
+    $('next').disabled = false;
+    $('next').textContent = 'Mēģināt vēlreiz';
+    alert('Neizdevās nosūtīt anketu. Atbildes ir saglabātas — pamēģini vēlreiz pēc brīža, '
+        + 'vai raksti anna@akfitness.lv.');
+  }
+}
+
+function done(){
+  document.querySelector('.bar').classList.add('hidden');
+  $('nav').classList.add('hidden');
+  $('stepcount').textContent = '';
+  mount.innerHTML = `<div class="done">
+    <div class="eyebrow">Paldies</div>
+    <h1>Anketa saņemta</h1>
+    <p class="lede" style="max-width:44ch;margin:18px auto 0 auto;">
+      Izlasīšu Tavas atbildes tuvāko dienu laikā un sazināšos par nākamajiem soļiem.
+      Uz e-pastu nosūtīju atbilžu kopiju.</p>
+  </div>`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ---------- nav ---------- */
+$('next').addEventListener('click', () => {
+  if(!validate()) return;
+  if(step === SECTIONS.length-1) return submit();
+  step++; render();
+});
+$('back').addEventListener('click', () => { if(step>0){ step--; render(); } });
+
+render();
+</script>
+</body>
+</html>

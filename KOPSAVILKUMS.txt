@@ -1,0 +1,71 @@
+====================================================================
+  AK FITNESS MĀJASLAPA — PAVEIKTO DARBU KOPSAVILKUMS
+====================================================================
+
+Šajā mapē ir mājaslapa. Lai to apskatītu, atver failu "index.html"
+(dubultklikšķis) — tā atvērsies pārlūkprogrammā. Nepieciešams interneta
+pieslēgums (attēli un fonti ielādējas no interneta).
+
+--------------------------------------------------------------------
+1. ĀTRUMS (lapa ielādējas daudz ātrāk)
+--------------------------------------------------------------------
+- Attēli tagad ielādējas tikai tad, kad kļūst redzami, un to izmēri ir
+  samazināti (agrāk pat mazām kartītēm tika lejupielādēti milzīgi attēli).
+- Izlabots trūkstošais fonts — dizains bija paredzēts fontam
+  "Plus Jakarta Sans", bet tas patiesībā nekad netika ielādēts.
+- "Tailwind" bibliotēka, kas katrā apmeklējumā lejupielādēja ~3 MB,
+  aizstāta ar sagatavotu, saspiestu stila failu (~34 KB).
+- Ikonu skripts un fonti vairs nebremzē pirmo ielādi; pievienota lapas
+  ikona (favicon) pārlūka cilnē.
+
+--------------------------------------------------------------------
+2. ATRODAMĪBA GOOGLE UN KOPĪGOŠANA SOCIĀLAJOS TĪKLOS
+--------------------------------------------------------------------
+- Pievienots lapas apraksts un priekšskatījuma tagi — daloties ar saiti
+  (WhatsApp, Facebook, Instagram), parādīsies attēls, virsraksts un apraksts.
+
+--------------------------------------------------------------------
+3. NO VIENAS LAPAS UZ SEŠĀM
+--------------------------------------------------------------------
+- Sākumlapa + 3 atsevišķas pakalpojumu lapas (Online Coaching,
+  Treniņu Coaching, Fitnesa Konsultācija)
+  + 2 treneru lapas (Anna, Krišjānis).
+- Katrai pakalpojuma lapai: kā tas notiek, klienta un trenera sadarbība,
+  uzsvars uz mērķi katram treniņam, un pieteikšanās forma.
+- Katram trenerim: filozofija, dzīves ceļa laika līnija, kvalifikācijas
+  un foto galerija.
+
+--------------------------------------------------------------------
+4. SAKĀRTOTAS KARTĪTES
+--------------------------------------------------------------------
+- Treneru kartītes tagad ir pilnībā klikšķināmas un ved uz trenera lapu
+  (agrāk poga bija par mazu un klikšķis bieži nedarbojās).
+- Pakalpojumu kartītēm poga "Uzzināt vairāk" ved uz attiecīgo lapu
+  (noņemts "apgriežamais" efekts, kas dublēja informāciju).
+
+--------------------------------------------------------------------
+5. VIENOTS DIZAINS
+--------------------------------------------------------------------
+- Visi sadaļu virsraksti (Pakalpojumi, Rezultāti, BUJ) tagad izskatās
+  vienādi — ar sarkano svītru, tāpat kā pārējā lapā.
+
+--------------------------------------------------------------------
+6. BUJ -> KONTAKTFORMA
+--------------------------------------------------------------------
+- Zem biežāk uzdotajiem jautājumiem pievienots teksts: ja atbilde nav
+  atrasta, aizpildi formu. Formas virsraksts palielināts un saskaņots.
+
+--------------------------------------------------------------------
+7. KONTAKTFORMAS
+--------------------------------------------------------------------
+- Visas formas tagad sūta pieteikumus uz vienu adresi: anna@akfitness.lv.
+
+====================================================================
+  VĒL DARĀMAIS (atlikts uz vēlāk)
+====================================================================
+- FormSubmit vienreizēja aktivizācija (pirmais pieteikums būs jāapstiprina
+  e-pastā anna@akfitness.lv).
+- Īstie treneru dzīves ceļa dati/gadi (šobrīd paraugteksts).
+- Īstās fotogrāfijas vietām (šobrīd stock foto).
+- Domēna apstiprināšana (pieņemts akfitness.lv).
+====================================================================

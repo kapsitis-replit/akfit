@@ -1,0 +1,1007 @@
+<html lang="lv" class="scroll-smooth dark"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AK FITNESS | Individuālie Treniņu Plāni</title>
+
+    <!-- SEO -->
+    <meta name="description" content="AK Fitness — individuāli treniņu un uztura plāni, zinātnē balstīta metodika un sertificēti treneri. Online coaching, klātienes treniņi un konsultācijas Rīgā.">
+    <!-- TODO: update the domain below if akfitness.lv is not your final address -->
+    <link rel="canonical" href="https://akfitness.lv/">
+    <meta name="theme-color" content="#d70c32">
+
+    <!-- Open Graph / social sharing preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="lv_LV">
+    <meta property="og:site_name" content="AK Fitness">
+    <meta property="og:title" content="AK Fitness | Individuālie Treniņu Plāni">
+    <meta property="og:description" content="Zinātnē balstīta treniņu un uztura metodika. Sertificēti treneri, individuāla pieeja, garantēts rezultāts.">
+    <meta property="og:url" content="https://akfitness.lv/">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&amp;w=1200&amp;auto=format&amp;fit=crop">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AK Fitness | Individuālie Treniņu Plāni">
+    <meta name="twitter:description" content="Zinātnē balstīta treniņu un uztura metodika. Sertificēti treneri, individuāla pieeja, garantēts rezultāts.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&amp;w=1200&amp;auto=format&amp;fit=crop">
+
+    <!-- Favicon (self-contained SVG, no extra file needed) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2309090b'/%3E%3Ctext x='50' y='70' font-family='Arial,sans-serif' font-size='54' font-weight='700' text-anchor='middle' fill='%23d70c32'%3EAK%3C/text%3E%3C/svg%3E">
+
+    <link rel="stylesheet" href="tailwind.css">
+
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <!-- Plus Jakarta Sans — loaded non-render-blocking (was declared in CSS but never actually loaded) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap"></noscript>
+    <script>
+      // Apply saved theme before first paint (avoids flash of wrong theme)
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+    
+    <link rel="stylesheet" href="app.css">
+  </head>
+  <body class="bg-zinc-50 dark:bg-zinc-950 text-zinc-600 dark:text-zinc-300 antialiased selection:bg-[#d70c32] selection:text-white transition-colors duration-300">
+    <!-- Noise Overlay -->
+    <div class="fixed inset-0 z-0 bg-noise opacity-40 dark:opacity-30 mix-blend-overlay pointer-events-none"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed z-50 dark:border-white/5 dark:bg-zinc-950/80 transition-colors duration-300 reveal reveal-down is-visible bg-white/80 w-full border-zinc-200 border-b top-0 backdrop-blur-md">
+      <div class="flex h-16 max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center justify-between">
+        <!-- Logo -->
+        <a href="#" class="text-xl font-semibold uppercase tracking-tighter text-zinc-900 dark:text-white glitch-hover group">
+          AK
+          <span class="text-[#d70c32] group-hover:text-zinc-900 dark:group-hover:text-white transition-colors">
+            FITNESS
+          </span>
+        </a>
+
+        <!-- Desktop Links -->
+        <div class="hidden md:flex gap-8 gap-x-8 gap-y-8 items-center">
+          <a href="/#about" class="uppercase dark:text-zinc-400 hover:text-[#d70c32] dark:hover:text-[#d70c32] transition-colors text-xs font-medium text-zinc-600 tracking-widest">
+            Par Mums
+          </a>
+          <a href="#pricing" class="uppercase dark:text-zinc-400 hover:text-[#d70c32] dark:hover:text-[#d70c32] transition-colors text-xs font-medium text-zinc-600 tracking-widest">
+            PAKALPOJUMI
+          </a>
+          <a href="#results" class="text-xs font-medium uppercase tracking-widest text-zinc-600 dark:text-zinc-400 hover:text-[#d70c32] dark:hover:text-[#d70c32] transition-colors">
+            Rezultāti
+          </a>
+          <a href="/#process" class="uppercase dark:text-zinc-400 hover:text-[#d70c32] dark:hover:text-[#d70c32] transition-colors text-xs font-medium text-zinc-600 tracking-widest">
+            Process
+          </a>
+          <a href="#faq" class="text-xs font-medium uppercase tracking-widest text-zinc-600 dark:text-zinc-400 hover:text-[#d70c32] dark:hover:text-[#d70c32] transition-colors">
+            BUJ
+          </a>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <!-- Theme Toggle -->
+          <button onclick="toggleTheme()" class="p-2 text-zinc-600 dark:text-zinc-400 hover:text-[#d70c32] transition-colors focus:outline-none">
+            <iconify-icon icon="solar:sun-linear" width="20" class="hidden dark:block"></iconify-icon>
+            <iconify-icon icon="solar:moon-stars-linear" width="20" class="block dark:hidden"></iconify-icon>
+          </button>
+
+          <!-- CTA -->
+          <a href="#pricing" class="bg-zinc-900 dark:bg-white text-white dark:text-black px-5 py-2 text-xs font-semibold uppercase tracking-wider hover:bg-[#d70c32] dark:hover:bg-[#d70c32] hover:text-white dark:hover:text-white transition-all duration-300 skew-x-[-10deg] border border-transparent hover:border-[#d70c32]">
+            <span class="block skew-x-[10deg]">Sākt Tagad</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 1. Hero Section -->
+    <header class="z-10 md:pt-48 md:pb-32 overflow-hidden dark:border-white/5 transition-colors duration-300 border-zinc-200 border-b pt-32 pr-6 pb-20 pl-6 relative">
+      <!-- Background Image with Filter -->
+      <div class="absolute inset-0 z-[-1] overflow-hidden reveal reveal-clip">
+        <img fetchpriority="high" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Gym Background" class="animate-slow-pan dark:brightness-[0.3] dark:opacity-100 transition-all duration-500 opacity-5 w-full h-full object-cover grayscale brightness-100">
+        <div class="absolute inset-0 bg-gradient-to-t from-zinc-50 dark:from-zinc-950 via-transparent to-zinc-50/80 dark:to-zinc-950/80 transition-colors duration-300"></div>
+        <div class="dark:opacity-10 bg-[#d70c32] opacity-5 mix-blend-overlay absolute top-0 right-0 bottom-0 left-0"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-7xl mr-auto ml-auto gap-x-12 gap-y-12 items-end">
+        <div class="lg:col-span-8 space-y-8">
+          <!-- Social Proof Strip -->
+          <div class="flex items-center gap-2 text-[#d70c32] reveal reveal-up is-visible">
+            <iconify-icon icon="solar:star-linear" width="16"></iconify-icon>
+            <iconify-icon icon="solar:star-linear" width="16"></iconify-icon>
+            <iconify-icon icon="solar:star-linear" width="16"></iconify-icon>
+            <iconify-icon icon="solar:star-linear" width="16"></iconify-icon>
+            <iconify-icon icon="solar:star-linear" width="16"></iconify-icon>
+            <span class="text-zinc-500 dark:text-zinc-400 text-xs font-mono uppercase tracking-widest ml-2">
+              1000+ Pārveidoti Ķermeņi
+            </span>
+          </div>
+
+          <!-- Headline -->
+          <h1 class="uppercase leading-tight dark:text-white transition-colors duration-300 md:text-6xl lg:text-6xl text-4xl font-semibold text-zinc-900 tracking-tight z-20 pt-0 pb-0 relative top-0 [animation:animationIn_0.8s_ease-out_0.1s_both]">
+            Veido
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#d70c32] to-[#ef4464]">
+              Raksturu
+            </span>
+            <br>
+            Pārkāp
+            <span class="line-through decoration-[#d70c32] decoration-4 text-zinc-400 dark:text-zinc-500">
+              Robežas
+            </span>
+            <br>
+            Ēd un trenējies
+          </h1>
+
+          <!-- Subheadline -->
+          <p class="dark:text-zinc-400 leading-relaxed transition-colors duration-300 md:text-xl text-lg font-light text-zinc-600 max-w-md border-[#d70c32] border-l-2 pl-6 reveal reveal-up delay-150 is-visible">
+            Nekādu īsāko ceļu. Nekādu atrunu. Zinātnē balstīta treniņu un uztura
+            metodika
+          </p>
+
+          <!-- CTAs -->
+          <div class="flex flex-col sm:flex-row gap-4 pt-4 reveal reveal-up delay-200">
+            <a href="#pricing" class="group relative px-8 py-4 bg-[#d70c32] hover:bg-[#b30a2a] text-white font-semibold uppercase tracking-widest transition-all">
+              <span class="group-hover:translate-x-0 group-hover:translate-y-0 transition-transform border-white/20 border absolute top-0 right-0 bottom-0 left-0 translate-x-1 translate-y-1"></span>
+              <span class="text-center relative">Izvēlēties Plānu</span>
+            </a>
+            <a href="#about" class="px-8 py-4 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 font-medium uppercase tracking-widest hover:border-zinc-900 dark:hover:border-white hover:text-zinc-900 dark:hover:text-white transition-colors text-center">
+              Treneri
+            </a>
+          </div>
+
+          <!-- Capacity Signal -->
+          <div class="max-w-2xl mt-6 border border-zinc-200 dark:border-white/5 bg-white/50 dark:bg-zinc-950/50 px-6 py-4 backdrop-blur-sm transition-colors duration-300 reveal reveal-up delay-300">
+            <div class="flex items-start gap-3">
+              <iconify-icon icon="solar:users-group-two-rounded-linear" class="text-[#d70c32] mt-0.5" width="20"></iconify-icon>
+              <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                <span class="text-zinc-900 dark:text-white font-medium">
+                  Ierobežots vietu skaits
+                </span>
+                — Mēs strādājam ar ierobežotu klientu skaitu, lai nodrošinātu
+                maksimālu kvalitāti un uzmanību.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual Overlay Cards -->
+        <div class="hidden lg:block lg:col-span-4 relative h-[480px] reveal reveal-left delay-400 is-visible">
+          <div class="flex w-full h-full py-8 relative perspective-normal items-center justify-center -translate-y-12 lg:-translate-y-24" id="card-carousel-root">
+            <!-- Card 1 (Center) -->
+            <div class="transition-all duration-500 ease-out -translate-y-1/2 -translate-x-1/2 z-30 cursor-default hover:opacity-100 opacity-100 w-full max-w-[320px] absolute top-1/2 rotate-0 scale-100" onclick="handleCardClick(this.id)" id="carousel-card-0">
+              <div class="dark:bg-zinc-900 dark:border-zinc-700 shadow-black/10 dark:shadow-black/50 transition-colors duration-300 bg-white border-zinc-200 border pt-6 pr-6 pb-6 pl-6 relative shadow-2xl skew-y-[-2deg] z-10">
+                <div class="flex justify-between items-start mb-4">
+                  <h3 class="text-2xl font-medium text-zinc-900 dark:text-white uppercase italic tracking-tight transition-colors">
+                    Linda K.
+                  </h3>
+                  <span class="bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 text-xs px-2 py-1 font-mono border border-zinc-200 dark:border-zinc-700 transition-colors">
+                    12 NEDĒĻAS
+                  </span>
+                </div>
+                <div class="grid grid-cols-2 gap-2 mb-4">
+                  <div class="bg-black aspect-[3/4] relative overflow-hidden">
+                    <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&amp;w=800&amp;auto=format&amp;fit=crop" class="object-cover w-full h-full grayscale opacity-80 dark:opacity-60" alt="Before">
+                    <span class="absolute bottom-2 left-2 text-[10px] font-mono bg-[#d70c32] text-white px-1">
+                      PIRMS
+                    </span>
+                  </div>
+                  <div class="bg-black aspect-[3/4] relative overflow-hidden">
+                    <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&amp;w=800&amp;auto=format&amp;fit=crop" class="object-cover w-full h-full grayscale contrast-125" alt="After">
+                    <span class="absolute bottom-2 left-2 text-[10px] font-mono bg-zinc-800 dark:bg-zinc-700 text-white px-1">
+                      PĒC
+                    </span>
+                  </div>
+                </div>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400 italic">
+                  "-8kg tauku, +spēks un pārliecība."
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 2 (Right) -->
+            <div id="carousel-card-1" class="absolute top-1/2 w-full max-w-[320px] transition-all duration-500 ease-out -translate-y-1/2 translate-x-[20px] rotate-[6deg] scale-[0.85] opacity-40 z-10 cursor-pointer hover:opacity-80" onclick="handleCardClick(this.id)">
+              <div class="relative z-10 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 p-6 skew-y-[-2deg] shadow-2xl shadow-black/10 dark:shadow-black/50 transition-colors duration-300">
+                <div class="flex justify-between items-start mb-4">
+                  <h3 class="text-2xl font-medium text-zinc-900 dark:text-white uppercase italic tracking-tight transition-colors">
+                    Artūrs P.
+                  </h3>
+                  <span class="bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 text-xs px-2 py-1 font-mono border border-zinc-200 dark:border-zinc-700 transition-colors">
+                    8 NEDĒĻAS
+                  </span>
+                </div>
+                <div class="grid grid-cols-2 gap-2 mb-4">
+                  <div class="bg-black aspect-[3/4] relative overflow-hidden">
+                    <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&amp;w=800&amp;auto=format&amp;fit=crop" class="object-cover w-full h-full grayscale opacity-80 dark:opacity-60" alt="Before">
+                    <span class="absolute bottom-2 left-2 text-[10px] font-mono bg-[#d70c32] text-white px-1">
+                      PIRMS
+                    </span>
+                  </div>
+                  <div class="bg-black aspect-[3/4] relative overflow-hidden">
+                    <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&amp;w=800&amp;auto=format&amp;fit=crop" class="object-cover w-full h-full grayscale contrast-125" alt="After">
+                    <span class="absolute bottom-2 left-2 text-[10px] font-mono bg-zinc-800 dark:bg-zinc-700 text-white px-1">
+                      PĒC
+                    </span>
+                  </div>
+                </div>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400 italic">
+                  "-6kg tauku, +5kg muskuļi. Process strādā."
+                </p>
+              </div>
+            </div>
+
+            <!-- Card 3 (Left) -->
+            <div id="carousel-card-2" class="absolute top-1/2 w-full max-w-[320px] transition-all duration-500 ease-out -translate-y-1/2 -translate-x-[calc(100%+20px)] -rotate-[6deg] scale-[0.85] opacity-40 z-10 cursor-pointer hover:opacity-80" onclick="handleCardClick(this.id)">
+              <div class="z-10 dark:bg-zinc-900 dark:border-zinc-700 shadow-black/10 dark:shadow-black/50 transition-colors duration-300 bg-white border-zinc-200 border pt-6 pr-6 pb-6 pl-6 relative shadow-2xl skew-y-[-2deg]">
+                <div class="flex justify-between items-start mb-4">
+                  <h3 class="text-2xl font-medium text-zinc-900 dark:text-white uppercase italic tracking-tight transition-colors">
+                    Zane M.
+                  </h3>
+                  <span class="bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 text-xs px-2 py-1 font-mono border border-zinc-200 dark:border-zinc-700 transition-colors">
+                    16 NEDĒĻAS
+                  </span>
+                </div>
+                <div class="grid grid-cols-2 gap-2 mb-4">
+                  <div class="bg-black aspect-[3/4] relative overflow-hidden">
+                    <img loading="lazy" decoding="async" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" class="object-cover w-full h-full grayscale opacity-80 dark:opacity-60" alt="Before">
+                    <span class="absolute bottom-2 left-2 text-[10px] font-mono bg-[#d70c32] text-white px-1">
+                      PIRMS
+                    </span>
+                  </div>
+                  <div class="bg-black aspect-[3/4] relative overflow-hidden">
+                    <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&amp;w=800&amp;auto=format&amp;fit=crop" class="object-cover w-full h-full grayscale contrast-125" alt="After">
+                    <span class="absolute bottom-2 left-2 text-[10px] font-mono bg-zinc-800 dark:bg-zinc-700 text-white px-1">
+                      PĒC
+                    </span>
+                  </div>
+                </div>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400 italic">
+                  "Beidzot jūtos stipra savā ķermenī. Enerģija visai dienai!"
+                </p>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-4 z-40">
+              <button onclick="moveTestimonialCarousel(-1)" class="w-12 h-12 rounded-full border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 shadow-sm flex items-center justify-center text-zinc-600 dark:text-zinc-400 hover:text-white hover:bg-[#d70c32] hover:border-[#d70c32] transition-colors focus:outline-none focus:ring-2 focus:ring-[#d70c32]/50">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left">
+                  <path d="m12 19-7-7 7-7"></path>
+                  <path d="M19 12H5"></path>
+                </svg>
+              </button>
+              <button onclick="moveTestimonialCarousel(1)" class="w-12 h-12 rounded-full border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 shadow-sm flex items-center justify-center text-zinc-600 dark:text-zinc-400 hover:text-white hover:bg-[#d70c32] hover:border-[#d70c32] transition-colors focus:outline-none focus:ring-2 focus:ring-[#d70c32]/50">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <script class="">
+            (function() {
+              const container = document.getElementById('card-carousel-root');
+              if (!container) return;
+
+              const cards = [
+                document.getElementById('carousel-card-0'),
+                document.getElementById('carousel-card-1'),
+                document.getElementById('carousel-card-2')
+              ];
+
+              let isAnimating = false;
+              let positions = [0, 1, 2]; // 0=Center, 1=Right, 2=Left
+
+              const posClasses = {
+                0: ["-translate-x-1/2", "rotate-0", "scale-100", "opacity-100", "z-30", "cursor-default", "hover:opacity-100"],
+                1: ["translate-x-[20px]", "rotate-[6deg]", "scale-[0.85]", "opacity-40", "z-10", "cursor-pointer", "hover:opacity-80"],
+                2: ["-translate-x-[calc(100%+20px)]", "-rotate-[6deg]", "scale-[0.85]", "opacity-40", "z-10", "cursor-pointer", "hover:opacity-80"]
+              };
+
+              function updateCards() {
+                cards.forEach((card, i) => {
+                  if (!card) return;
+                  // Remove all possible positioning classes to ensure clean slate
+                  Object.values(posClasses).forEach(clsArray => {
+                    card.classList.remove(...clsArray);
+                  });
+                  // Add new positioning classes
+                  card.classList.add(...posClasses[positions[i]]);
+                });
+              }
+
+              window.moveTestimonialCarousel = function(direction) {
+                if (isAnimating) return;
+                isAnimating = true;
+
+                if (direction === 1) { // Next (Right)
+                  positions = positions.map(p => {
+                    if (p === 0) return 2;
+                    if (p === 1) return 0;
+                    if (p === 2) return 1;
+                    return p;
+                  });
+                } else { // Prev (Left)
+                  positions = positions.map(p => {
+                    if (p === 0) return 1;
+                    if (p === 1) return 2;
+                    if (p === 2) return 0;
+                    return p;
+                  });
+                }
+
+                updateCards();
+
+                setTimeout(() => {
+                  isAnimating = false;
+                }, 500);
+              };
+
+              window.handleCardClick = function(id) {
+                const idx = parseInt(id.replace('carousel-card-', ''));
+                const currentPos = positions[idx];
+                if (currentPos === 1) moveTestimonialCarousel(1);
+                if (currentPos === 2) moveTestimonialCarousel(-1);
+              };
+            })();
+          </script>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2. Trust Bar -->
+    <div class="dark:border-white/5 dark:bg-zinc-950 z-10 transition-colors duration-300 bg-zinc-50 border-zinc-200 border-b relative">
+      <div class="max-w-7xl mx-auto py-8 px-6">
+        <div class="flex flex-wrap justify-center md:justify-between items-center gap-8 opacity-70 grayscale hover:grayscale-0 transition-all duration-500 text-zinc-800 dark:text-white">
+          <span class="text-sm font-semibold uppercase tracking-widest flex items-center gap-2 reveal reveal-up delay-75">
+            <iconify-icon icon="solar:shield-check-linear" class="text-[#d70c32]" width="24"></iconify-icon>
+            Zinātnē Balstīts
+          </span>
+          <span class="text-sm font-semibold uppercase tracking-widest flex items-center gap-2 reveal reveal-up delay-150">
+            <iconify-icon icon="solar:diploma-verified-linear" class="text-[#d70c32]" width="24"></iconify-icon>
+            Sertificēti Treneri
+          </span>
+          <span class="text-sm font-semibold uppercase tracking-widest flex items-center gap-2 reveal reveal-up delay-200">
+            <iconify-icon icon="solar:fire-linear" class="text-[#d70c32]" width="24"></iconify-icon>
+            Individuāla Pieeja
+          </span>
+          <span class="text-sm font-semibold uppercase tracking-widest flex items-center gap-2 reveal reveal-up delay-300">
+            <iconify-icon icon="solar:graph-new-up-linear" class="text-[#d70c32]" width="24"></iconify-icon>
+            Garantēts Rezultāts
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Coaches Profile Section -->
+    <section class="z-10 dark:border-white/5 dark:bg-zinc-900/30 transition-colors duration-300 bg-white border-zinc-200 border-b pt-20 pr-6 pb-20 pl-6 relative" id="about">
+      <div class="max-w-7xl mr-auto ml-auto">
+        <div class="reveal reveal-up border-[#d70c32] border-l-4 mb-12 pl-6">
+          <h2 class="text-4xl md:text-5xl font-semibold uppercase tracking-tight text-zinc-900 dark:text-white transition-colors">
+            Treneri
+          </h2>
+          <p class="text-zinc-500 mt-2 font-mono uppercase tracking-widest text-xs">
+            AK Fitness Komanda
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 gap-x-8 gap-y-8">
+          <!-- Coach Anna -->
+          <a href="treneris-anna.html" class="group reveal reveal-right delay-150 flex flex-col overflow-hidden border border-zinc-200 dark:border-white/5 bg-zinc-50 dark:bg-zinc-900 hover:border-[#d70c32]/50 transition-colors duration-500">
+            <div class="aspect-[4/3] overflow-hidden bg-zinc-100 dark:bg-black relative">
+              <img loading="lazy" decoding="async" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1fd13add-fd78-4ccc-a2db-bbbc38815fd4_1600w.jpg?w=800&amp;q=80" alt="Anna" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700">
+              <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-zinc-50 dark:from-zinc-900 to-transparent"></div>
+            </div>
+            <div class="flex-1 flex flex-col p-8">
+              <div class="flex items-start justify-between mb-4">
+                <div>
+                  <h3 class="text-2xl font-semibold text-zinc-900 dark:text-white uppercase tracking-tight">Anna</h3>
+                  <p class="uppercase text-xs text-[#d70c32] tracking-widest font-mono mt-1">Galvenā Treneris &amp; Uztura Speciālists</p>
+                </div>
+                <iconify-icon icon="solar:dumbbell-large-linear" class="text-zinc-400 dark:text-zinc-600 group-hover:text-[#d70c32] transition-colors" width="32"></iconify-icon>
+              </div>
+              <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-6 flex-1">Es ticu ilgtermiņa pārmaiņām, nevis īstermiņa risinājumiem. Mana pieeja apvieno spēka treniņus ar sabalansētu uzturu, lai veidotu ne tikai estētisku ķermeni, bet arī veselīgu vielmaiņu un spēcīgu garu.</p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-3 py-1 border border-zinc-200 dark:border-zinc-800 text-[10px] uppercase font-bold text-zinc-500">LEVEL 3 Personal Trainer</span>
+                <span class="px-3 py-1 border border-zinc-200 dark:border-zinc-800 text-[10px] uppercase font-bold text-zinc-500">LEVEL 2 Gym Instructor</span>
+                <span class="px-3 py-1 border border-zinc-200 dark:border-zinc-800 text-[10px] uppercase font-bold text-zinc-500">MNU Certified Nutritionist</span>
+                <span class="px-3 py-1 border border-zinc-200 dark:border-zinc-800 text-[10px] uppercase font-bold text-zinc-500">MSc Drug Discovery and Development</span>
+                <span class="px-3 py-1 border border-zinc-200 dark:border-zinc-800 text-[10px] uppercase font-bold text-zinc-500">BSc Pharmacology and Physiology</span>
+              </div>
+              <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#d70c32] group-hover:gap-3 transition-all mt-auto">Skatīt pilnu profilu <iconify-icon icon="solar:arrow-right-linear" width="14"></iconify-icon></span>
+            </div>
+          </a>
+
+          <!-- Coach Kristaps -->
+          <a href="treneris-krisjanis.html" class="group reveal reveal-left delay-300 flex flex-col overflow-hidden border border-zinc-200 dark:border-white/5 bg-zinc-50 dark:bg-zinc-900 hover:border-[#d70c32]/50 transition-colors duration-500">
+            <div class="aspect-[4/3] overflow-hidden bg-zinc-100 dark:bg-black relative">
+              <img loading="lazy" decoding="async" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/661f3020-b60d-4f71-aec2-aaa8b2c5b9e6_1600w.png?w=800&amp;q=80" alt="Krišjānis" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700">
+              <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-zinc-50 dark:from-zinc-900 to-transparent"></div>
+            </div>
+            <div class="flex-1 flex flex-col p-8">
+              <div class="flex items-start justify-between mb-4">
+                <div>
+                  <h3 class="text-2xl font-semibold text-zinc-900 dark:text-white uppercase tracking-tight">Krišjānis</h3>
+                  <p class="uppercase text-xs text-[#d70c32] tracking-widest font-mono mt-1">Spēka &amp; Kondīcijas Treneris</p>
+                </div>
+                <iconify-icon icon="solar:stopwatch-linear" class="text-zinc-400 dark:text-zinc-600 group-hover:text-[#d70c32] transition-colors" width="32"></iconify-icon>
+              </div>
+              <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-6 flex-1">Mani treniņi ir balstīti uz disciplīnu un tehniku. Es palīdzēšu tev sasniegt fizisko potenciālu caur pārdomātu slodzi. Ja tu esi gatavs strādāt, es esmu gatavs tevi aizvest līdz mērķim.</p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-3 py-1 border border-zinc-200 dark:border-zinc-800 text-[10px] uppercase font-bold text-zinc-500">LEVEL 3 Personal Trainer</span>
+                <span class="px-3 py-1 border border-zinc-200 dark:border-zinc-800 text-[10px] uppercase font-bold text-zinc-500">LEVEL 2 Gym Instructor</span>
+                <span class="px-3 py-1 border border-zinc-200 dark:border-zinc-800 text-[10px] uppercase font-bold text-zinc-500">BSc Sports and Exercise Science (Strength and Conditioning)</span>
+              </div>
+              <span class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#d70c32] group-hover:gap-3 transition-all mt-auto">Skatīt pilnu profilu <iconify-icon icon="solar:arrow-right-linear" width="14"></iconify-icon></span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 3. Who it's for -->
+    <section class="md:py-32 z-10 pt-20 pr-6 pb-20 pl-6 relative">
+      <div class="absolute inset-0 z-[-1] overflow-hidden pointer-events-none reveal reveal-clip">
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Background" class="animate-slow-pan dark:brightness-[0.3] dark:opacity-100 transition-all duration-500 opacity-5 w-full h-full object-cover grayscale brightness-100">
+        <div class="absolute inset-0 bg-gradient-to-t from-zinc-50 dark:from-zinc-950 via-transparent to-zinc-50/80 dark:to-zinc-950/80 transition-colors duration-300"></div>
+        <div class="dark:opacity-10 bg-[#d70c32] opacity-5 mix-blend-overlay absolute top-0 right-0 bottom-0 left-0"></div>
+      </div>
+      <div class="max-w-7xl mr-auto ml-auto">
+        <div class="reveal reveal-up border-[#d70c32] border-l-4 mb-12 pl-6">
+          <h2 class="md:text-5xl uppercase dark:text-white transition-colors text-4xl font-semibold text-zinc-900 tracking-tight">
+            Kam tas domāts?
+          </h2>
+          <p class="uppercase text-xs text-zinc-500 tracking-widest font-mono mt-2">
+            Kvalifikācijas Protokols
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 gap-x-6 gap-y-6">
+          <!-- Card 1 -->
+          <div class="group border border-zinc-200 dark:border-white/5 bg-white dark:bg-zinc-900/50 p-8 hover:border-[#d70c32] transition-colors duration-300 shadow-sm dark:shadow-none reveal reveal-up delay-75">
+            <iconify-icon icon="solar:flame-linear" class="text-zinc-800 dark:text-white mb-6 group-hover:text-[#d70c32] transition-colors" width="32"></iconify-icon>
+            <h3 class="text-xl font-semibold text-zinc-900 dark:text-white uppercase mb-3 tracking-tight transition-colors">
+              Tiem, kas meklē motivāciju
+            </h3>
+            <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed transition-colors">
+              Motivācija ir sākums, bet disciplīna ir rezultāts. Mēs palīdzēsim
+              jums atrast iekšējo dzinuli un uzturēt augstu motivāciju visā
+              procesā, pārvēršot sākotnējo entuziasmu par stabilu ieradumu.
+            </p>
+          </div>
+          <!-- Card 2 -->
+          <div class="group border border-zinc-200 dark:border-white/5 bg-white dark:bg-zinc-900/50 p-8 hover:border-[#d70c32] transition-colors duration-300 shadow-sm dark:shadow-none reveal reveal-up delay-150">
+            <iconify-icon icon="solar:book-minimalistic-linear" class="text-zinc-800 dark:text-white mb-6 group-hover:text-[#d70c32] transition-colors" width="32"></iconify-icon>
+            <h3 class="text-xl font-semibold text-zinc-900 dark:text-white uppercase mb-3 tracking-tight transition-colors">
+              Tiem, kas meklē zināšanas
+            </h3>
+            <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed transition-colors">
+              Mēs ne tikai pasakām, ko un kā darīt, bet arī detalizēti
+              skaidrojam "kāpēc". Izprotot izvēlēto treniņu metožu un uztura
+              pieejas loģiku, jūs iegūstat zināšanas, kas kalpos visa mūža
+              garumā un ļaus pieņemt patstāvīgus lēmumus.
+            </p>
+          </div>
+          <!-- Card 3 -->
+          <div class="group border border-zinc-200 dark:border-white/5 bg-white dark:bg-zinc-900/50 p-8 hover:border-[#d70c32] transition-colors duration-300 shadow-sm dark:shadow-none reveal reveal-up delay-200">
+            <iconify-icon icon="solar:checklist-minimalistic-linear" class="text-zinc-800 dark:text-white mb-6 group-hover:text-[#d70c32] transition-colors" width="32"></iconify-icon>
+            <h3 class="text-xl font-semibold text-zinc-900 dark:text-white uppercase mb-3 tracking-tight transition-colors">
+              Tiem, kas meklē struktūru
+            </h3>
+            <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed transition-colors">
+              Jums ir apnicis minēt. Jūs vēlaties kaujas plānu, kas precīzi
+              pasaka, ko un cik daudz celt.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="mt-6 max-w-4xl mx-auto w-full group border border-zinc-200 dark:border-white/5 bg-white dark:bg-zinc-900/50 p-8 hover:border-[#d70c32] transition-colors duration-300 shadow-sm dark:shadow-none reveal reveal-scale delay-300">
+          <iconify-icon icon="solar:scale-linear" class="text-zinc-800 dark:text-white mb-6 group-hover:text-[#d70c32] transition-colors" width="32"></iconify-icon>
+          <h3 class="text-xl font-semibold text-zinc-900 dark:text-white uppercase mb-3 tracking-tight transition-colors">
+            Tiem, kas meklē sabalansētu pieeju fitnesam
+          </h3>
+          <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed transition-colors">
+            Mēs izmantojam sabalansētu pieeju fitnesam, apvienojot zinātnē
+            balstītas treniņu un uztura metodes, kas tiek pielietotas caur
+            vairāk nekā 10 gadu personālo treniņu pieredzes prizmu. Ilgtermiņa
+            veselība un rezultāti bez galējībām.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Signature Offer / Programs -->
+    <section class="dark:bg-zinc-900 border-y dark:border-white/5 z-10 transition-colors duration-300 bg-zinc-100 border-zinc-200 pt-20 pb-20 relative" id="pricing">
+      <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
+        <div class="reveal reveal-up border-[#d70c32] border-l-4 mb-12 pl-6">
+          <h2 class="text-4xl md:text-5xl font-semibold uppercase tracking-tight text-zinc-900 dark:text-white transition-colors">
+            Pakalpojumi
+          </h2>
+          <p class="text-zinc-500 mt-2 font-mono uppercase tracking-widest text-xs">
+            Treniņu Programmas
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 gap-x-6 gap-y-6 items-start">
+          <!-- Option 1: Online Coaching -->
+          <div class="reveal reveal-up delay-75 h-full">
+            <div class="flex flex-col h-full bg-white dark:bg-zinc-900 border-2 border-[#d70c32] shadow-2xl shadow-[#d70c32]/10 p-8 relative transition-colors duration-300">
+              <div class="absolute top-0 right-0 bg-[#d70c32] text-white text-[10px] font-semibold uppercase px-3 py-1">Populārākais</div>
+              <div class="mb-4">
+                <span class="text-xs font-mono uppercase tracking-widest text-[#d70c32]">Visaptveroši</span>
+                <h3 class="text-3xl font-semibold text-zinc-900 dark:text-white uppercase tracking-tight mt-1">Online Coaching</h3>
+              </div>
+              <p class="text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-wide leading-relaxed mb-4">Visaptveroša pieeja neatkarīgi no atrašanās vietas</p>
+              <div class="mb-6 flex items-baseline gap-2">
+                <span class="text-4xl font-semibold text-zinc-900 dark:text-white tracking-tight">€239</span>
+                <span class="text-xs text-zinc-500 dark:text-zinc-400 font-mono uppercase tracking-widest">/ mēn</span>
+              </div>
+              <ul class="flex-1 mb-8 space-y-4">
+                <li class="flex gap-3 items-start text-sm font-medium text-zinc-900 dark:text-white"><iconify-icon icon="solar:check-circle-bold" class="text-[#d70c32] mt-0.5 min-w-[16px]" width="16"></iconify-icon> Individuāls treniņu un uztura plāns</li>
+                <li class="flex gap-3 items-start text-sm font-medium text-zinc-900 dark:text-white"><iconify-icon icon="solar:check-circle-bold" class="text-[#d70c32] mt-0.5 min-w-[16px]" width="16"></iconify-icon> Profesionāls atbalsts visā pasaulē</li>
+                <li class="flex gap-3 items-start text-sm font-medium text-zinc-900 dark:text-white"><iconify-icon icon="solar:check-circle-bold" class="text-[#d70c32] mt-0.5 min-w-[16px]" width="16"></iconify-icon> Mobilā lietotne progresa pārskatīšanai</li>
+              </ul>
+              <a href="online-coaching.html" class="w-full py-4 bg-[#d70c32] text-white uppercase font-semibold text-xs tracking-widest hover:bg-[#b30a2a] transition-colors text-center mt-auto flex items-center justify-center gap-2">Uzzināt vairāk <iconify-icon icon="solar:arrow-right-linear" width="14"></iconify-icon></a>
+            </div>
+          </div>
+
+          <!-- Option 3: Treniņu coaching -->
+          <div class="reveal reveal-up delay-150 h-full">
+            <div class="flex flex-col h-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/5 hover:border-zinc-400 dark:hover:border-zinc-700 p-8 transition-colors">
+              <div class="mb-4">
+                <span class="text-xs font-mono uppercase tracking-widest text-zinc-500">Programma</span>
+                <h3 class="text-3xl font-semibold text-zinc-900 dark:text-white uppercase tracking-tight mt-1">Treniņu Coaching</h3>
+              </div>
+              <p class="text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-wide leading-relaxed mb-4">Personalizētas programmas ar uzraudzību</p>
+              <div class="mb-6 flex items-baseline gap-2">
+                <span class="text-4xl font-semibold text-zinc-900 dark:text-white tracking-tight">€135</span>
+                <span class="text-xs text-zinc-500 dark:text-zinc-400 font-mono uppercase tracking-widest">/ mēn</span>
+              </div>
+              <ul class="flex-1 mb-8 space-y-4">
+                <li class="flex gap-3 items-start text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-400 dark:text-zinc-500 mt-0.5 min-w-[16px]" width="16"></iconify-icon> Plāns pielāgots jūsu spējām</li>
+                <li class="flex gap-3 items-start text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-400 dark:text-zinc-500 mt-0.5 min-w-[16px]" width="16"></iconify-icon> Regulāra programmu maiņa un attīstība</li>
+                <li class="flex gap-3 items-start text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-400 dark:text-zinc-500 mt-0.5 min-w-[16px]" width="16"></iconify-icon> Atskaites stagnācijas novēršanai</li>
+              </ul>
+              <a href="treninu-coaching.html" class="w-full py-3 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 uppercase font-semibold text-xs tracking-widest hover:bg-zinc-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors text-center mt-auto flex items-center justify-center gap-2">Uzzināt vairāk <iconify-icon icon="solar:arrow-right-linear" width="14"></iconify-icon></a>
+            </div>
+          </div>
+
+          <!-- Option 2: Vienreizējā konsultācija -->
+          <div class="reveal reveal-up delay-200 h-full">
+            <div class="flex flex-col h-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/5 hover:border-zinc-400 dark:hover:border-zinc-700 p-8 transition-colors">
+              <div class="mb-4">
+                <span class="text-xs font-mono uppercase tracking-widest text-zinc-500">Konsultācija</span>
+                <h3 class="text-3xl font-semibold text-zinc-900 dark:text-white uppercase tracking-tight mt-1">Fitnesa Konsultācija</h3>
+              </div>
+              <p class="text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-wide leading-relaxed mb-4">Profesionālas atbildes uz specifiskiem jautājumiem</p>
+              <div class="mb-6 flex items-baseline gap-2">
+                <span class="text-4xl font-semibold text-zinc-900 dark:text-white tracking-tight">€89</span>
+                <span class="text-xs text-zinc-500 dark:text-zinc-400 font-mono uppercase tracking-widest">/ reize</span>
+              </div>
+              <ul class="flex-1 mb-8 space-y-4">
+                <li class="flex gap-3 items-start text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-400 dark:text-zinc-500 mt-0.5 min-w-[16px]" width="16"></iconify-icon> Padziļinātas atbildes par uzturu un treniņiem</li>
+                <li class="flex gap-3 items-start text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-400 dark:text-zinc-500 mt-0.5 min-w-[16px]" width="16"></iconify-icon> Skaidrība par aktīva dzīvesveida tēmām</li>
+                <li class="flex gap-3 items-start text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-400 dark:text-zinc-500 mt-0.5 min-w-[16px]" width="16"></iconify-icon> Praktiski padomi tūlītējai rīcībai</li>
+              </ul>
+              <a href="fitnesa-konsultacija.html" class="w-full py-3 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 uppercase font-semibold text-xs tracking-widest hover:bg-zinc-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors text-center mt-auto flex items-center justify-center gap-2">Uzzināt vairāk <iconify-icon icon="solar:arrow-right-linear" width="14"></iconify-icon></a>
+            </div>
+          </div>
+
+          <!-- Option 4: Treniņu Plāni -->
+          <div class="reveal reveal-up delay-300 h-full">
+            <div class="flex flex-col h-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/5 hover:border-zinc-400 dark:hover:border-zinc-700 p-8 transition-colors">
+              <div class="mb-4">
+                <span class="text-xs font-mono uppercase tracking-widest text-zinc-500">Plāni</span>
+                <h3 class="text-3xl font-semibold text-zinc-900 dark:text-white uppercase tracking-tight mt-1">Treniņu Plāni</h3>
+              </div>
+              <p class="text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-wide leading-relaxed mb-4">Gatavi plāni katram mērķim un līmenim</p>
+              <div class="mb-6 flex items-baseline gap-2">
+                <span class="text-xs text-zinc-500 dark:text-zinc-400 font-mono uppercase tracking-widest">no</span>
+                <span class="text-4xl font-semibold text-zinc-900 dark:text-white tracking-tight">€39</span>
+                <span class="text-xs text-zinc-500 dark:text-zinc-400 font-mono uppercase tracking-widest">/ plāns</span>
+              </div>
+              <ul class="flex-1 mb-8 space-y-4">
+                <li class="flex gap-3 items-start text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-400 dark:text-zinc-500 mt-0.5 min-w-[16px]" width="16"></iconify-icon> Mērķim un pieredzes līmenim pielāgots</li>
+                <li class="flex gap-3 items-start text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-400 dark:text-zinc-500 mt-0.5 min-w-[16px]" width="16"></iconify-icon> Iebūvēta progresija un periodizācija</li>
+                <li class="flex gap-3 items-start text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-400 dark:text-zinc-500 mt-0.5 min-w-[16px]" width="16"></iconify-icon> Māca principus, ne tikai vingrojumus</li>
+              </ul>
+              <a href="treninu-plani.html" class="w-full py-3 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 uppercase font-semibold text-xs tracking-widest hover:bg-zinc-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors text-center mt-auto flex items-center justify-center gap-2">Uzzināt vairāk <iconify-icon icon="solar:arrow-right-linear" width="14"></iconify-icon></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 5. Results Gallery -->
+    <section class="z-10 dark:bg-transparent transition-colors duration-300 bg-transparent pt-20 pr-6 pb-20 pl-6 relative" id="results">
+      <div class="absolute inset-0 z-[-1] overflow-hidden pointer-events-none reveal reveal-clip">
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Background" class="animate-slow-pan dark:brightness-[0.3] dark:opacity-100 transition-all duration-500 opacity-5 w-full h-full object-cover grayscale brightness-100">
+        <div class="absolute inset-0 bg-gradient-to-t from-zinc-50 dark:from-zinc-950 via-transparent to-zinc-50/80 dark:to-zinc-950/80 transition-colors duration-300"></div>
+        <div class="dark:opacity-10 bg-[#d70c32] opacity-5 mix-blend-overlay absolute top-0 right-0 bottom-0 left-0"></div>
+      </div>
+      <div class="max-w-7xl mx-auto">
+        <div class="reveal reveal-up border-[#d70c32] border-l-4 mb-12 pl-6">
+          <h2 class="text-4xl md:text-5xl font-semibold uppercase tracking-tight text-zinc-900 dark:text-white transition-colors">
+            Pierādījumi. Ne Solījumi.
+          </h2>
+          <p class="text-zinc-500 mt-2 font-mono uppercase tracking-widest text-xs">
+            Īsti klienti. Īsts darbs.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
+          <!-- Result 1 -->
+          <div class="relative group aspect-square bg-zinc-100 dark:bg-zinc-900 overflow-hidden reveal reveal-scale delay-75">
+            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&amp;w=800&amp;auto=format&amp;fit=crop" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+            <div class="absolute bottom-0 left-0 w-full bg-white/90 dark:bg-black/80 p-4 border-t border-[#d70c32] transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              <p class="text-zinc-900 dark:text-white font-semibold uppercase">
+                Māris B. / 6 Mēneši
+              </p>
+              <p class="text-xs text-zinc-600 dark:text-zinc-400">
+                "Pazaudēju 15kg un beidzot jūtos enerģijas pilns ikdienā."
+              </p>
+            </div>
+          </div>
+          <!-- Result 2 -->
+          <div class="relative group aspect-square bg-zinc-100 dark:bg-zinc-900 overflow-hidden reveal reveal-scale delay-150">
+            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1548690312-e3b507d8c110?q=80&amp;w=800&amp;auto=format&amp;fit=crop" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+            <div class="absolute bottom-0 left-0 w-full bg-white/90 dark:bg-black/80 p-4 border-t border-[#d70c32] transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              <p class="text-zinc-900 dark:text-white font-semibold uppercase">
+                Jana L. / 16 Nedēļas
+              </p>
+              <p class="text-xs text-zinc-600 dark:text-zinc-400">
+                "Muguras sāpes ir pazudušas. Beidzot esmu iemācījusies ēst
+                pareizi."
+              </p>
+            </div>
+          </div>
+          <!-- Result 3 -->
+          <div class="relative group aspect-square bg-zinc-100 dark:bg-zinc-900 overflow-hidden reveal reveal-scale delay-200">
+            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&amp;w=800&amp;auto=format&amp;fit=crop" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+            <div class="absolute bottom-0 left-0 w-full bg-white/90 dark:bg-black/80 p-4 border-t border-[#d70c32] transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              <p class="text-zinc-900 dark:text-white font-semibold uppercase">
+                Dāvis R. / 1 Gads
+              </p>
+              <p class="text-xs text-zinc-600 dark:text-zinc-400">
+                "No 'skinny-fat' līdz muskuļotam augumam. Programma strādā."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Process -->
+    <section class="dark:bg-zinc-900 dark:border-white/5 transition-colors duration-300 z-10 bg-zinc-50 border-zinc-200 border-t pt-20 pb-20 relative" id="process">
+      <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-16">
+          <div class="flex flex-col h-full reveal reveal-right">
+            <div class="">
+              <h2 class="md:text-5xl uppercase dark:text-white transition-colors text-4xl font-semibold text-zinc-900 tracking-tight mb-6">
+                Sadarbības process
+              </h2>
+              <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed mb-8 transition-colors">
+                Pievienojoties AK Fitness, tu nesaņem tikai PDF failu. Tu saņem
+                pilnu instrumentu komplektu, lai mainītu savu dzīvi. Mūsu
+                arsenāls ir veidots gadiem ilgā pieredzē, strādājot ar simtiem
+                klientu.
+              </p>
+            </div>
+            <div class="relative mt-auto">
+              <div class="absolute -top-4 -left-4 w-20 h-20 border-t-2 border-l-2 border-[#d70c32]"></div>
+              <img loading="lazy" decoding="async" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d540d49e-722c-42b2-9992-6bdae757ed4d_1600w.jpg?w=800&amp;q=80" alt="Arsenāls un Process" class="contrast-125 lg:h-[32rem] max-h-fit object-cover grayscale">
+            </div>
+          </div>
+          <div class="space-y-8">
+            <!-- Step 1 -->
+            <div class="flex gap-6 group reveal reveal-left delay-75">
+              <div class="text-4xl font-bold text-zinc-300 dark:text-zinc-800 group-hover:text-[#d70c32] transition-colors">
+                01
+              </div>
+              <div class="">
+                <h3 class="text-xl font-semibold text-zinc-900 dark:text-white uppercase mb-2 transition-colors">
+                  Sākotnējais novērtējums un konsultācija
+                </h3>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400 transition-colors">
+                  Mēs uzsākam ar padziļinātu jūsu fiziskās sagatavotības un
+                  mērķu izvērtēšanu. Zinātnē balstīta pieeja ļauj mums saprast
+                  jūsu ķermeņa iespējas un vajadzības jau no pirmās dienas.
+                </p>
+              </div>
+            </div>
+            <!-- Step 2 -->
+            <div class="flex gap-6 group reveal reveal-left delay-150">
+              <div class="text-4xl font-bold text-zinc-300 dark:text-zinc-800 group-hover:text-[#d70c32] transition-colors">
+                02
+              </div>
+              <div class="">
+                <h3 class="text-xl font-semibold text-zinc-900 dark:text-white uppercase mb-2 transition-colors">
+                  Personalizēta plāna izstrāde
+                </h3>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400 transition-colors">
+                  Balstoties uz novērtējumu, mēs izveidojam individuālu treniņu
+                  programmu un uztura plānu, kas ir pielāgots tieši jums. Tas
+                  nav "viens izmērs der visiem" risinājums, bet gan specifiski
+                  jūsu progresam radīts ceļvedis.
+                </p>
+              </div>
+            </div>
+            <!-- Step 3 -->
+            <div class="flex gap-6 group reveal reveal-left delay-200">
+              <div class="text-4xl font-bold text-zinc-300 dark:text-zinc-800 group-hover:text-[#d70c32] transition-colors">
+                03
+              </div>
+              <div class="">
+                <h3 class="text-xl font-semibold text-zinc-900 dark:text-white uppercase mb-2 transition-colors">
+                  Mobilās lietotnes integrācija
+                </h3>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400 transition-colors">
+                  Visi jūsu treniņi, vēsture un gaidāmās sesijas ir pieejamas
+                  ērtā mobilajā lietotnē. Tas ļauj jums sekot plānam jebkurā
+                  laikā un vietā, saglabājot disciplīnu un pārredzamību.
+                </p>
+              </div>
+            </div>
+            <!-- Step 4 -->
+            <div class="flex gap-6 group reveal reveal-left delay-300">
+              <div class="text-4xl font-bold text-zinc-300 dark:text-zinc-800 group-hover:text-[#d70c32] transition-colors">
+                04
+              </div>
+              <div class="">
+                <h3 class="text-xl font-semibold text-zinc-900 dark:text-white uppercase mb-2 transition-colors">
+                  Nepārtraukts atbalsts un formas kontrole
+                </h3>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400 transition-colors">
+                  Mēs nodrošinām profesionālu atbalstu un atbildes uz jūsu
+                  jautājumiem. Online coaching ietvaros mēs rūpīgi sekojam jūsu
+                  izpildījuma tehnika caur video atgriezenisko saiti, nodrošinot
+                  maksimālu efektivitāti un drošību.
+                </p>
+              </div>
+            </div>
+            <!-- Step 5 -->
+            <div class="flex gap-6 group reveal reveal-left delay-400">
+              <div class="text-4xl font-bold text-zinc-300 dark:text-zinc-800 group-hover:text-[#d70c32] transition-colors">
+                05
+              </div>
+              <div class="">
+                <h3 class="text-xl font-semibold text-zinc-900 dark:text-white uppercase mb-2 transition-colors">
+                  Atskaites un progresīva attīstība
+                </h3>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400 transition-colors">
+                  Regulāras "mini atskaites" un progresa analīze ļauj mums veikt
+                  nepieciešamās korekcijas plānā. Mēs strādājam ar ierobežotu
+                  klientu skaitu, lai nodrošinātu maksimālu uzmanību katram
+                  sasniegumam.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. FAQ -->
+    <section class="dark:bg-transparent dark:border-zinc-900 transition-colors duration-300 bg-transparent z-10 border-zinc-200 border-t pt-20 pb-20 relative" id="faq">
+      <div class="absolute inset-0 z-[-1] overflow-hidden pointer-events-none reveal reveal-clip">
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Background" class="animate-slow-pan dark:brightness-[0.3] dark:opacity-100 transition-all duration-500 opacity-5 w-full h-full object-cover grayscale brightness-100">
+        <div class="absolute inset-0 bg-gradient-to-t from-zinc-50 dark:from-zinc-950 via-transparent to-zinc-50/80 dark:to-zinc-950/80 transition-colors duration-300"></div>
+        <div class="dark:opacity-10 bg-[#d70c32] opacity-5 mix-blend-overlay absolute top-0 right-0 bottom-0 left-0"></div>
+      </div>
+      <div class="max-w-3xl mx-auto px-6">
+        <div class="reveal reveal-up border-[#d70c32] border-l-4 mb-12 pl-6">
+          <h2 class="text-4xl md:text-5xl font-semibold uppercase tracking-tight text-zinc-900 dark:text-white transition-colors">
+            Biežāk Uzdotie Jautājumi
+          </h2>
+          <p class="text-zinc-500 mt-2 font-mono uppercase tracking-widest text-xs">
+            Viss, Kas Jāzina
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <details class="group border border-zinc-200 dark:border-white/5 bg-white dark:bg-zinc-950 open:border-[#d70c32] transition-colors reveal reveal-up delay-75">
+            <summary class="flex justify-between items-center cursor-pointer p-6 font-medium uppercase text-zinc-600 dark:text-zinc-300 group-hover:text-zinc-900 dark:group-hover:text-white select-none transition-colors">
+              Vai jūs sastādāt ēdienkartes?
+              <iconify-icon icon="solar:alt-arrow-down-linear" class="transition-transform group-open:rotate-180 text-[#d70c32]" width="20"></iconify-icon>
+            </summary>
+            <div class="px-6 pb-6 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed transition-colors">
+              Jā, "Pilna Pake" ietver detalizētu uztura plānu. Tomēr mēs arī
+              mācām elastīgā uztura principus, lai tu varētu sasniegt mērķus,
+              neatsakoties no sociālās dzīves.
+            </div>
+          </details>
+
+          <details class="group border border-zinc-200 dark:border-white/5 bg-white dark:bg-zinc-950 open:border-[#d70c32] transition-colors reveal reveal-up delay-150">
+            <summary class="flex cursor-pointer uppercase dark:text-zinc-300 group-hover:text-zinc-900 dark:group-hover:text-white select-none transition-colors font-medium text-zinc-600 pt-6 pr-6 pb-6 pl-6 items-center justify-between">
+              Zāle vai Mājas?
+              <iconify-icon icon="solar:alt-arrow-down-linear" class="transition-transform group-open:rotate-180 text-[#d70c32]" width="20"></iconify-icon>
+            </summary>
+            <div class="px-6 pb-6 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed transition-colors">
+              Der abi varianti. Mēs pielāgojam programmu pieejamajam inventāram.
+              Tomēr nopietnai muskuļu masas audzēšanai sporta zāle ir ieteicama.
+            </div>
+          </details>
+
+          <details class="group border border-zinc-200 dark:border-white/5 bg-white dark:bg-zinc-950 open:border-[#d70c32] transition-colors reveal reveal-up delay-200">
+            <summary class="flex cursor-pointer uppercase dark:text-zinc-300 group-hover:text-zinc-900 dark:group-hover:text-white select-none transition-colors font-medium text-zinc-600 pt-6 pr-6 pb-6 pl-6 items-center justify-between">
+              Ko darīt, ja man ir traumas?
+              <iconify-icon icon="solar:alt-arrow-down-linear" class="transition-transform group-open:rotate-180 text-[#d70c32]" width="20"></iconify-icon>
+            </summary>
+            <div class="px-6 pb-6 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed transition-colors">
+              Mēs strādājam, apejot tās. Kustība bieži vien ir zāles. Mēs
+              modificēsim vingrinājumus, lai nodrošinātu treniņus bez sāpēm,
+              vienlaikus rehabilitējoties.
+            </div>
+          </details>
+
+          <details class="group border border-zinc-200 dark:border-white/5 bg-white dark:bg-zinc-950 open:border-[#d70c32] transition-colors reveal reveal-up delay-300">
+            <summary class="flex justify-between items-center cursor-pointer p-6 font-medium uppercase text-zinc-600 dark:text-zinc-300 group-hover:text-zinc-900 dark:group-hover:text-white select-none transition-colors">
+              Kā notiek saziņa?
+              <iconify-icon icon="solar:alt-arrow-down-linear" class="transition-transform group-open:rotate-180 text-[#d70c32]" width="20"></iconify-icon>
+            </summary>
+            <div class="px-6 pb-6 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed transition-colors">
+              Visa saziņa notiek CoachRx aplikācijā — tur atrodas Tavi treniņi,
+              piezīmes un ziņas vienuviet. Uz jautājumiem atbildam darba dienās
+              24 stundu laikā, un treniņus pārskatām 1–3 dienu laikā.
+            </div>
+          </details>
+        </div>
+
+        <!-- Contact Form Section -->
+        <div class="dark:border-white/5 dark:bg-zinc-950 md:p-10 flex flex-col transition-colors shadow-black/5 dark:shadow-none reveal reveal-up delay-400 overflow-hidden bg-white border-zinc-200 border mt-12 pt-8 pr-8 pb-8 pl-8 relative shadow-xl" id="contact">
+          <div class="absolute top-0 left-0 w-full h-1 bg-[#d70c32]"></div>
+
+          <div class="text-center mb-8">
+            <span class="text-xs font-mono uppercase tracking-widest text-[#d70c32]">
+              Palika jautājumi?
+            </span>
+            <h3 class="text-3xl md:text-4xl font-semibold text-zinc-900 dark:text-white uppercase tracking-tight mt-2">
+              Neatradi Atbildi?
+            </h3>
+            <p class="text-zinc-500 dark:text-zinc-400 text-sm md:text-base mt-4 font-medium leading-relaxed max-w-md mx-auto">
+              Ja augstāk minētie jautājumi neatbildēja uz tavējo — aizpildi formu, un mēs ar tevi personīgi sazināsimies.
+            </p>
+          </div>
+
+          <form action="https://formsubmit.co/anna@akfitness.lv" method="POST" class="flex flex-col gap-4 relative" onsubmit="handleFormSubmit(event, 'Jautājums no Kontaktformas', this)">
+            <input type="hidden" name="_next" value="window.location.href" class="">
+            <input type="hidden" name="_captcha" value="false" class="">
+            <input type="hidden" name="_subject" value="Jauns jautājums no AK Fitness kontaktformas" class="">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <input type="text" name="name" placeholder="Tavs Vārds" class="dark:bg-zinc-900 dark:border-zinc-800 dark:text-white placeholder:text-zinc-400 focus:outline-none focus:border-[#d70c32] dark:focus:border-[#d70c32] transition-colors text-sm text-zinc-900 bg-zinc-50 w-full border-zinc-200 border rounded-none pt-3 pr-4 pb-3 pl-4" required="" island_form_infra_field_type="UNKNOWN" island_field_signature="text|name||||parsed|4|visible">
+              <input type="email" name="email" placeholder="E-pasts" class="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 px-4 py-3 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-400 focus:outline-none focus:border-[#d70c32] dark:focus:border-[#d70c32] transition-colors rounded-none" required="" autocomplete="off" island_form_infra_autocomplete="off" island_form_infra_field_type="USERNAME" island_field_signature="email|email||off||parsed|4|visible">
+            </div>
+            <textarea name="message" placeholder="Kā mēs varam palīdzēt?" class="w-full h-32 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 px-4 py-3 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-400 focus:outline-none focus:border-[#d70c32] dark:focus:border-[#d70c32] transition-colors resize-none rounded-none" required=""></textarea>
+
+            <button type="submit" class="dark:bg-white dark:text-black uppercase hover:bg-[#d70c32] dark:hover:bg-[#d70c32] hover:text-white dark:hover:text-white transition-all duration-300 group flex text-xs font-semibold text-white tracking-widest text-center bg-zinc-900 w-full mt-2 pt-4 pb-4 gap-x-2 gap-y-2 items-center justify-center" data-island_submit_button_registered="true">
+              Nosūtīt Ziņu
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right group-hover:translate-x-1 transition-transform">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </button>
+
+            <div class="form-notification absolute inset-0 flex flex-col items-center justify-center bg-white/95 dark:bg-zinc-950/95 backdrop-blur-sm z-10 opacity-0 pointer-events-none transition-opacity duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle text-zinc-900 dark:text-white mb-2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <path d="m9 11 3 3L22 4"></path>
+              </svg>
+              <p class="text-zinc-900 dark:text-white text-sm font-semibold uppercase tracking-widest">
+                Ziņa nosūtīta!
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. Final CTA -->
+    <section class="py-32 px-6 relative z-10 overflow-hidden border-t border-zinc-200 dark:border-white/5 transition-colors duration-300">
+      <div class="bg-[#d70c32] opacity-20 mix-blend-multiply absolute top-0 right-0 bottom-0 left-0"></div>
+      <div class="reveal reveal-scale text-center max-w-4xl mr-auto ml-auto relative">
+        <h2 class="text-5xl md:text-7xl font-semibold uppercase tracking-tight text-zinc-900 dark:text-white mb-6 transition-colors">
+          Beidz Gaidīt.
+          <br>
+          Sāc Trenēties.
+        </h2>
+        <p class="text-xl text-zinc-600 dark:text-zinc-300 mb-8 max-w-xl mx-auto font-light transition-colors">
+          Tikai 4 vietas atlikušas šajā mēnesī. Nodrošini savu nākotnes "Es"
+          tagad.
+        </p>
+
+        <a href="#pricing" class="inline-block px-12 py-5 bg-zinc-900 dark:bg-white text-white dark:text-black font-bold uppercase tracking-widest text-lg hover:bg-[#d70c32] dark:hover:bg-[#d70c32] hover:text-white dark:hover:text-white transition-all duration-300 hover:scale-105 shadow-2xl shadow-black/10 dark:shadow-white/10">
+          Pieteikties
+        </a>
+
+        <div class="mt-8">
+          <a href="mailto:info@akfitness.lv" class="text-zinc-500 text-sm font-mono uppercase tracking-widest hover:text-zinc-900 dark:hover:text-white transition-colors">
+            Vai raksti mums e-pastu
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. Footer -->
+    <footer class="bg-zinc-50 dark:bg-black border-t border-zinc-200 dark:border-zinc-900 py-12 px-6 relative z-10 transition-colors duration-300">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="col-span-1 md:col-span-2 reveal reveal-up delay-75">
+          <a href="#" class="text-2xl font-bold uppercase tracking-tighter text-zinc-900 dark:text-white block mb-4 transition-colors">
+            AK
+            <span class="text-[#d70c32]">FITNESS</span>
+          </a>
+          <p class="text-zinc-500 text-sm max-w-xs">
+            Veidojam spēcīgākus cilvēkus caur zinātni, darbu un disciplīnu.
+            Rīga, Latvija.
+          </p>
+
+          <!-- Authority Strip -->
+          <div class="mt-6 border border-zinc-200 dark:border-zinc-900 bg-white dark:bg-zinc-950/40 p-4 transition-colors">
+            <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
+              <div class="flex items-center gap-2">
+                <iconify-icon icon="solar:badge-check-linear" class="text-[#d70c32]" width="16"></iconify-icon>
+                <span class="text-xs font-semibold uppercase tracking-widest text-zinc-900 dark:text-white transition-colors">
+                  10+ Gadu Pieredze
+                </span>
+              </div>
+              <div class="flex items-center gap-2">
+                <iconify-icon icon="solar:shield-warning-linear" class="text-[#d70c32]" width="16"></iconify-icon>
+                <span class="uppercase dark:text-zinc-300 transition-colors text-xs font-semibold text-zinc-600 tracking-widest">
+                  REPS Level 3 sertificēti
+                </span>
+              </div>
+            </div>
+            <p class="mt-3 text-xs font-mono uppercase tracking-widest text-zinc-500">
+              Pierādījumi. Pūles. Izpilde.
+            </p>
+          </div>
+        </div>
+
+        <div class="reveal reveal-up delay-150">
+          <h4 class="text-zinc-900 dark:text-white font-bold uppercase tracking-wider mb-4 text-xs transition-colors">
+            Juridiskā Info
+          </h4>
+          <ul class="space-y-2 text-xs text-zinc-500 font-mono">
+            <li class="">
+              <a href="privatuma-politika.html" class="hover:text-[#d70c32]">Privātuma Politika</a>
+            </li>
+            <li><a href="pakalpojuma-noteikumi.html" class="hover:text-[#d70c32]">Noteikumi</a></li>
+            <li class="">
+              <a href="pakalpojuma-noteikumi.html#atteikums" class="hover:text-[#d70c32]">Atteikuma Tiesības</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reveal reveal-up delay-200">
+          <h4 class="text-zinc-900 dark:text-white font-bold uppercase tracking-wider mb-4 text-xs transition-colors">
+            Seko Mums
+          </h4>
+          <div class="flex gap-4">
+            <a href="#" class="text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors">
+              <iconify-icon icon="mdi:instagram" width="20"></iconify-icon>
+            </a>
+            <a href="#" class="text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors">
+              <iconify-icon icon="mdi:facebook" width="20"></iconify-icon>
+            </a>
+            <a href="#" class="text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors">
+              <iconify-icon icon="mdi:youtube" width="20"></iconify-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-900 text-center md:text-left transition-colors reveal reveal-up delay-300">
+        <p class="text-zinc-500 dark:text-zinc-700 text-xs uppercase tracking-widest">
+          © 2026 AK Fitness. Visas tiesības aizsargātas.<br>
+          <a href="privatuma-politika.html" class="underline hover:text-zinc-900 dark:hover:text-white transition-colors">Privātuma politika</a> &middot; <a href="pakalpojuma-noteikumi.html" class="underline hover:text-zinc-900 dark:hover:text-white transition-colors">Pakalpojuma noteikumi</a>
+        </p>
+      </div>
+    </footer>
+
+    <a href="/ms66180866.txt" download="" class="hidden" aria-hidden="true">
+      ms66180866.txt
+    </a>
+  
+  <script src="app.js" defer></script>
+</body></html>

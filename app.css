@@ -1,0 +1,138 @@
+/* ==========================================================================
+   AK Fitness — shared custom styles (used by every page)
+   Tailwind utility classes come from tailwind.css (or the CDN during dev).
+   This file only holds the custom bits Tailwind can't express.
+   ========================================================================== */
+
+/* Custom Noise Texture */
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Hide scrollbar for clean look */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #52525b; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #d70c32; }
+
+/* Custom Accordion Animation */
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+
+/* Glitch effect on hover for logo */
+.glitch-hover:hover {
+  animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+  color: #d70c32;
+}
+@keyframes glitch {
+  0% { transform: translate(0) }
+  20% { transform: translate(-2px, 2px) }
+  40% { transform: translate(-2px, -2px) }
+  60% { transform: translate(2px, 2px) }
+  80% { transform: translate(2px, -2px) }
+  100% { transform: translate(0) }
+}
+
+/* Entrance Scroll Animations */
+@keyframes revealUp {
+  0% { opacity: 0; filter: blur(10px); transform: translateY(40px); }
+  100% { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+@keyframes revealDown {
+  0% { opacity: 0; filter: blur(10px); transform: translateY(-40px); }
+  100% { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+@keyframes revealLeft {
+  0% { opacity: 0; filter: blur(10px); transform: translateX(40px); }
+  100% { opacity: 1; filter: blur(0); transform: translateX(0); }
+}
+@keyframes revealRight {
+  0% { opacity: 0; filter: blur(10px); transform: translateX(-40px); }
+  100% { opacity: 1; filter: blur(0); transform: translateX(0); }
+}
+@keyframes revealScale {
+  0% { opacity: 0; filter: blur(10px); transform: scale(0.95); }
+  100% { opacity: 1; filter: blur(0); transform: scale(1); }
+}
+@keyframes clipColumnsSequential {
+  0% { clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%, 20% 0%, 20% 0%, 20% 100%, 20% 100%, 40% 0%, 40% 0%, 40% 100%, 40% 100%, 60% 0%, 60% 0%, 60% 100%, 60% 100%, 80% 0%, 80% 0%, 80% 100%, 80% 100%); }
+  20% { clip-path: polygon(0% 0%, 20% 0%, 20% 100%, 0% 100%, 20% 0%, 20% 0%, 20% 100%, 20% 100%, 40% 0%, 40% 0%, 40% 100%, 40% 100%, 60% 0%, 60% 0%, 60% 100%, 60% 100%, 80% 0%, 80% 0%, 80% 100%, 80% 100%); }
+  40% { clip-path: polygon(0% 0%, 20% 0%, 20% 100%, 0% 100%, 20% 0%, 40% 0%, 40% 100%, 20% 100%, 40% 0%, 40% 0%, 40% 100%, 40% 100%, 60% 0%, 60% 0%, 60% 100%, 60% 100%, 80% 0%, 80% 0%, 80% 100%, 80% 100%); }
+  60% { clip-path: polygon(0% 0%, 20% 0%, 20% 100%, 0% 100%, 20% 0%, 40% 0%, 40% 100%, 20% 100%, 40% 0%, 60% 0%, 60% 100%, 40% 100%, 60% 0%, 60% 0%, 60% 100%, 60% 100%, 80% 0%, 80% 0%, 80% 100%, 80% 100%); }
+  80% { clip-path: polygon(0% 0%, 20% 0%, 20% 100%, 0% 100%, 20% 0%, 40% 0%, 40% 100%, 20% 100%, 40% 0%, 60% 0%, 60% 100%, 40% 100%, 60% 0%, 80% 0%, 80% 100%, 60% 100%, 80% 0%, 80% 0%, 80% 100%, 80% 100%); }
+  100% { clip-path: polygon(0% 0%, 20% 0%, 20% 100%, 0% 100%, 20% 0%, 40% 0%, 40% 100%, 20% 100%, 40% 0%, 60% 0%, 60% 100%, 40% 100%, 60% 0%, 80% 0%, 80% 100%, 60% 100%, 80% 0%, 100% 0%, 100% 100%, 80% 100%); }
+}
+.reveal {
+  animation-fill-mode: both !important;
+  animation-play-state: paused !important;
+  animation-duration: 1s !important;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: transform, filter, opacity, clip-path;
+}
+.reveal.is-visible { animation-play-state: running !important; }
+.reveal-up { animation-name: revealUp; }
+.reveal-down { animation-name: revealDown; }
+.reveal-left { animation-name: revealLeft; }
+.reveal-right { animation-name: revealRight; }
+.reveal-scale { animation-name: revealScale; }
+.reveal-clip {
+  animation-name: clipColumnsSequential;
+  animation-duration: 1.5s !important;
+  animation-timing-function: ease-in-out !important;
+}
+
+/* Animation Delays */
+.delay-75  { animation-delay: 75ms !important; }
+.delay-150 { animation-delay: 150ms !important; }
+.delay-200 { animation-delay: 200ms !important; }
+.delay-300 { animation-delay: 300ms !important; }
+.delay-400 { animation-delay: 400ms !important; }
+.delay-500 { animation-delay: 500ms !important; }
+.delay-600 { animation-delay: 600ms !important; }
+
+/* Subtle Hero Background Float */
+@keyframes slow-pan {
+  0% { transform: scale(1.05) translate(0, 0); }
+  50% { transform: scale(1.1) translate(-1%, 1%); }
+  100% { transform: scale(1.05) translate(0, 0); }
+}
+.animate-slow-pan { animation: slow-pan 25s ease-in-out infinite; }
+
+/* Sequence animation intro. Usage: add Tailwind class
+   [animation:animationIn_0.8s_ease-out_0.1s_both] */
+@keyframes animationIn {
+  0%   { opacity: 0; transform: translateY(30px); filter: blur(8px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0px); }
+}
+
+/* Scroll reveal (JS-driven) */
+.scroll-hidden {
+  opacity: 0 !important;
+  transform: translateY(30px) !important;
+  pointer-events: none !important;
+}
+h1.scroll-hidden, h2.scroll-hidden, h3.scroll-hidden { transform: translateX(-20px) !important; }
+img.scroll-hidden { transform: scale(0.95) !important; }
+button.scroll-hidden, a[class*="bg-"].scroll-hidden, .btn.scroll-hidden { transform: scale(0.9) !important; }
+.scroll-transition {
+  transition-property: opacity, transform !important;
+  transition-duration: 0.55s !important;
+  transition-timing-function: ease-out !important;
+  will-change: opacity, transform;
+}
+button.scroll-transition, a[class*="bg-"].scroll-transition, .btn.scroll-transition {
+  transition-duration: 0.45s !important;
+  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-slow-pan { animation: none !important; }
+  .reveal, .scroll-transition { transition: none !important; animation: none !important; }
+  .scroll-hidden { opacity: 1 !important; transform: none !important; }
+}

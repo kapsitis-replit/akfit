@@ -1,0 +1,2 @@
+User-agent: *
+Disallow: /dokumenti-priv-8kq2f/
