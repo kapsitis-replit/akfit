@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Līguma parakstīšana — AK Fitness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#09090b; --panel:#111113; --line:#27272a; --line2:#3f3f46;
+    --red:#d70c32; --ink:#e4e4e7; --muted:#a1a1aa; --dim:#71717a;
+    --sans:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--black); color:var(--ink);
+    font-family:var(--sans); font-weight:400; font-size:15px; line-height:1.7;
+    -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:860px; margin:0 auto; padding:0 20px 80px 20px;}
+
+  header{border-bottom:1px solid var(--line);}
+  .head-in{max-width:860px; margin:0 auto; padding:26px 20px 22px 20px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;}
+  .head-in img{height:30px; width:auto; display:block;}
+  .step{font-family:var(--mono); font-size:10px; font-weight:600;
+    letter-spacing:.2em; text-transform:uppercase; color:var(--dim);}
+
+  .eyebrow{font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--red); margin-bottom:8px;}
+  h1{font-size:30px; font-weight:600; letter-spacing:-.02em; text-transform:uppercase;
+    line-height:1.15; margin:0 0 12px 0; padding-left:14px; border-left:5px solid var(--red);}
+  .lede{color:var(--muted); font-size:14.5px; margin:0 0 26px 0;}
+
+  .meta{display:flex; flex-wrap:wrap; gap:0; border:1px solid var(--line);
+    background:var(--panel); margin-bottom:26px;}
+  .meta div{padding:14px 18px; border-right:1px solid var(--line); flex:1 1 auto;}
+  .meta div:last-child{border-right:none;}
+  .meta .k{font-family:var(--mono); font-size:9px; font-weight:600; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--dim);}
+  .meta .v{font-size:15px; font-weight:600; color:#fff; margin-top:3px;}
+
+  .doc{border:1px solid var(--line); background:var(--panel); margin-bottom:10px;}
+  .doc-bar{display:flex; justify-content:space-between; align-items:center; gap:12px;
+    padding:12px 16px; border-bottom:1px solid var(--line);}
+  .doc-bar span{font-family:var(--mono); font-size:10px; font-weight:600;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--dim);}
+  .doc-bar a{font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.14em;
+    text-transform:uppercase; color:#fff; text-decoration:none; border:1px solid var(--line2);
+    padding:8px 14px;}
+  .doc-bar a:hover{border-color:var(--red); color:var(--red);}
+  .doc iframe{width:100%; height:620px; border:0; display:block; background:#fff;}
+  .doc-fallback{padding:22px 18px; font-size:13.5px; color:var(--muted);}
+
+  .readnote{font-size:13px; color:var(--dim); margin:0 0 30px 0;}
+
+  h2{font-size:19px; font-weight:600; text-transform:uppercase; letter-spacing:-.01em;
+    margin:34px 0 6px 0; padding-left:14px; border-left:5px solid var(--red);}
+  .sub{color:var(--muted); font-size:13.5px; margin:0 0 16px 0;}
+
+  .ack{display:flex; gap:13px; align-items:flex-start; border:1px solid var(--line);
+    background:var(--panel); padding:15px 17px; margin-bottom:10px; cursor:pointer;
+    transition:border-color .15s;}
+  .ack:hover{border-color:var(--line2);}
+  .ack.on{border-color:var(--red);}
+  .ack.bad{border-color:var(--red); background:#1a0a0e;}
+  .ack input{margin:3px 0 0 0; width:17px; height:17px; accent-color:var(--red); flex:none;}
+  .ack p{margin:0; font-size:13.5px; line-height:1.6; color:var(--muted);}
+  .ack strong{color:#fff; font-weight:600;}
+  .optional{border-style:dashed;}
+  .optlabel{font-family:var(--mono); font-size:9px; font-weight:600; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--dim); margin:22px 0 8px 0;}
+
+  label.f{display:block; font-size:15px; font-weight:600; color:#fff; margin-bottom:4px;}
+  .hint{font-size:13px; color:var(--dim); margin-bottom:10px;}
+  input[type=text]{width:100%; background:var(--panel); border:1px solid var(--line);
+    color:#fff; font-family:var(--sans); font-size:17px; padding:14px 16px; outline:none;}
+  input[type=text]:focus{border-color:var(--red);}
+  input.bad{border-color:var(--red); background:#1a0a0e;}
+  .err{color:var(--red); font-size:12.5px; font-family:var(--mono); letter-spacing:.06em;
+    text-transform:uppercase; margin-top:8px; display:none;}
+  .err.show{display:block;}
+
+  .legal{border-left:4px solid var(--red); background:var(--panel);
+    padding:14px 16px; margin:22px 0; font-size:12.5px; color:var(--dim); line-height:1.65;}
+
+  button{font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:.16em;
+    text-transform:uppercase; padding:17px 34px; border:1px solid var(--red);
+    background:var(--red); color:#fff; cursor:pointer; transition:all .15s; margin-top:20px;}
+  button:hover:not([disabled]){background:#b80a2a; border-color:#b80a2a;}
+  button[disabled]{opacity:.35; cursor:not-allowed;}
+
+  .state{padding:70px 0; text-align:center;}
+  .state h1{border:none; padding:0; display:inline-block;}
+  .state p{color:var(--muted); max-width:46ch; margin:16px auto 0 auto;}
+  .hidden{display:none;}
+  @media (max-width:620px){
+    h1{font-size:24px;}
+    .meta div{flex:1 1 100%; border-right:none; border-bottom:1px solid var(--line);}
+    .meta div:last-child{border-bottom:none;}
+    .doc iframe{height:420px;}
+    button{width:100%;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-in">
+    <img src="ak-logo-white.png" alt="AK Fitness Coaching">
+    <div class="step" id="step">Solis 3 / 4</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div id="mount"><div class="state"><p>Ielādē…</p></div></div>
+</div>
+
+<script>
+/* ============================================================
+   AK Fitness — līguma parakstīšana
+   GET  {API}/contract?t=TOKEN  -> līguma dati + PDF saite
+   POST {API}/sign              -> paraksts
+   ============================================================ */
+const API = 'https://akfitlv.zeabur.app/webhook';
+
+const token = new URLSearchParams(location.search).get('t');
+const mount = document.getElementById('mount');
+const $ = id => document.getElementById(id);
+
+const REQUIRED = [
+  { key:'ack_health',   title:'Veselības apliecinājums',
+    text:'Apliecinu, ka anketā un veselības skrīningā sniegtā informācija ir patiesa un pilnīga, ka mans veselības stāvoklis pieļauj fiziskās aktivitātes, un ka par jebkurām izmaiņām nekavējoties informēšu Pakalpojumu sniedzēju.' },
+  { key:'ack_health_data', title:'Veselības datu apstrāde',
+    text:'Piekrītu, ka SIA AKFITNESSLV apstrādā manus veselības datus programmas izveidei saskaņā ar līguma 8. sadaļu. Zinu, ka piekrišanu varu atsaukt jebkurā brīdī.' },
+  { key:'ack_terms',    title:'Noteikumi',
+    text:'Esmu iepazinusies ar šo līgumu, <a href="pakalpojuma-noteikumi.html" target="_blank">pakalpojuma noteikumiem</a> un <a href="privatuma-politika.html" target="_blank">privātuma politiku</a> un tiem piekrītu.' },
+  { key:'ack_start',    title:'Pakalpojuma uzsākšana', dynamic:true }
+];
+
+const START_TEXT = {
+  sub: 'Pieprasu uzsākt Pakalpojuma sniegšanu nekavējoties, negaidot 14 dienu atteikuma termiņa beigas. Apzinos, ka, izmantojot atteikuma tiesības, man būs jāmaksā par līdz tam sniegto Pakalpojuma daļu proporcionāli.',
+  consult: 'Pieprasu sniegt konsultāciju pirms 14 dienu atteikuma termiņa beigām. Apzinos, ka pēc konsultācijas sniegšanas pilnā apmērā atteikuma tiesības tiek zaudētas.'
+};
+
+let data = null;
+const state = { ack_health:false, ack_health_data:false, ack_terms:false,
+                ack_start:false, consent_media:false, name:'' };
+
+const esc = v => String(v ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;')
+  .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+function screen(html){ mount.innerHTML = html; window.scrollTo({top:0,behavior:'smooth'}); }
+
+function fail(title, msg){
+  $('step').textContent = '';
+  screen(`<div class="state"><div class="eyebrow">Neizdevās</div>
+    <h1>${title}</h1><p>${msg}</p></div>`);
+}
+
+async function load(){
+  if(!token) return fail('Nederīga saite',
+    'Šai saitei trūkst identifikatora. Pārbaudi, vai saite ir nokopēta pilnībā, vai raksti uz anna@akfitness.lv.');
+  if(!API){
+    // demo mode — lets the page be reviewed before n8n is wired up
+    data = { contract_id:'AKF-2026-0042', fname:'Laura', lname:'Bērziņa',
+             package_name:'Online Coaching', price:'239,00', billing_period:'mēnesī',
+             start_date:'2026-08-01', pdf_url:'', kind:'sub', status:'WAITING_SIGNATURE' };
+    return render();
+  }
+  try{
+    const r = await fetch(`${API}/contract?t=${encodeURIComponent(token)}`);
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    data = await r.json();
+    if(data.status === 'SIGNED') return done(true);
+    if(data.status === 'EXPIRED') return fail('Saite nav derīga',
+      'Šī līguma saite vairs nav aktīva. Raksti uz anna@akfitness.lv, un nosūtīšu jaunu.');
+    render();
+  }catch(e){
+    fail('Neizdevās ielādēt līgumu',
+      'Pamēģini pārlādēt lapu pēc brīža. Ja neizdodas, raksti uz anna@akfitness.lv.');
+  }
+}
+
+function render(){
+  const isSub = data.kind !== 'consult';
+  REQUIRED[3].text = isSub ? START_TEXT.sub : START_TEXT.consult;
+  const fullName = `${data.fname} ${data.lname}`;
+
+  const priceLine = isSub
+    ? `${esc(data.price)} EUR / ${esc(data.billing_period || 'mēnesī')}`
+    : `${esc(data.price)} EUR`;
+
+  const doc = data.pdf_url
+    ? `<div class="doc">
+         <div class="doc-bar">
+           <span>Līgums ${esc(data.contract_id)}</span>
+           <a href="${esc(data.pdf_url)}" target="_blank" rel="noopener">Atvērt PDF &rarr;</a>
+         </div>
+         <iframe src="${esc(data.pdf_url)}#view=FitH" title="Līgums"></iframe>
+       </div>`
+    : `<div class="doc"><div class="doc-bar"><span>Līgums ${esc(data.contract_id)}</span></div>
+         <div class="doc-fallback">Līguma PDF tiks parādīts šeit.</div></div>`;
+
+  screen(`
+    <div class="eyebrow">Līguma parakstīšana</div>
+    <h1>Sveika,<br>${esc(data.fname)}</h1>
+    <p class="lede">Izlasi līgumu un, ja viss ir skaidrs, apstiprini to zemāk.
+      Ja kaut kas nav skaidrs vai šķiet netaisnīgi — pajautā pirms parakstīšanas, nevis pēc.</p>
+
+    <div class="meta">
+      <div><div class="k">Pakalpojums</div><div class="v">${esc(data.package_name)}</div></div>
+      <div><div class="k">Cena</div><div class="v">${priceLine}</div></div>
+      ${isSub ? `<div><div class="k">Sākums</div><div class="v">${esc(data.start_date)}</div></div>` : ''}
+    </div>
+
+    ${doc}
+    <p class="readnote">Ieteicams izlasīt visu, īpaši 5.A punktu par atvaļinājumiem un slimību
+      un 6. punktu par atteikuma tiesībām.</p>
+
+    <h2>Apliecinājumi</h2>
+    <p class="sub">Visi četri punkti ir nepieciešami, lai varētu sākt sadarbību.</p>
+    ${REQUIRED.map(a => `
+      <label class="ack" data-key="${a.key}">
+        <input type="checkbox" name="${a.key}">
+        <p><strong>${a.title}.</strong> ${a.text}</p>
+      </label>`).join('')}
+
+    <div class="optlabel">Brīvprātīgi · neietekmē pakalpojuma saņemšanu</div>
+    <label class="ack optional" data-key="consent_media">
+      <input type="checkbox" name="consent_media">
+      <p>Piekrītu, ka manus progresa foto, video un atsauksmes drīkst izmantot AK Fitness
+        mārketinga materiālos.</p>
+    </label>
+
+    <h2>Paraksts</h2>
+    <p class="sub">Ieraksti savu vārdu un uzvārdu tieši tā, kā tas norādīts līgumā.</p>
+    <label class="f" for="name">Vārds un uzvārds</label>
+    <div class="hint">Līgumā: ${esc(fullName)}</div>
+    <input type="text" id="name" autocomplete="name" placeholder="${esc(fullName)}">
+    <div class="err" id="err"></div>
+
+    <div class="legal">
+      Parakstot elektroniski, tiek saglabāts Tavs ievadītais vārds, parakstīšanas datums un
+      laiks, kā arī IP adrese un pārlūkprogrammas informācija. Šie dati ir daļa no līguma
+      un tiek glabāti 10 gadus. Pēc parakstīšanas saņemsi līguma kopiju e-pastā.
+    </div>
+
+    <button id="sign" disabled>Parakstīt līgumu</button>
+  `);
+
+  mount.querySelectorAll('.ack input').forEach(el => {
+    el.addEventListener('change', () => {
+      state[el.name] = el.checked;
+      const box = el.closest('.ack');
+      box.classList.toggle('on', el.checked);
+      box.classList.remove('bad');
+      refresh();
+    });
+  });
+  $('name').addEventListener('input', e => {
+    state.name = e.target.value;
+    e.target.classList.remove('bad');
+    $('err').classList.remove('show');
+    refresh();
+  });
+  $('sign').addEventListener('click', submit);
+}
+
+const norm = s => String(s||'').trim().toLowerCase().replace(/\s+/g,' ');
+
+function refresh(){
+  const allAck = REQUIRED.every(a => state[a.key]);
+  $('sign').disabled = !(allAck && state.name.trim().length > 2);
+}
+
+function validate(){
+  let ok = true;
+  REQUIRED.forEach(a => {
+    if(!state[a.key]){
+      ok = false;
+      mount.querySelector(`.ack[data-key="${a.key}"]`).classList.add('bad');
+    }
+  });
+  const expected = norm(`${data.fname} ${data.lname}`);
+  if(norm(state.name) !== expected){
+    ok = false;
+    $('name').classList.add('bad');
+    $('err').textContent = 'Vārdam jāsakrīt ar līgumā norādīto';
+    $('err').classList.add('show');
+  }
+  if(!ok) mount.querySelector('.ack.bad, input.bad')
+    ?.scrollIntoView({behavior:'smooth', block:'center'});
+  return ok;
+}
+
+async function submit(){
+  if(!validate()) return;
+  const btn = $('sign');
+  btn.disabled = true;
+  btn.textContent = 'Paraksta…';
+
+  const payload = {
+    token,
+    contract_id: data.contract_id,
+    typed_name: state.name.trim(),
+    ack_health: state.ack_health,
+    ack_health_data: state.ack_health_data,
+    ack_terms: state.ack_terms,
+    ack_start: state.ack_start,
+    consent_media: state.consent_media,
+    client_time: new Date().toISOString(),
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    user_agent: navigator.userAgent
+  };
+
+  if(!API){ console.log('SIGN PAYLOAD (demo):', payload); return done(false); }
+
+  try{
+    const r = await fetch(`${API}/sign`, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    });
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    done(false);
+  }catch(e){
+    btn.disabled = false;
+    btn.textContent = 'Mēģināt vēlreiz';
+    $('err').textContent = 'Neizdevās nosūtīt. Pamēģini vēlreiz vai raksti anna@akfitness.lv';
+    $('err').classList.add('show');
+  }
+}
+
+function done(already){
+  $('step').textContent = '';
+  screen(`<div class="state">
+    <div class="eyebrow">${already ? 'Jau parakstīts' : 'Paldies'}</div>
+    <h1>Līgums parakstīts</h1>
+    <p>${already
+      ? 'Šis līgums jau ir parakstīts. Kopija tika nosūtīta uz Tavu e-pastu.'
+      : 'Kopiju nosūtīju uz Tavu e-pastu kopā ar rēķinu par pirmo periodu. Kad maksājums būs saņemts, sūtīšu uzaicinājumu uz CoachRx un sākšu veidot Tavu programmu.'}</p>
+  </div>`);
+}
+
+load();
+</script>
+</body>
+</html>

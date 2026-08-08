@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Līgums par treniņu un uztura koučingu — {fname} {lname}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --black:#0d0d0d; --red:#d70c32; --ink:#1a1a1a;
+    --muted:#666; --rule:#ddd; --band:#f7f7f7;
+    --sans:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:#fff; color:var(--ink);
+    font-family:var(--sans); font-weight:400; font-size:11.5px; line-height:1.62;
+    -webkit-font-smoothing:antialiased;}
+  .page{width:210mm; margin:0 auto; background:#fff;}
+  .pad{padding-left:16mm; padding-right:16mm;}
+
+  .masthead{background:var(--black); border-bottom:3px solid var(--red);
+    padding:16mm 16mm 10mm 16mm; display:flex; align-items:flex-end;
+    justify-content:space-between; gap:20px;}
+  .masthead img{height:44px; width:auto; display:block;}
+  .masthead .lbl{font-size:8px; letter-spacing:.24em; text-transform:uppercase;
+    color:#8a8a8a; font-weight:500;}
+  .masthead .val{font-size:19px; font-weight:700; text-transform:uppercase;
+    color:#fff; margin-top:4px; line-height:1.15;}
+  .masthead .doc-ref{text-align:right;}
+
+  .metaband{background:var(--band); border-bottom:1px solid var(--rule);
+    padding:10px 16mm; display:flex; gap:38px; flex-wrap:wrap;}
+  .metaband .lbl{font-size:8px; letter-spacing:.22em; text-transform:uppercase;
+    color:#8a8a8a; font-weight:500;}
+  .metaband .val{font-size:11.5px; font-weight:600; color:var(--ink); margin-top:2px;}
+
+  h2{font-size:12px; font-weight:600; letter-spacing:.04em; text-transform:uppercase;
+    margin:16px 0 7px 0; padding-left:9px; border-left:3px solid var(--red);
+    color:var(--black); line-height:1.3;}
+  h3{font-size:10px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+    margin:12px 0 5px 0;}
+  p{margin:0 0 6px 0;}
+  strong{font-weight:600; color:var(--black);}
+  section{break-inside:auto;}
+
+  ul{margin:0 0 8px 0; padding:0; list-style:none;}
+  ul li{position:relative; padding-left:15px; margin-bottom:4px;}
+  ul li::before{content:''; position:absolute; left:0; top:.66em;
+    width:6px; height:1.5px; background:var(--red);}
+
+  table.parties{width:100%; border-collapse:collapse; margin:8px 0 4px 0;}
+  table.parties td{width:50%; vertical-align:top; padding:0 14px 0 0; font-size:11px;}
+  table.parties td:last-child{padding:0 0 0 14px; border-left:1px solid var(--rule);}
+  .plabel{font-family:var(--mono); font-size:8px; font-weight:600; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--red); margin-bottom:5px;}
+  .pname{font-size:12.5px; font-weight:700; color:var(--black); margin-bottom:3px;}
+
+  table.data{width:100%; border-collapse:collapse; margin:6px 0 10px 0;}
+  table.data td{padding:6px 0; border-bottom:1px solid #eee; font-size:11px; vertical-align:top;}
+  table.data td:first-child{width:46%; padding-right:12px; color:#3f3f46;}
+  table.data td:last-child{font-weight:600; color:var(--black);}
+
+  .note{background:var(--band); border-left:3px solid var(--red);
+    padding:10px 12px; margin:10px 0; font-size:10.5px; color:#3f3f46;}
+  .note p:last-child{margin-bottom:0;}
+
+  .ack{border:1.5px solid var(--black); padding:12px 14px; margin:12px 0;
+    break-inside:avoid; page-break-inside:avoid;}
+  .ack .hd{font-family:var(--mono); font-size:8px; font-weight:600; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--red); margin-bottom:7px;}
+  .ackbox{display:flex; gap:9px; align-items:flex-start; margin-bottom:7px;}
+  .ackbox .box{width:11px; height:11px; border:1.5px solid var(--black); flex:none; margin-top:2px;}
+  .ackbox p{margin:0; font-size:10.5px; line-height:1.55;}
+
+  .sigwrap{margin-top:16px; break-inside:avoid; page-break-inside:avoid;}
+  table.sig{width:100%; border-collapse:collapse; margin-top:10px;}
+  table.sig td{width:50%; vertical-align:top; padding:0 14px 0 0;}
+  table.sig td:last-child{padding:0 0 0 14px;}
+  .sigline{border-bottom:1px solid var(--black); height:26px; margin-bottom:5px;}
+  .sigcap{font-family:var(--mono); font-size:8px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--muted);}
+
+  .footer{border-top:1px solid var(--rule); margin-top:14px; padding-top:8px;
+    font-family:var(--mono); font-size:7.5px; letter-spacing:.12em;
+    text-transform:uppercase; color:#9a9a9a;}
+
+
+  /* --- izkārtojums PDF izdrukai (bāzes stils, nevis @media print) --- */
+    .page{width:auto; margin:0;}
+  .pad{padding-left:0; padding-right:0;}
+  .masthead{margin:-14mm -15mm 0 -15mm; padding:14mm 15mm 9mm 15mm;}
+  .metaband{margin:0 -15mm; padding:9px 15mm;}
+  h2,h3{break-after:avoid; page-break-after:avoid;}
+  table.data,.note,.ack,.sigwrap,table.parties{break-inside:avoid; page-break-inside:avoid;}
+  @page{
+    size:A4; margin:14mm 15mm 16mm 15mm;
+    @bottom-left{content:"Līgums par treniņu un uztura koučingu · {contract_id}";
+      font-family:'JetBrains Mono',monospace; font-size:6pt; font-weight:500;
+      letter-spacing:1px; text-transform:uppercase; color:#9a9a9a;
+      vertical-align:top; padding-top:5mm;}
+    @bottom-right{content:counter(page) " / " counter(pages);
+      font-family:'JetBrains Mono',monospace; font-size:6pt; font-weight:500;
+      letter-spacing:1px; color:#9a9a9a; vertical-align:top; padding-top:5mm;}
+  }
+
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="masthead">
+    <img src="{logo_url}" alt="AK Fitness Coaching">
+    <div class="doc-ref">
+      <div class="lbl">Līguma Nr.</div>
+      <div class="val">{contract_id}</div>
+    </div>
+  </div>
+  <div class="metaband">
+    <div><div class="lbl">Pakalpojums</div><div class="val">{package_name}</div></div>
+    <div><div class="lbl">Datums</div><div class="val">{signed_date}</div></div>
+    <div><div class="lbl">Klients</div><div class="val">{fname} {lname}</div></div>
+  </div>
+  <div class="pad">
+
+  <section>
+    <h2>1. Līguma puses</h2>
+    <table class="parties"><tr>
+      <td>
+        <div class="plabel">Pakalpojumu sniedzējs</div>
+        <div class="pname">SIA "AK Fitness"</div>
+        Reģ. Nr. 40203534097<br>
+        Ģertrūdes iela 65A-9, Rīga, LV-1011<br>
+        anna@akfitness.lv
+      </td>
+      <td>
+        <div class="plabel">Klients</div>
+        <div class="pname">{fname} {lname}</div>
+        Personas kods: {personal_id}<br>
+        Adrese: {address}<br>
+        {email}
+      </td>
+    </tr></table>
+    <p style="margin-top:8px;">
+      Turpmāk katrs atsevišķi — Puse, abi kopā — Puses, noslēdz šo līgumu par sekojošo.
+    </p>
+  </section>
+
+  <section>
+    <h2>2. Pakalpojumi</h2>
+    <p>Pakalpojumu sniedzējs nodrošina <strong>Online Coaching</strong> pakalpojumu, kas ietver:</p>
+    <ul>
+      <li>individuālas treniņu programmas izstrādi un iesniegšanu CoachRx platformā;</li>
+      <li>regulāru programmas pielāgošanu atbilstoši Klienta progresam un mērķiem;</li>
+      <li>individuālus uztura ieteikumus un uztura plāna izstrādi, tostarp makroelementu mērķus,
+        ēdienreižu struktūru un praktiskus ieteikumus;</li>
+      <li>dzīvesveida rādītāju uzraudzīšanu CoachRx platformā (miegs, ūdens, uzturs vai citi
+        individuāli izvēlēti rādītāji);</li>
+      <li>iknedēļas check-in ar progresa izvērtējumu;</li>
+      <li>vingrinājumu tehnikas izvērtēšanu pēc Klienta iesniegtajiem video;</li>
+      <li>pieejamību jautājumiem CoachRx ziņapmaiņā.</li>
+    </ul>
+    <table class="data">
+      <tr><td>Atgriezeniskās saites biežums</td><td>{feedback_frequency}</td></tr>
+      <tr><td>Iekļautie treniņu plāni</td><td>{programs_per_month}</td></tr>
+    </table>
+    <div class="note">
+      <p>Uztura ieteikumi ir vispārīgi un balstīti uz sporta uztura zināšanām. Tie nav medicīniska
+      vai klīniska dietologa konsultācija un neaizstāj ārsta vai uztura speciālista norādījumus.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Līguma termiņš</h2>
+    <p>3.1. Līgums stājas spēkā ar tā parakstīšanas dienu — <strong>{signed_date}</strong>.</p>
+    <p>3.2. Pakalpojuma sniegšanas sākuma datums — <strong>{start_date}</strong>.</p>
+    <p>3.3. Līgums ir noslēgts uz nenoteiktu laiku un ir izbeidzams saskaņā ar 9. sadaļu.</p>
+  </section>
+
+  <section>
+    <h2>4. Samaksa</h2>
+    <table class="data">
+      <tr><td>Abonementa maksa</td><td>{price} EUR / {billing_period}</td></tr>
+      <tr><td>PVN</td><td>Netiek piemērots (nav PVN maksātājs)</td></tr>
+      <tr><td>Rēķina izrakstīšana</td><td>7 dienas pirms apmaksas termiņa</td></tr>
+      <tr><td>Apmaksas datums</td><td>{due_day}. datums katru mēnesi</td></tr>
+    </table>
+    <p>4.1. Maksa tiek aprēķināta par kalendāro periodu, nevis par faktiski izpildīto treniņu
+      skaitu.</p>
+    <p>4.2. Maksājums veicams ar pārskaitījumu, maksājuma mērķī norādot rēķina numuru.</p>
+    <p>4.3. Kavēta maksājuma gadījumā: atgādinājums termiņš + 1 diena, brīdinājums termiņš +
+      5 dienas, Pakalpojuma apturēšana termiņš + 7 dienas, tiesības izbeigt līgumu termiņš +
+      14 dienas. Apturēšana nav līguma izbeigšana; pēc maksājuma saņemšanas Pakalpojums tiek
+      atjaunots un apturētais periods tiek pieskaitīts abonementa termiņam.</p>
+  </section>
+
+  <section>
+    <h2>5. Komunikācija un pieejamība</h2>
+    <table class="data">
+      <tr><td>Galvenais saziņas kanāls</td><td>CoachRx aplikācija</td></tr>
+      <tr><td>Atbilde uz ziņām</td><td>Darba dienās 24 stundu laikā</td></tr>
+      <tr><td>Treniņu pārskatīšana</td><td>1–3 dienu laikā</td></tr>
+      <tr><td>Atgriezeniskā saite</td><td>{feedback_frequency}</td></tr>
+    </table>
+    <p>5.1. Steidzamos gadījumos (trauma, saslimšana, asas sāpes) Klients sazinās nekavējoties,
+      negaidot kārtējo check-in.</p>
+  </section>
+
+  <section>
+    <h2>5.A Pārtraukumi, atvaļinājumi un slimība</h2>
+    <p>5.A.1. Pakalpojums tiek sniegts abonementa veidā. Programma, atgriezeniskā saite un
+      Pakalpojumu sniedzēja pieejamība tiek nodrošināta visu periodu neatkarīgi no izpildīto
+      treniņu skaita.</p>
+    <table class="data">
+      <tr><td>Prombūtne līdz 14 dienām</td><td>Maksa nemainās</td></tr>
+      <tr><td>Prombūtne virs 14 dienām</td><td>Kompensējama, brīdinot 14 dienas iepriekš</td></tr>
+      <tr><td>Saslimšana līdz 14 dienām</td><td>Netiek kompensēta</td></tr>
+      <tr><td>Saslimšana virs 14 dienām</td><td>Pusēm vienojoties, ar apstiprinošu dokumentu</td></tr>
+      <tr><td>Iesaldēšana (nopietna trauma)</td><td>Ar ārsta izziņu, maksimāli 3 mēneši</td></tr>
+    </table>
+    <p>5.A.2. Iesaldēšanas laikā abonementa maksa netiek aprēķināta un Pakalpojumi netiek sniegti.
+      Pēc 3 mēnešu termiņa līgums tiek izbeigts, ja Puses nevienojas citādi.</p>
+    <p>5.A.3. Pakalpojumu sniedzēja prombūtnes gadījumā Klients tiek informēts vismaz 7 dienas
+      iepriekš, un attiecīgais periods tiek vai nu kompensēts ar abonementa pagarinājumu, vai
+      atmaksāts proporcionāli — pēc Klienta izvēles.</p>
+  </section>
+
+  <section>
+    <h2>6. Atteikuma tiesības</h2>
+    <p>6.1. Līgums noslēgts attālināti, tāpēc Klientam kā patērētājam ir tiesības
+      <strong>14 dienu laikā</strong> no līguma noslēgšanas dienas atkāpties no līguma,
+      nenorādot iemeslu, paziņojot par to uz anna@akfitness.lv.</p>
+    <p>6.2. Ja Pakalpojuma sniegšana pēc Klienta skaidra pieprasījuma tiek uzsākta pirms
+      14 dienu termiņa beigām, Klients saglabā atteikuma tiesības, taču, tās izmantojot, maksā
+      par to Pakalpojuma daļu, kas sniegta līdz atteikuma brīdim, proporcionāli pilnai līguma
+      cenai.</p>
+    <p>6.3. Ja Pakalpojums līdz atteikuma brīdim ir sniegts pilnībā ar Klienta iepriekšēju
+      skaidru piekrišanu un apliecinājumu par atteikuma tiesību zaudēšanu, atteikuma tiesības
+      vairs nav izmantojamas.</p>
+    <p>6.4. Atteikuma gadījumā samaksātā summa, atskaitot 6.2. punktā minēto daļu, tiek
+      atmaksāta 14 dienu laikā no atteikuma paziņojuma saņemšanas.</p>
+  </section>
+
+  <section>
+    <h2>7. Pušu tiesības un pienākumi</h2>
+    <h3>Klients apņemas</h3>
+    <ul>
+      <li>sniegt patiesu un pilnīgu informāciju par veselības stāvokli un nekavējoties ziņot par
+        tā izmaiņām;</li>
+      <li>atzīmēt izpildītos treniņus un pierakstīt darba svarus, atkārtojumus un piezīmes;</li>
+      <li>aizpildīt iknedēļas check-in;</li>
+      <li>iesniegt vingrinājumu izpildes video, kad tas ir norādīts;</li>
+      <li>neveikt kustības, kas izraisa asas sāpes, un par tām ziņot;</li>
+      <li>izmantot programmas un materiālus tikai personīgām vajadzībām.</li>
+    </ul>
+    <h3>Pakalpojumu sniedzējs apņemas</h3>
+    <ul>
+      <li>izveidot un pielāgot programmu atbilstoši Klienta mērķiem, veselības stāvoklim un
+        pieejamībai;</li>
+      <li>sniegt atgriezenisko saiti 5. sadaļā noteiktajos termiņos;</li>
+      <li>informēt Klientu par savu prombūtni vismaz 7 dienas iepriekš;</li>
+      <li>apstrādāt Klienta datus saskaņā ar 8. sadaļu.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>7.A Intelektuālais īpašums</h2>
+    <p>7.A.1. Treniņu programmas, uztura plāni, informatīvie materiāli un video ir Pakalpojumu
+      sniedzēja intelektuālais īpašums.</p>
+    <p>7.A.2. Klients tos drīkst izmantot tikai personīgām vajadzībām. Tos nedrīkst kopēt,
+      publicēt, pārdot, nodot trešajām personām vai izmantot komerciāli. Piekļuve CoachRx
+      platformai ir personīga un nav nododama.</p>
+  </section>
+
+  <section>
+    <h2>7.B Atbildība un riska uzņemšanās</h2>
+    <p>7.B.1. Pakalpojums nav medicīnisks pakalpojums, fizioterapija vai klīniska dietoloģija un
+      neaizstāj ārsta vai cita sertificēta speciālista konsultāciju.</p>
+    <p>7.B.2. Klients trenējas uz savu atbildību un apliecina, ka viņa veselības stāvoklis
+      pieļauj fiziskās aktivitātes.</p>
+    <p>7.B.3. Pakalpojumu sniedzējs neatrodas klātienē treniņa laikā un nevar kontrolēt
+      vingrinājumu izpildi reāllaikā. Klients ir atbildīgs par norādījumu ievērošanu un inventāra
+      drošu lietošanu.</p>
+    <p>7.B.4. Pakalpojumu sniedzējs neatbild par sekām, kas radušās, ja Klients sniedzis
+      nepatiesu informāciju, neievērojis norādījumus vai nav ziņojis par veselības stāvokļa
+      izmaiņām.</p>
+    <p>7.B.5. Pakalpojumu sniedzējs negarantē konkrētu fizisku rezultātu vai laika periodu tā
+      sasniegšanai — rezultāts ir atkarīgs arī no Klienta līdzdalības.</p>
+    <p>7.B.6. Šis punkts neierobežo patērētāja likumīgās tiesības.</p>
+  </section>
+
+  <section>
+    <h2>8. Personas datu apstrāde</h2>
+    <p>8.1. Personas datu pārzinis ir SIA "AK Fitness", reģ. Nr. 40203534097,
+      anna@akfitness.lv.</p>
+    <p>8.2. Apstrādājamo datu kategorijas: identifikācijas un kontaktdati; veselības dati
+      (anketā sniegtā informācija, veselības skrīninga atbildes, iesniegtie dokumenti); treniņu
+      un progresa dati; maksājumu dati; sarakste.</p>
+    <p>8.3. Tiesiskais pamats: līguma izpilde (VDAR 6.1.b) — kontaktdati, treniņu un maksājumu
+      dati; <strong>skaidra piekrišana (VDAR 9.2.a)</strong> — veselības dati kā īpašas
+      kategorijas dati; juridisks pienākums (VDAR 6.1.c) — grāmatvedības dokumenti.</p>
+    <p>8.4. Dati tiek glabāti Pakalpojumu sniedzēja sistēmās un pie apstrādātājiem, ar kuriem
+      noslēgti datu apstrādes līgumi atbilstoši VDAR 28. pantam. Ja dati tiek nodoti ārpus
+      ES/EEZ, tas notiek, pamatojoties uz Eiropas Komisijas apstiprinātajām standarta līguma
+      klauzulām. Pilns apstrādātāju un glabāšanas vietu uzskaitījums ir privātuma politikā
+      akfitness.lv.</p>
+    <p>8.5. Glabāšanas termiņš: veselības un treniņu dati — sadarbības laikā un 2 gadus pēc tās
+      beigām; grāmatvedības dokumenti — 5 gadus; līgums — 10 gadus.</p>
+    <p>8.6. Klientam ir tiesības piekļūt saviem datiem, tos labot, dzēst, ierobežot apstrādi,
+      iebilst pret to un saņemt datus pārnesamā formātā. Piekrišanu veselības datu apstrādei var
+      atsaukt jebkurā brīdī; tas var padarīt Pakalpojuma sniegšanu neiespējamu.</p>
+    <p>8.7. Sūdzības iesniedzamas Datu valsts inspekcijā (dvi.gov.lv).</p>
+    <p>8.8. Progresa fotogrāfijas, video un atsauksmes mārketingā tiek izmantotas tikai ar
+      atsevišķu, brīvprātīgu piekrišanu, kuru var atsaukt jebkurā brīdī. Tās atteikums neietekmē
+      Pakalpojuma saņemšanu.</p>
+  </section>
+
+  <section>
+    <h2>9. Līguma izbeigšana</h2>
+    <p>9.1. Jebkura Puse var izbeigt līgumu, rakstiski paziņojot 14 dienas iepriekš. Līgums
+      beidzas apmaksātā perioda beigās.</p>
+    <p>9.2. Pakalpojumu sniedzējs var izbeigt līgumu nekavējoties, ja Klients sniedzis nepatiesu
+      informāciju par veselības stāvokli, pārkāpj 7.A sadaļu, izturas necienīgi vai kavē
+      maksājumu vairāk nekā 14 dienas pēc apmaksas termiņa.</p>
+    <p>9.3. Jau samaksātā, bet neizmantotā perioda daļa tiek atmaksāta proporcionāli, izņemot
+      gadījumus, kad līgums izbeigts 9.2. punkta dēļ.</p>
+  </section>
+
+  <section>
+    <h2>10. Strīdu risināšana</h2>
+    <p>10.1. Strīdus Puses risina pārrunu ceļā. Ja vienošanās netiek panākta, Klients var vērsties
+      Patērētāju tiesību aizsardzības centrā (ptac.gov.lv) vai Patērētāju strīdu risināšanas
+      komisijā. Pakalpojumu sniedzējs apņemas piedalīties strīdu risināšanā Komisijā un
+      labprātīgi izpildīt tās lēmumus.</p>
+    <p>10.2. Klientam ir tiesības vērsties tiesā. Līgumam piemērojami Latvijas Republikas
+      normatīvie akti.</p>
+  </section>
+
+  <section>
+    <h2>11. Nobeiguma noteikumi</h2>
+    <p>11.1. Līgums sagatavots elektroniski un ir spēkā bez roku paraksta, ja to apstiprinājušas
+      abas Puses.</p>
+    <p>11.2. Līguma grozījumi noformējami rakstveidā.</p>
+    <p>11.3. Uz šo līgumu attiecas pakalpojuma noteikumi un privātuma politika, kas pieejami
+      akfitness.lv un ir šī līguma neatņemama sastāvdaļa. Pretrunu gadījumā noteicošais ir šis
+      līgums.</p>
+    <p>11.4. Ja kāds līguma noteikums izrādās spēkā neesošs, pārējie noteikumi paliek spēkā.</p>
+  </section>
+
+  <section>
+    <h2>12. Klienta apliecinājumi</h2>
+    <div class="ack">
+      <div class="hd">Atzīmē katru punktu</div>
+      <div class="ackbox"><div class="box"></div><p><strong>Veselības apliecinājums.</strong>
+        Apliecinu, ka anketā un veselības skrīningā sniegtā informācija ir patiesa un pilnīga, ka
+        mans veselības stāvoklis pieļauj fiziskās aktivitātes, un ka par jebkurām izmaiņām
+        nekavējoties informēšu Pakalpojumu sniedzēju.</p></div>
+      <div class="ackbox"><div class="box"></div><p><strong>Veselības datu apstrāde.</strong>
+        Piekrītu, ka SIA AKFITNESSLV apstrādā manus veselības datus programmas izveidei saskaņā ar
+        8. sadaļu. Zinu, ka piekrišanu varu atsaukt jebkurā brīdī.</p></div>
+      <div class="ackbox"><div class="box"></div><p><strong>Noteikumi.</strong> Esmu iepazinies ar
+        šo līgumu, pakalpojuma noteikumiem un privātuma politiku un tiem piekrītu.</p></div>
+      <div class="ackbox"><div class="box"></div><p><strong>Pakalpojuma uzsākšana.</strong>
+        Pieprasu uzsākt Pakalpojuma sniegšanu nekavējoties, negaidot 14 dienu atteikuma termiņa beigas. Apzinos, ka, izmantojot atteikuma tiesības, man būs jāmaksā par līdz tam sniegto Pakalpojuma daļu proporcionāli.</p></div>
+    </div>
+    <div class="note">
+      <p>Brīvprātīgi, neietekmē Pakalpojuma saņemšanu:</p>
+      <div class="ackbox" style="margin-top:6px;"><div class="box"></div><p>Piekrītu, ka manus
+        progresa foto, video un atsauksmes drīkst izmantot AK Fitness mārketinga materiālos.</p></div>
+    </div>
+  </section>
+
+  <div class="sigwrap">
+    <table class="sig"><tr>
+      <td>
+        <div class="sigline"></div>
+        <div class="sigcap">Pakalpojumu sniedzējs · SIA AK Fitness</div>
+        <div class="sigline" style="margin-top:12px;"></div>
+        <div class="sigcap">Datums</div>
+      </td>
+      <td>
+        <div class="sigline"></div>
+        <div class="sigcap">Klients · {fname} {lname}</div>
+        <div class="sigline" style="margin-top:12px;"></div>
+        <div class="sigcap">Datums</div>
+      </td>
+    </tr></table>
+  </div>
+
+  {signature_stamp}
+
+  <div class="footer">
+    SIA AKFITNESSLV · Reģ. Nr. 40203534097 · Ģertrūdes iela 65A-9, Rīga, LV-1011 ·
+    anna@akfitness.lv · akfitness.lv
+  </div>
+
+  </div>
+</div>
+</body>
+</html>
