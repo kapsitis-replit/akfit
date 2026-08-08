@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AK Fitness — mājaslapa top</title>
+<meta name="description" content="Jaunā akfitness.lv drīz būs tiešsaistē. Jautājumiem par koučingu sazinies ar Annu vai Krišjāni tieši.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#09090b; --red:#d70c32; --line:#3f3f46;
+    --z400:#a1a1aa; --z300:#d4d4d8; --z600:#52525b;
+    --sans:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{
+    background:var(--black); color:#fff;
+    font-family:var(--sans); font-weight:400; line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    min-height:100dvh; display:flex; flex-direction:column;
+    padding:clamp(24px,5vw,56px);
+  }
+  /* faint red edge glow, kept quiet */
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+    background:radial-gradient(120% 90% at 88% -10%, rgba(215,12,50,.16), transparent 46%);
+  }
+  .wrap{width:100%; max-width:1000px; margin:0 auto; position:relative; z-index:1;
+    flex:1 0 auto; display:flex; flex-direction:column;}
+
+  /* masthead */
+  .top{display:flex; align-items:baseline; gap:14px; margin-bottom:auto;}
+  .mark{font-weight:700; font-size:15px; letter-spacing:.14em; text-transform:uppercase;}
+  .mark b{color:var(--red); font-weight:700;}
+  .top .tag{
+    font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--z600);
+  }
+
+  /* hero */
+  .hero{padding:clamp(48px,9vh,120px) 0 clamp(40px,6vh,72px);}
+  .eyebrow{
+    font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.26em;
+    text-transform:uppercase; color:var(--red); margin:0 0 18px;
+  }
+  h1{
+    margin:0; font-weight:600; text-transform:uppercase;
+    font-size:clamp(44px,9.5vw,104px); line-height:.94; letter-spacing:-.03em;
+  }
+  .bar{height:5px; width:80px; background:var(--red); margin:30px 0 26px;}
+  .lede{
+    margin:0; max-width:54ch; color:var(--z300);
+    font-size:clamp(15px,2.1vw,18px); line-height:1.65;
+  }
+
+  /* contacts */
+  .contacts-eyebrow{
+    font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.26em;
+    text-transform:uppercase; color:var(--z400); margin:0 0 20px;
+  }
+  .cards{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line);
+    border:1px solid var(--line);}
+  .card{background:var(--black); padding:26px clamp(20px,3vw,30px);}
+  .role{
+    font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--red); margin:0 0 10px;
+  }
+  .name{font-size:22px; font-weight:600; letter-spacing:-.01em; margin:0 0 16px;}
+  .rows{display:flex; flex-direction:column; gap:7px;}
+  .row{display:flex; align-items:baseline; gap:12px; font-size:15px;}
+  .row .k{
+    font-family:var(--mono); font-size:9.5px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--z600); width:74px; flex:none;
+  }
+  a.lnk{color:#fff; text-decoration:none; border-bottom:1px solid var(--line);
+    padding-bottom:1px; transition:color .15s ease, border-color .15s ease;}
+  a.lnk:hover{color:var(--red); border-color:var(--red);}
+  a.lnk:focus-visible{outline:2px solid var(--red); outline-offset:3px; border-radius:1px;}
+
+  /* footer */
+  .foot{margin-top:clamp(44px,8vh,84px); padding-top:16px; border-top:1px solid var(--line);
+    font-family:var(--mono); font-size:9.5px; font-weight:500; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--z600); line-height:1.9;}
+
+  @media (max-width:640px){
+    .cards{grid-template-columns:1fr;}
+    .top{flex-direction:column; gap:6px;}
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .rise{opacity:0; transform:translateY(14px); animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards;}
+    .d1{animation-delay:.05s;} .d2{animation-delay:.14s;} .d3{animation-delay:.22s;}
+    .d4{animation-delay:.32s;} .d5{animation-delay:.42s;}
+    @keyframes rise{to{opacity:1; transform:none;}}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top rise d1">
+      <span class="mark">AK<b>·</b>FITNESS</span>
+      <span class="tag">One60 · Rīga</span>
+    </header>
+
+    <main class="hero">
+      <p class="eyebrow rise d1">akfitness.lv</p>
+      <h1 class="rise d2">Mājaslapa<br>top</h1>
+      <div class="bar rise d3"></div>
+      <p class="lede rise d3">
+        Pašlaik pabeidzam jauno akfitness.lv. Ja Tev ir jautājumi par koučingu vai gribi sākt —
+        sazinies ar Annu vai Krišjāni tieši. Atbildam ātri.
+      </p>
+    </main>
+
+    <section aria-label="Kontakti">
+      <p class="contacts-eyebrow rise d4">Sazinies tieši</p>
+      <div class="cards rise d5">
+        <div class="card">
+          <p class="role">Trenere · Koučings</p>
+          <p class="name">Anna Apsīte</p>
+          <div class="rows">
+            <div class="row"><span class="k">E-pasts</span>
+              <a class="lnk" href="mailto:anna@akfitness.lv">anna@akfitness.lv</a></div>
+            <div class="row"><span class="k">Instagram</span>
+              <a class="lnk" href="https://instagram.com/apsite_anna" target="_blank" rel="noopener">@apsite_anna</a></div>
+          </div>
+        </div>
+        <div class="card">
+          <p class="role">Operatīvie jautājumi</p>
+          <p class="name">Krišjānis Apsītis</p>
+          <div class="rows">
+            <div class="row"><span class="k">E-pasts</span>
+              <a class="lnk" href="mailto:krisjanis@akfitness.lv">krisjanis@akfitness.lv</a></div>
+            <div class="row"><span class="k">Instagram</span>
+              <a class="lnk" href="https://instagram.com/krisjanis.apsitis" target="_blank" rel="noopener">@krisjanis.apsitis</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot rise d5">
+      SIA AKFITNESSLV &nbsp;·&nbsp; Reģ. Nr. 40203534097 &nbsp;·&nbsp; Rīga, LV-1011
+    </footer>
+  </div>
+</body>
+</html>
