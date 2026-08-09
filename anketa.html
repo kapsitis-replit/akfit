@@ -136,7 +136,7 @@
    Config: set WEBHOOK to the n8n production webhook URL.
    Package is read from ?package=coaching_full | coaching_workouts
    ============================================================ */
-const WEBHOOK   = '';           // e.g. 'https://akfitlv.zeabur.app/webhook/intake'
+const WEBHOOK   = 'https://akfitlv.zeabur.app/webhook/intake';
 const FORM_VER  = '2026.1';
 
 const params  = new URLSearchParams(location.search);
@@ -344,7 +344,7 @@ function fieldHTML(f){
   </div>`;
 }
 
-function render(){
+function render(scrollTop = true){
   const s = SECTIONS[step];
   const fields = [];
   s.fields.forEach(f => {
@@ -367,7 +367,7 @@ function render(){
   $('progress').style.width = ((step)/(SECTIONS.length-1)*100) + '%';
   $('back').style.visibility = step === 0 ? 'hidden' : 'visible';
   $('next').textContent = step === SECTIONS.length-1 ? 'Iesniegt anketu' : 'Tālāk';
-  window.scrollTo({top:0, behavior:'smooth'});
+  if(scrollTop) window.scrollTo({top:0, behavior:'smooth'});
   bind();
 }
 
@@ -386,8 +386,22 @@ function bind(){
       }
       el.closest('.field')?.classList.remove('invalid');
       save();
-      // conditionals & follow-ups need a re-render
-      if(needsRerender(el.name)) render();
+      // conditionals & follow-ups need a re-render — keep the user in place
+      if(needsRerender(el.name)){
+        const y = window.scrollY;
+        const nm = el.name;
+        const isText = (el.type !== 'radio' && el.type !== 'checkbox');
+        const caret = isText ? el.selectionStart : null;
+        render(false);
+        window.scrollTo(0, y);
+        const again = isText
+          ? mount.querySelector(`[name="${nm}"]`)
+          : (mount.querySelector(`input[name="${nm}"]:checked`) || mount.querySelector(`input[name="${nm}"]`));
+        if(again){
+          again.focus({preventScroll:true});
+          if(isText && caret != null){ try { again.setSelectionRange(caret, caret); } catch(_){} }
+        }
+      }
     });
   });
 }
