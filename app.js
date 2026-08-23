@@ -94,36 +94,46 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* Contact form submission via formsubmit.co (AJAX) */
-function handleFormSubmit(e, planName, form) {
-  e.preventDefault();
-  const btn = form.querySelector('button[type="submit"]');
-  const originalText = btn.innerText;
-  btn.innerText = 'Sūta...';
-  btn.disabled = true;
-  const formData = new FormData(form);
-  const data = Object.fromEntries(formData.entries());
-  data._subject = `Jauns pieteikums: ${planName}`;
-  data.Plan = planName;
-  fetch('https://formsubmit.co/ajax/' + AK_FORM_EMAIL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify(data)
-  })
-    .then(response => response.json())
-    .then(result => {
-      btn.innerText = originalText;
-      btn.disabled = false;
-      const notif = form.querySelector('.form-notification');
-      if (notif) notif.classList.remove('opacity-0', 'pointer-events-none');
-      form.reset();
-      setTimeout(() => {
-        if (notif) notif.classList.add('opacity-0', 'pointer-events-none');
-      }, 3000);
-    })
-    .catch(error => {
-      console.log(error);
-      btn.innerText = originalText;
-      btn.disabled = false;
-      alert('Kļūda nosūtot ziņu. Lūdzu mēģiniet vēlāk.');
+const LEAD_WEBHOOK = 'https://akfitlv.zeabur.app/webhook/lead';
+ 
+async function handleFormSubmit(event, packageName, formEl) {
+  event.preventDefault();
+ 
+  const btn  = formEl.querySelector('button[type="submit"]');
+  const note = formEl.querySelector('.form-notification');
+ 
+  const payload = {
+    name:    (formEl.querySelector('[name="name"]')?.value    || '').trim(),
+    email:   (formEl.querySelector('[name="email"]')?.value   || '').trim(),
+    message: (formEl.querySelector('[name="message"]')?.value || '').trim(),
+    package: packageName,
+  };
+ 
+  if (btn) {
+    btn.disabled = true;
+    if (!btn.dataset.orig) btn.dataset.orig = btn.textContent;
+    btn.textContent = 'Sūta…';
+  }
+ 
+  try {
+    const r = await fetch(LEAD_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
     });
+    if (!r.ok) throw new Error('status ' + r.status);
+ 
+    // parādi "Ziņa nosūtīta!" pārklājumu (.form-notification ir opacity-0 pēc noklusējuma)
+    if (note) {
+      note.style.opacity = '1';
+      note.style.pointerEvents = 'auto';
+    }
+    formEl.reset();
+  } catch (e) {
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = btn.dataset.orig || 'Nosūtīt Pieteikumu';
+    }
+    alert('Neizdevās nosūtīt. Lūdzu mēģini vēlreiz vai raksti uz anna@akfitness.lv');
+  }
 }
