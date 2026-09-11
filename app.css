@@ -48,12 +48,26 @@ details > summary::-webkit-details-marker { display: none; }
 .reveal { opacity: 0; }
 
 /* Subtle Hero Background Float */
+/* PERF: the scale MUST stay constant across these keyframes. Animating scale()
+   on a full-viewport 1600px bitmap forces the browser to re-rasterize it on
+   every frame, whereas a pure translation is handled entirely by the
+   compositor. So we hold the zoom at 1.1 and animate only the offset — same
+   visual drift, none of the cost.
+   These images used to also carry grayscale + brightness CSS filters, which
+   made the re-rasterization far more expensive again. Grayscale now comes from
+   the CDN (`&sat=-100` on the Unsplash URL) and the dark-mode dimming is plain
+   opacity, so no filter is involved any more. */
 @keyframes slow-pan {
-  0% { transform: scale(1.05) translate(0, 0); }
-  50% { transform: scale(1.1) translate(-1%, 1%); }
-  100% { transform: scale(1.05) translate(0, 0); }
+  0%   { transform: scale(1.1) translate(0, 0); }
+  50%  { transform: scale(1.1) translate(-1%, 1%); }
+  100% { transform: scale(1.1) translate(0, 0); }
 }
-.animate-slow-pan { animation: slow-pan 25s ease-in-out infinite; }
+.animate-slow-pan {
+  animation: slow-pan 25s ease-in-out infinite;
+  will-change: transform;       /* promote to its own layer so the bitmap is
+                                   rasterized once, then simply re-composited */
+  backface-visibility: hidden;
+}
 
 /* Sequence animation intro. Usage: add Tailwind class
    [animation:animationIn_0.8s_ease-out_0.1s_both] */
