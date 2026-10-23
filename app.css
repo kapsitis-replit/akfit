@@ -160,3 +160,17 @@ button[type="submit"] {
     opacity: 1;
   }
 }
+
+/* ==== Pause the hero background pan while actively scrolling ==== */
+/* The pan is a permanently GPU-promoted, always-animating layer; at very high
+   display resolutions (4K/5K) its backing store is large enough that animating
+   it every frame competes with scroll compositing and drops frames. The drift
+   is imperceptible mid-scroll, so freeze it while scrolling and resume shortly
+   after it stops — no change to the resting look. Paired with app.js. */
+html.is-scrolling .animate-slow-pan { animation-play-state: paused; }
+
+/* Fallback if 4K/5K scrolling still isn't smooth: uncomment to drop the pan
+   entirely on very high-DPI wide displays (the 1% drift is barely visible). */
+/* @media (min-resolution: 2dppx) and (min-width: 1800px) {
+     .animate-slow-pan { animation: none; }
+   } */

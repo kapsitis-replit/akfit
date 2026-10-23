@@ -137,3 +137,14 @@ async function handleFormSubmit(event, packageName, formEl) {
     alert('Neizdevās nosūtīt. Lūdzu mēģini vēlreiz vai raksti uz anna@akfitness.lv');
   }
 }
+
+/* Pause the hero pan while scrolling (see app.css `.is-scrolling`) — frees the
+   GPU for smooth scrolling on high-DPI displays; resumes ~150ms after it stops. */
+(function () {
+  var root = document.documentElement, t;
+  addEventListener('scroll', function () {
+    root.classList.add('is-scrolling');
+    clearTimeout(t);
+    t = setTimeout(function () { root.classList.remove('is-scrolling'); }, 150);
+  }, { passive: true });
+})();
