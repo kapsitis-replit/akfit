@@ -1,6 +1,6 @@
 # Plan: migrate akfitness.lv to Astro (with React islands for Magic UI)
 
-- **Status:** Phases 0–5 done on `feat/astro`. Next: Phase 6 (launch via a preview service). Baseline: `plans/baseline.md`
+- **Status:** Phases 0–5 done. Phase 6 moved hosting from Zeabur (shutting down 2026-12-31) to **Cloudflare Workers static assets**; the preview passed all checks. Next: domain cutover (see "Phase 6 (revised)"). Baseline: `plans/baseline.md`
 - **Written against:** `main` @ `548a2a2` (includes the hero scroll-pause fix, PR #4)
 - **Deploys:** Zeabur builds from GitHub `kapsitis-replit/akfit`, so **a merge to the deployed branch is a production release**
 - **Branch for the work:** `feat/astro` (this plan lives on `plan/astro-migration`)
@@ -221,7 +221,29 @@ Optional, if time allows: rebuild the program map (`treninu-plani.js`, originall
 - **Measurements are noisy on this machine today:** the Phase 3 build itself now scores 91–94 with TBT ~300 ms (it scored 99 earlier). The Phase 5 build scored 87–100 in the same session. Re-measure on the Zeabur preview in Phase 6.
 - `compare:text` shows "1000+" → "1000 +" on indexreal and the coach pages. That comes from the script inserting a space between tags; the rendered HTML has no space.
 
-### Phase 6: Launch (½ day)
+### Phase 6 (revised, 2026-11-16): launch on Cloudflare
+Zeabur announced on 2026-10-17 that it is shutting down: services on shared clusters pause on **2026-12-01**, and everything stops on 2026-12-31. It also reported a security incident on 2026-10-14 that reached customer services. So the launch moved to Cloudflare, and the Zeabur preview-service plan below is obsolete.
+
+**Done:**
+- Tag `pre-astro` = `4411f0b` (the last static release).
+- `wrangler.jsonc`: Workers static assets serving `dist/`, `html_handling: "none"` (every `.html` URL is served as-is; Pages would 308 them to extensionless URLs), `not_found_handling: "404-page"`. `public/_redirects` rewrites `/` → `/index.html` (needed with `none`). New `src/pages/404.astro`, so unknown paths return a real 404 (Zeabur returned the coming-soon page with 200).
+- Cloudflare Worker `akfit` with Git builds from `kapsitis-replit/akfit` (the GitHub app is installed on that repo only). Build `npm run build`, deploy `npx wrangler deploy`. **Production branch is temporarily `feat/astro`**; switch it to `main` after the merge. Preview: `https://akfit.christxxx.workers.dev`.
+- **Checks on the preview, all passed:**
+  - All 10 public pages, the 5 private pages, robots.txt and the logo return 200; unknown paths and `/indexreal` return 404.
+  - The private pages send `X-Robots-Tag: noindex, nofollow` and `Cache-Control: no-store`, and are byte-identical to what production serves.
+  - `compare:text` shows only the known intended differences.
+  - The contact form POSTs a byte-identical JSON payload to `/webhook/lead`, matching live (intercepted, nothing sent).
+  - Lighthouse mobile, back to back on the same machine: indexreal 96 vs live 85, online-coaching 100 vs 94. Single runs on this machine vary by ±10 points.
+
+**Remaining (domain cutover):**
+1. Add the `akfitness.lv` zone to Cloudflare (free plan) and check that the imported records include **MX `smtp.google.com`** and the `google-site-verification` TXT.
+2. At the .lv registrar, change the nameservers from `ns1/ns2.dns.lv` to the two Cloudflare nameservers.
+3. Once the zone is active, add Custom Domains `akfitness.lv` and `www.akfitness.lv` to the Worker. This replaces the A record pointing at Zeabur (`43.131.62.16`).
+4. Merge PR #7 into `main`, then set the Worker's production branch back to `main`.
+5. **Rollback:** detach the custom domains and restore the A record `43.131.62.16` (works only until Zeabur pauses on 2026-12-01).
+6. Separately, before 2026-12-01: move n8n (`akfitlv.zeabur.app`) off Zeabur. The webhook URL in `src/data/site.ts` and in the private pages changes with it.
+
+### Phase 6 (original, obsolete): Launch on Zeabur (½ day)
 All work happens on `feat/astro`. **Nothing reaches the deployed branch until step 4**, because pushing there releases to production.
 1. Before merging anything: `git tag pre-astro origin/main && git push origin pre-astro`. That tag is the rollback point.
 2. Create a **second Zeabur service** (or environment) in the same project, connected to the same repo but deploying the `feat/astro` branch, on a temporary domain (e.g. the generated `*.zeabur.app` URL). Zeabur auto-detects Astro from `package.json`. In the **Build Logs → Plan Meta**, confirm it chose a static plan with `outputDir` = `dist` (served by Caddy, so `_headers` keeps working), not a Node SSR server. `_headers` must live in `public/` so it lands at the root of `dist/`. Check `curl -sI <preview>/paraksts.html` shows `X-Robots-Tag`.
