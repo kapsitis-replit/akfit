@@ -2,6 +2,7 @@
 /** Coach profile page from a `coaches.ts` entry. */
 import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
+import ColorHoverImage from '@/components/ColorHoverImage.astro';
 import Base from './Base.astro';
 import Nav from '@/components/Nav.astro';
 import Footer from '@/components/Footer.astro';
@@ -68,7 +69,7 @@ const certSpan = (i: number) => coach.certifications.items.length % 2 === 1 && i
   <!-- Philosophy -->
   <section class="relative z-10 border-b border-zinc-200 bg-white px-6 py-20 transition-colors duration-300 dark:border-white/5 dark:bg-zinc-900/30">
     <div class="mx-auto max-w-3xl">
-      <div class="mb-8 border-l-4 border-brand pl-6">
+      <div class="mb-8 border-l-4 border-brand pl-6" data-reveal>
         <h2 class={sectionHeading}>{coach.philosophy.heading}</h2>
       </div>
       <div class="space-y-5 leading-relaxed text-zinc-600 dark:text-zinc-400">
@@ -80,7 +81,7 @@ const certSpan = (i: number) => coach.certifications.items.length % 2 === 1 && i
   <!-- Life path timeline -->
   <section class="relative z-10 border-b border-zinc-200 px-6 py-20 transition-colors duration-300 dark:border-white/5">
     <div class="mx-auto max-w-3xl">
-      <div class="mb-12 border-l-4 border-brand pl-6">
+      <div class="mb-12 border-l-4 border-brand pl-6" data-reveal>
         <h2 class={sectionHeading}>{coach.timeline.heading}</h2>
         <p class="mt-2 font-mono text-xs uppercase tracking-widest text-zinc-500">{coach.timeline.subheading}</p>
       </div>
@@ -100,10 +101,10 @@ const certSpan = (i: number) => coach.certifications.items.length % 2 === 1 && i
   <!-- Certifications -->
   <section class="relative z-10 border-b border-zinc-200 bg-zinc-100 px-6 py-20 transition-colors duration-300 dark:border-white/5 dark:bg-zinc-900">
     <div class="mx-auto max-w-4xl">
-      <div class="mb-10 border-l-4 border-brand pl-6">
+      <div class="mb-10 border-l-4 border-brand pl-6" data-reveal>
         <h2 class={sectionHeading}>{coach.certifications.heading}</h2>
       </div>
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2" data-reveal-children>
         {coach.certifications.items.map((cert, i) => (
           <div class:list={['flex items-center gap-3 border border-zinc-200 bg-white p-4 dark:border-white/5 dark:bg-zinc-950/50', certSpan(i) && 'sm:col-span-2']}>
             <Icon name="solar:diploma-verified-linear" width={24} height={24} class="shrink-0 text-brand" aria-hidden="true" />
@@ -117,20 +118,13 @@ const certSpan = (i: number) => coach.certifications.items.length % 2 === 1 && i
   <!-- Gallery -->
   <section class="relative z-10 border-b border-zinc-200 px-6 py-20 transition-colors duration-300 dark:border-white/5">
     <div class="mx-auto max-w-7xl">
-      <div class="mb-10 border-l-4 border-brand pl-6">
+      <div class="mb-10 border-l-4 border-brand pl-6" data-reveal>
         <h2 class={sectionHeading}>{coach.gallery.heading}</h2>
       </div>
-      <div class="grid grid-cols-2 gap-3 md:grid-cols-3">
+      <div class="grid grid-cols-2 gap-3 md:grid-cols-3" data-reveal-children>
         {coach.gallery.items.map((g) => (
           <div class="group relative aspect-[4/5] overflow-hidden bg-zinc-100 dark:bg-zinc-900">
-            <Image
-              src={g.src}
-              alt={g.alt}
-              inferSize
-              widths={[300, 600]}
-              sizes="(min-width: 768px) 33vw, 50vw"
-              class="h-full w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
-            />
+            <ColorHoverImage src={g.src} alt={g.alt} widths={[300, 600]} sizes="(min-width: 768px) 33vw, 50vw" />
             <span class="absolute bottom-3 left-3 bg-brand px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-white">{g.label}</span>
           </div>
         ))}

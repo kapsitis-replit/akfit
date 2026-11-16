@@ -1,0 +1,22 @@
+---
+/**
+ * Grayscale photo that turns colour when its `.group` ancestor is hovered.
+ * Renders the image twice with identical srcset (the browser downloads it
+ * once): a grayscale base and a colour copy on top that fades in via opacity.
+ * Never transitions `filter`. Styles: `.color-reveal` in global.css.
+ * The parent must be `position: relative` and carry the `group` class.
+ */
+import { Image } from 'astro:assets';
+
+interface Props {
+  src: string;
+  alt: string;
+  widths: number[];
+  sizes: string;
+  /** Classes shared by both layers, e.g. `object-top`. */
+  class?: string;
+}
+const { src, alt, widths, sizes, class: extra } = Astro.props;
+---
+<Image src={src} alt={alt} inferSize widths={widths} sizes={sizes} class:list={['h-full w-full object-cover grayscale', extra]} />
+<Image src={src} alt="" aria-hidden="true" inferSize widths={widths} sizes={sizes} class:list={['color-reveal absolute inset-0 h-full w-full object-cover', extra]} />

@@ -5,11 +5,11 @@ import { Icon } from 'astro-icon/components';
 ---
 <section class="md:py-32 z-10 pt-20 pr-6 pb-20 pl-6 relative">
   <div class="absolute inset-0 z-[-1] overflow-hidden pointer-events-none">
-    <Image src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1600&auto=format&fit=crop&sat=-100" alt="" inferSize widths={[640, 960, 1280, 1600]} sizes="100vw" class="animate-slow-pan dark:opacity-100 transition-opacity duration-500 opacity-40 w-full h-full object-cover" />
+    <Image src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1600&auto=format&fit=crop&sat=-100" alt="" inferSize widths={[640, 960, 1280, 1600]} sizes="100vw" class="dark:opacity-100 transition-opacity duration-500 opacity-40 w-full h-full object-cover" />
     <div class="absolute inset-0 bg-gradient-to-t from-zinc-50 dark:from-zinc-950 via-transparent dark:via-zinc-950/90 to-zinc-50/80 dark:to-zinc-950/80 transition-colors duration-300"></div>
   </div>
   <div class="max-w-7xl mr-auto ml-auto">
-    <div class="border-[#d70c32] border-l-4 mb-12 pl-6">
+    <div class="border-[#d70c32] border-l-4 mb-12 pl-6" data-reveal>
       <h2 class="md:text-5xl uppercase dark:text-white transition-colors text-4xl font-semibold text-zinc-900 tracking-tight">
         Kam tas domāts?
       </h2>
@@ -18,7 +18,7 @@ import { Icon } from 'astro-icon/components';
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 gap-x-6 gap-y-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 gap-x-6 gap-y-6" data-reveal-children>
       <!-- Card 1 -->
       <div class="group border border-zinc-200 dark:border-white/5 bg-white dark:bg-zinc-900/50 p-8 hover:border-[#d70c32] transition-colors duration-300 shadow-xs dark:shadow-none">
         <Icon name="solar:flame-linear" width={32} height={32} class="text-zinc-800 dark:text-white mb-6 group-hover:text-[#d70c32] transition-colors" aria-hidden="true" />

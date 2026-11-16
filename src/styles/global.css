@@ -102,11 +102,43 @@ details > summary::-webkit-details-marker { display: none; }
   100% { transform: scale(1.1) translate(0, 0); }
 }
 .animate-slow-pan {
-  animation: slow-pan 25s ease-in-out infinite;
-  will-change: transform;
+  animation: slow-pan 25s ease-in-out infinite paused;
+  transform: scale(1.1);
   backface-visibility: hidden;
 }
+/* Runs only while on screen (site.ts toggles .is-panning) and not scrolling. */
+.animate-slow-pan.is-panning { animation-play-state: running; will-change: transform; }
 html.is-scrolling .animate-slow-pan { animation-play-state: paused; }
+
+/* ---- Scroll reveal (driven by site.ts) ----------------------------------- */
+/* Uses the standalone `translate` property so it never fights `transform`
+   classes (skew etc.). Do not put data-reveal on elements with Tailwind
+   translate-* classes. will-change is not set: it would stay on forever. */
+html.reveal-ready [data-reveal] {
+  opacity: 0;
+  translate: 0 16px;
+  transition: opacity 400ms var(--ease-out-strong) var(--reveal-delay, 0ms),
+              translate 400ms var(--ease-out-strong) var(--reveal-delay, 0ms);
+}
+html.reveal-ready [data-reveal].is-revealed {
+  opacity: 1;
+  translate: none;
+}
+
+/* ---- Colour-on-hover photos ---------------------------------------------- */
+/* A colour copy of the image sits over the grayscale one and fades in. Only
+   opacity animates (never `filter`), and only on real hover devices. */
+.color-reveal { opacity: 0; }
+@media (hover: hover) and (pointer: fine) {
+  .color-reveal { transition: opacity 250ms ease; }
+  .group:hover .color-reveal { opacity: 1; }
+}
+
+/* "Skatīt pilnu profilu": nudge the arrow (transform) instead of animating gap. */
+.arrow-nudge { transition: translate 200ms var(--ease-out-strong); }
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .arrow-nudge { translate: 4px 0; }
+}
 
 /* ---- Press feedback on primary controls -------------------------------- */
 /* `.press` is the explicit opt-in for new components. The attribute selectors
@@ -158,6 +190,9 @@ button[type="submit"] {
   .animate-slow-pan { animation: none !important; }
   .glitch-hover:hover { animation: none !important; }   /* keep colour, drop shake */
   .animate-intro { animation: none !important; }
+  /* Reveal: opacity only, 200ms */
+  html.reveal-ready [data-reveal] { translate: none; transition: opacity 200ms ease; }
+  .color-reveal { transition: none !important; }
   /* Results-image captions slide up on hover: drop the motion, keep the reveal */
   [class~="group-hover:translate-y-0"] { transition: none !important; }
 }

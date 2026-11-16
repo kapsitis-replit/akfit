@@ -15,11 +15,11 @@ const pad = (n: number) => String(n).padStart(2, '0');
   ]}
 >
   <div class="mx-auto max-w-7xl">
-    <div class="mb-12 border-l-4 border-brand pl-6">
+    <div class="mb-12 border-l-4 border-brand pl-6" data-reveal>
       <h2 class="text-4xl font-semibold uppercase tracking-tight text-zinc-900 md:text-5xl dark:text-white">{steps.heading}</h2>
       <p class="mt-2 font-mono text-xs uppercase tracking-widest text-zinc-500">{steps.subheading}</p>
     </div>
-    <div class:list={['grid grid-cols-1 gap-6 md:grid-cols-2', steps.columns === 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-3']}>
+    <div class:list={['grid grid-cols-1 gap-6 md:grid-cols-2', steps.columns === 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-3']} data-reveal-children>
       {steps.items.map((step, i) => (
         <div class="group border border-zinc-200 bg-zinc-50 p-8 transition-colors hover:border-brand dark:border-white/5 dark:bg-zinc-950/50">
           <div class="mb-4 text-4xl font-bold text-zinc-300 transition-colors group-hover:text-brand dark:text-zinc-800">{pad(i + 1)}</div>

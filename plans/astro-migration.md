@@ -1,6 +1,6 @@
 # Plan: migrate akfitness.lv to Astro (with React islands for Magic UI)
 
-- **Status:** Phases 0–3 done on `feat/astro`. Next: Phase 4 (motion). Baseline: `plans/baseline.md`
+- **Status:** Phases 0–4 done on `feat/astro`. Next: Phase 5 (Magic UI). Baseline: `plans/baseline.md`
 - **Written against:** `main` @ `548a2a2` (includes the hero scroll-pause fix, PR #4)
 - **Deploys:** Zeabur builds from GitHub `kapsitis-replit/akfit`, so **a merge to the deployed branch is a production release**
 - **Branch for the work:** `feat/astro` (this plan lives on `plan/astro-migration`)
@@ -191,6 +191,13 @@ Do these in the new components rather than patching the old site twice:
 5. **Carousel:** remove the 500 ms `isAnimating` lock (CSS transitions already retarget mid-move), and use `380ms cubic-bezier(0.23, 1, 0.32, 1)` on transform/opacity only.
 6. **Headline intro:** remove `filter: blur(8px)` and keep the fade + rise.
 7. "Skatīt pilnu profilu" arrow: `translateX(4px)` on hover instead of animating `gap`.
+
+**Done.** How it landed:
+- **Reveal** is an attribute, not a wrapper component, so the DOM stays identical: `data-reveal` on a block, `data-reveal-children` on a grid (each child staggered). Logic in `src/scripts/site.ts`, CSS in `global.css`. Elements are hidden only once JS adds `html.reveal-ready`. It animates the standalone `translate` property so it never clashes with `skew`/`transform` classes, and after the reveal the attribute is removed so cards get their own hover transitions back. Opted in: section headings, card grids (pricing, who-for, results, coaches, steps, focus, certifications, gallery) and the process steps. The hero has none.
+- **Slow-pan** stays on the home hero and the service-page heroes. It is paused by default and runs only while on screen (`.is-panning` via IntersectionObserver), plus the existing pause while scrolling. `will-change` is set only while running. The WhoFor, Results and FAQ backgrounds are now static.
+- **Colour hover:** `src/components/ColorHoverImage.astro` (grayscale base + colour copy with the same srcset, so the photo downloads once). Used in Coaches, Results and the coach-page gallery.
+- **Carousel:** 380 ms `ease-out-strong`, no click lock. It now transitions `translate, rotate, scale, opacity`. Tailwind v4 moves these off `transform`, so the Phase 3 `transition-[transform,opacity]` did not actually animate the move.
+- **Verified** (headless Chrome): every reveal target ends up visible after scrolling, the pan pauses off-screen, the hover fades to colour and the photo is fetched once, two quick clicks move the carousel two steps, no console errors, and reduced motion means opacity only with no pan. The text matches live as before.
 
 ### Phase 5: Magic UI islands (1 day)
 Add only these, each in a React island hydrated with `client:visible`:

@@ -2,7 +2,8 @@
 /**
  * Three stacked before/after cards; arrows or clicking a side card rotates them.
  * Desktop only (hidden below lg), as on the legacy site.
- * Timing is unchanged from legacy here; Phase 4 retunes it.
+ * Motion: 380ms ease-out-strong on transform/opacity. No click lock: CSS
+ * transitions retarget mid-move, so rapid clicks stay responsive.
  */
 import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
@@ -23,7 +24,7 @@ const arrowBtn =
     {testimonials.map((t, i) => (
       <div
         data-card={i}
-        class:list={['absolute top-1/2 w-full max-w-[320px] -translate-y-1/2 transition-[transform,opacity] duration-500 ease-out', POS[i]]}
+        class:list={['absolute top-1/2 w-full max-w-[320px] -translate-y-1/2 transition-[translate,rotate,scale,opacity] duration-[380ms] ease-out-strong', POS[i]]}
       >
         <div class="relative z-10 skew-y-[-2deg] border border-zinc-200 bg-white p-6 shadow-2xl shadow-black/10 transition-colors duration-300 dark:border-zinc-700 dark:bg-zinc-900 dark:shadow-black/50">
           <div class="mb-4 flex items-start justify-between">
@@ -67,7 +68,6 @@ const arrowBtn =
     ];
     const cards = [...root.querySelectorAll<HTMLElement>('[data-card]')];
     let positions = cards.map((_, i) => i); // card i is at position positions[i]
-    let isAnimating = false;
 
     const render = () =>
       cards.forEach((card, i) => {
@@ -77,11 +77,8 @@ const arrowBtn =
 
     // direction 1 = next (centre goes left, right comes to centre); -1 = previous.
     const move = (direction: number) => {
-      if (isAnimating) return;
-      isAnimating = true;
       positions = positions.map((p) => (direction === 1 ? [2, 0, 1][p] : [1, 2, 0][p]));
       render();
-      setTimeout(() => (isAnimating = false), 500);
     };
 
     root.querySelectorAll<HTMLElement>('[data-carousel-move]').forEach((btn) =>
