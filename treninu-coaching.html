@@ -48,7 +48,7 @@
           <a href="index.html#faq" class="text-xs font-medium uppercase tracking-widest text-zinc-600 dark:text-zinc-400 hover:text-[#d70c32] dark:hover:text-[#d70c32] transition-colors">BUJ</a>
         </div>
         <div class="flex items-center gap-4">
-          <button onclick="toggleTheme()" class="p-2 text-zinc-600 dark:text-zinc-400 hover:text-[#d70c32] transition-colors focus:outline-none" aria-label="Mainīt tēmu">
+          <button onclick="toggleTheme()" class="p-2 text-zinc-600 dark:text-zinc-400 hover:text-[#d70c32] transition-colors focus:outline-hidden" aria-label="Mainīt tēmu">
             <iconify-icon icon="solar:sun-linear" width="20" class="hidden dark:block"></iconify-icon>
             <iconify-icon icon="solar:moon-stars-linear" width="20" class="block dark:hidden"></iconify-icon>
           </button>
@@ -92,7 +92,7 @@
             </div>
           </div>
           <div class="hidden lg:block lg:col-span-4">
-            <div class="border border-zinc-200 dark:border-white/5 bg-white/50 dark:bg-zinc-950/50 backdrop-blur-sm p-6 skew-y-[-2deg]">
+            <div class="border border-zinc-200 dark:border-white/5 bg-white/50 dark:bg-zinc-950/50 backdrop-blur-xs p-6 skew-y-[-2deg]">
               <p class="text-xs font-mono uppercase tracking-widest text-[#d70c32] mb-4">Īsumā</p>
               <ul class="space-y-3 text-sm">
                 <li class="flex gap-3 items-start text-zinc-900 dark:text-white"><iconify-icon icon="solar:check-circle-bold" class="text-[#d70c32] mt-0.5 min-w-[16px]" width="16"></iconify-icon> Plāns pielāgots tavām spējām</li>
@@ -190,10 +190,10 @@
           <form action="https://formsubmit.co/anna@akfitness.lv" method="POST" class="flex flex-col gap-4 relative" onsubmit="handleFormSubmit(event, 'Treniņu Coaching', this)">
             <input type="hidden" name="_captcha" value="false">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input type="text" name="name" placeholder="Tavs Vārds" required class="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 px-4 py-3 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-400 focus:outline-none focus:border-[#d70c32] transition-colors rounded-none">
-              <input type="email" name="email" placeholder="E-pasts" required class="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 px-4 py-3 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-400 focus:outline-none focus:border-[#d70c32] transition-colors rounded-none">
+              <input type="text" name="name" placeholder="Tavs Vārds" required class="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 px-4 py-3 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-400 focus:outline-hidden focus:border-[#d70c32] transition-colors rounded-none">
+              <input type="email" name="email" placeholder="E-pasts" required class="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 px-4 py-3 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-400 focus:outline-hidden focus:border-[#d70c32] transition-colors rounded-none">
             </div>
-            <textarea name="message" placeholder="Kādi ir tavi mērķi?" required class="w-full h-32 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 px-4 py-3 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-400 focus:outline-none focus:border-[#d70c32] transition-colors resize-none rounded-none"></textarea>
+            <textarea name="message" placeholder="Kādi ir tavi mērķi?" required class="w-full h-32 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 px-4 py-3 text-sm text-zinc-900 dark:text-white placeholder:text-zinc-400 focus:outline-hidden focus:border-[#d70c32] transition-colors resize-none rounded-none"></textarea>
             <button type="submit" class="w-full py-4 bg-zinc-900 dark:bg-white text-white dark:text-black uppercase text-xs font-semibold tracking-widest hover:bg-[#d70c32] dark:hover:bg-[#d70c32] hover:text-white dark:hover:text-white transition-all duration-300 mt-2">Nosūtīt Pieteikumu</button>
             <div class="form-notification absolute inset-0 flex flex-col items-center justify-center bg-white/95 dark:bg-zinc-950/95  z-10 opacity-0 pointer-events-none transition-opacity duration-300">
               <iconify-icon icon="solar:check-circle-bold" class="text-zinc-900 dark:text-white mb-2" width="48"></iconify-icon>

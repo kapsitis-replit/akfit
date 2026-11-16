@@ -1,13 +1,16 @@
-/* AK Fitness: global styles (Tailwind v4 entry point).
-   Phase 2 moves the surviving parts of the legacy app.css in here. */
+/* ==========================================================================
+   AK Fitness: global styles (Tailwind v4 entry point)
+   Ported from the legacy app.css. The scroll-reveal system is NOT here: it is
+   rebuilt as the <Reveal> component in Phase 4 of plans/astro-migration.md.
+   ========================================================================== */
 @import "tailwindcss";
 
 /* Self-hosted variable fonts (replace the Google Fonts request). */
 @import "@fontsource-variable/plus-jakarta-sans";
 @import "@fontsource-variable/jetbrains-mono";
 
-/* Only scan the Astro sources: the legacy root *.html pages and the private
-   pages in public/ are not built by Tailwind. */
+/* Only scan the Astro sources: the legacy root *.html reference pages and the
+   private pages in public/ are not part of the build. */
 @source not "../../public";
 @source not "../../*.html";
 @source not "../../plans";
@@ -25,4 +28,130 @@
   /* Motion tokens (from the animation audit) */
   --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+
+  /* Headline intro: fade + rise. The legacy 8px blur is removed (audit item 6). */
+  --animate-intro: intro 0.8s var(--ease-out-strong) 0.1s both;
+  @keyframes intro {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: none; }
+  }
+}
+
+/* ---- Tailwind v3 → v4 compatibility (keeps the old look) ---------------- */
+@layer base {
+  /* v4 placeholders default to 50% currentColor; v3 used gray-400. */
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-zinc-400);
+  }
+  /* v4 buttons default to cursor: default; v3 used pointer. */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* ---- Base ---------------------------------------------------------------- */
+html { scroll-behavior: smooth; }
+
+/* Thin scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #52525b; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-brand); }
+
+/* Custom noise texture */
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* <details> accordion marker reset */
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+
+/* ---- Logo glitch: one shot on hover ------------------------------------ */
+@media (hover: hover) and (pointer: fine) {
+  .glitch-hover:hover {
+    animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both;
+    color: var(--color-brand);
+  }
+}
+@keyframes glitch {
+  0%   { transform: translate(0); }
+  20%  { transform: translate(-2px, 2px); }
+  40%  { transform: translate(-2px, -2px); }
+  60%  { transform: translate(2px, 2px); }
+  80%  { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+/* ---- Slow background pan ------------------------------------------------ */
+/* PERF: scale stays constant (1.1) so only the offset animates: compositor
+   only, no re-rasterising the bitmap. Paused while scrolling (html.is-scrolling,
+   set by src/scripts/site.ts) and, from Phase 4, while off-screen. */
+@keyframes slow-pan {
+  0%   { transform: scale(1.1) translate(0, 0); }
+  50%  { transform: scale(1.1) translate(-1%, 1%); }
+  100% { transform: scale(1.1) translate(0, 0); }
+}
+.animate-slow-pan {
+  animation: slow-pan 25s ease-in-out infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+html.is-scrolling .animate-slow-pan { animation-play-state: paused; }
+
+/* ---- Press feedback on primary controls -------------------------------- */
+/* `.press` is the explicit opt-in for new components. The attribute selectors
+   keep markup copied from the legacy pages working unchanged. */
+.press,
+a[class~="bg-[#d70c32]"],
+button[class~="bg-[#d70c32]"],
+a[class~="bg-zinc-900"],
+button[type="submit"] {
+  transition: transform 160ms var(--ease-out-strong),
+              background-color 300ms ease,
+              color 300ms ease,
+              border-color 300ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .press:active,
+  a[class~="bg-[#d70c32]"]:active,
+  button[class~="bg-[#d70c32]"]:active,
+  a[class~="bg-zinc-900"]:active,
+  button[type="submit"]:active {
+    transform: scale(0.97);
+  }
+  /* Skewed nav CTA: keep the skew while pressing */
+  a[class~="skew-x-[-10deg]"]:active {
+    transform: skewX(-10deg) scale(0.97);
+  }
+}
+
+/* ---- Smooth FAQ accordion (progressive enhancement) --------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  html { interpolate-size: allow-keywords; }
+  details::details-content {
+    block-size: 0;
+    overflow: clip;
+    opacity: 0;
+    transition: block-size 300ms var(--ease-out-strong),
+                opacity 220ms ease,
+                content-visibility 300ms allow-discrete;
+  }
+  details[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+}
+
+/* ---- Reduced motion ------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-slow-pan { animation: none !important; }
+  .glitch-hover:hover { animation: none !important; }   /* keep colour, drop shake */
+  .animate-intro { animation: none !important; }
+  /* Results-image captions slide up on hover: drop the motion, keep the reveal */
+  [class~="group-hover:translate-y-0"] { transition: none !important; }
 }

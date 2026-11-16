@@ -1,6 +1,6 @@
 # Plan: migrate akfitness.lv to Astro (with React islands for Magic UI)
 
-- **Status:** Phase 1 done on `feat/astro` (scaffold builds, private files verified byte-identical). Phase 0 steps 2 and 4 wait on Zeabur access. Baseline: `plans/baseline.md`
+- **Status:** Phases 0–2 done on `feat/astro`. Next: Phase 3 (pages). Baseline: `plans/baseline.md`
 - **Written against:** `main` @ `548a2a2` (includes the hero scroll-pause fix, PR #4)
 - **Deploys:** Zeabur builds from GitHub `kapsitis-replit/akfit`, so **a merge to the deployed branch is a production release**
 - **Branch for the work:** `feat/astro` (this plan lives on `plan/astro-migration`)
@@ -127,7 +127,20 @@ Each phase ends in something deployable or reviewable. Do not start a phase unti
 3. `npx shadcn@latest init` (Tailwind v4, `components/ui` alias pointing at `src/components/ui`). No components yet.
 4. `npm run build` must output `dist/` containing the private files unchanged. Verify: `diff` each against the original.
 
-### Phase 2: Shell and shared components (1 day)
+### Phase 2: Shell and shared components (1 day): ✅ done
+**What landed:** `src/layouts/Base.astro`, `src/components/{Nav,Footer,ThemeToggle,ContactForm}.astro`, `src/scripts/site.ts` (theme toggle + scroll-pause), `src/data/site.ts` (HOME, nav/service/coach/legal/social links, webhook), and `src/styles/global.css` (ported app.css + v3→v4 compatibility). Check page: `/shell-check.html` (noindex; delete in Phase 3). Verified in the browser: the nav and footer match production pixel-for-pixel in dark mode. The theme toggle persists. The form sends the identical JSON payload to `/webhook/lead` (tested with an intercepted fetch, nothing was sent to n8n). No horizontal scroll at 375 px. Page JS ≈ 1.5 KB.
+
+**Decisions and fixes made in Phase 2:**
+- **Broken home links fixed.** Legacy service pages link to `index.html#…`, which is the coming-soon page. Every home link now goes through `HOME` in `src/data/site.ts` (`/indexreal.html` now, `/` at launch).
+- **Missing icon.** `solar:badge-check-linear` does not exist in Solar (production renders an empty gap). It was replaced with `solar:verified-check-linear`, in the components and the reference HTML.
+- **Tailwind v4 renames** were applied to the reference HTML so Phase 3 copies are clean: `backdrop-blur-sm`→`backdrop-blur-xs`, `outline-none`→`outline-hidden`, `rounded-sm`→`rounded-xs`, `shadow-sm`→`shadow-xs` (37 occurrences). No borders relied on v3's default border colour. Placeholder colour and button cursor are kept via a compat layer.
+- **Social icons** in the landing footer had `href="#"` placeholders. They are now hidden until real URLs are set in `SOCIAL_LINKS` (owner TODO).
+- **Form:** a retry after a failure restores the original button label (the legacy code also handled this). Dropped browser-extension junk attributes (`island_form_infra_*`) and the dead `_next` field. Added `autocomplete` and `aria-label`s.
+- **Headline intro** is now the `animate-intro` utility (fade + rise, no blur). In Phase 3, replace `[animation:animationIn_0.8s_ease-out_0.1s_both]` with `animate-intro`.
+- **Not ported (deliberately):** the scroll-reveal from `app.js` (rebuilt as `<Reveal>` in Phase 4), the `.reveal` pre-hide rule and the carousel ID rule (move into the carousel component in Phase 3).
+- **Known gap, unchanged from production:** on phones the nav shows no section links (no menu). Candidate follow-up after Phase 3.
+
+The original Phase 2 checklist:
 1. `Base.astro`: copy the `<head>` from `indexreal.html` (meta, OG, canonical). Keep the inline theme-detection snippet with `is:inline` so it still runs before first paint.
 2. Port Tailwind: run `npx @tailwindcss/upgrade` against a copy of the HTML to catch v3→v4 class renames (e.g. `shadow-sm`→`shadow-xs`, `blur-sm`→`blur-xs`, `rounded-sm`→`rounded-xs`). Diff the rendered output visually (Phase 3 checks).
 3. Move the still-needed parts of `app.css` into `global.css`: noise texture, scrollbar, `details` marker reset, glitch hover, `slow-pan`, press feedback, `::details-content` accordion. **Drop** the dead `.reveal` / `animationIn` blur rules (replaced in §5).

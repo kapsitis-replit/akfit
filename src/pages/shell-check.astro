@@ -1,0 +1,41 @@
+---
+/**
+ * Phase 2 check page: renders the shared shell (Base, Nav, ContactForm, both
+ * Footer variants) so it can be compared with the live site before pages are
+ * ported. Not linked anywhere, noindex. Delete when Phase 3 lands.
+ */
+import Base from '@/layouts/Base.astro';
+import Nav from '@/components/Nav.astro';
+import Footer from '@/components/Footer.astro';
+import ContactForm from '@/components/ContactForm.astro';
+---
+<Base
+  title="Shell check | AK Fitness"
+  description="Phase 2 shell check page."
+  path="/shell-check.html"
+  noindex
+>
+  <Nav active="pricing" cta={{ label: 'Pieteikties', href: '#pieteikties' }} />
+
+  <main class="px-6 pt-32 pb-20">
+    <div class="mx-auto max-w-2xl" id="pieteikties">
+      <h1 class="animate-intro mb-10 text-4xl font-semibold uppercase tracking-tight text-zinc-900 md:text-6xl dark:text-white">
+        Shell <span class="bg-gradient-to-r from-brand to-[#ef4464] bg-clip-text text-transparent">check</span>
+      </h1>
+
+      <!-- Same card as the legacy service pages' application section -->
+      <div class="relative overflow-hidden border border-zinc-200 bg-white p-8 shadow-xl shadow-black/5 md:p-10 dark:border-white/5 dark:bg-zinc-950 dark:shadow-none">
+        <div class="absolute top-0 left-0 h-1 w-full bg-brand"></div>
+        <div class="mb-8 text-center">
+          <span class="font-mono text-xs uppercase tracking-widest text-brand">Pieteikums · Online Coaching</span>
+          <h3 class="mt-2 text-3xl font-semibold uppercase tracking-tight text-zinc-900 dark:text-white">Sāksim tavu ceļu</h3>
+          <p class="mt-3 text-sm text-zinc-500 dark:text-zinc-400">Aizpildi formu un mēs sazināsimies 24 stundu laikā.</p>
+        </div>
+        <ContactForm packageName="Shell check (test — ignore)" />
+      </div>
+    </div>
+  </main>
+
+  <Footer variant="page" />
+  <Footer variant="home" />
+</Base>
