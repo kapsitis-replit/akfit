@@ -3,11 +3,13 @@
  */
 
 /**
- * Where "home" links point. The landing page lives at `/` (it was at
- * `/indexreal.html` until 2026-11-16; that URL now 301-redirects here, see
- * `astro.config.mjs`).
+ * Where "home" links point. While `/` is the coming-soon page, the real landing
+ * page is `/indexreal.html`. At launch (Phase 6 step 4), set this to `/`.
+ *
+ * NOTE: the legacy service pages linked to `index.html#…`, which sent visitors
+ * to the coming-soon page. Routing every home link through HOME fixes that.
  */
-export const HOME = '/';
+export const HOME = '/indexreal.html';
 
 export const SITE_URL = 'https://akfitness.lv';
 
