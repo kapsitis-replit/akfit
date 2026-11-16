@@ -7,7 +7,7 @@ const LIVE = process.env.LIVE ?? 'https://www.akfitness.lv';
 const LOCAL = process.env.LOCAL ?? 'http://localhost:4321';
 
 const PAGES = [
-  'index', 'indexreal', 'online-coaching', 'treninu-coaching', 'fitnesa-konsultacija',
+  'index', 'online-coaching', 'treninu-coaching', 'fitnesa-konsultacija',
   'treninu-plani', 'treneris-anna', 'treneris-krisjanis', 'privatuma-politika', 'pakalpojuma-noteikumi',
 ];
 
