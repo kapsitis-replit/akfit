@@ -1,0 +1,16 @@
+{
+  // Cloudflare Workers static assets (Cloudflare's successor to Pages).
+  // Serves the Astro build in dist/ with no server code.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "akfit",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    // Keep today's URLs exactly: /indexreal.html is served as-is, with no
+    // redirect to /indexreal (the default "auto-trailing-slash" would add one).
+    "html_handling": "none",
+    // Unknown paths get dist/404.html with a real 404 status (Zeabur served the
+    // coming-soon page with 200).
+    "not_found_handling": "404-page"
+  }
+}

@@ -1,0 +1,23 @@
+---
+/**
+ * Served with a real 404 status for unknown paths (wrangler.jsonc:
+ * not_found_handling "404-page"). Zeabur used to answer every unknown path
+ * with the coming-soon page and status 200 (a "soft 404").
+ */
+import Base from '@/layouts/Base.astro';
+import Nav from '@/components/Nav.astro';
+import Footer from '@/components/Footer.astro';
+import { HOME } from '@/data/site';
+---
+<Base title="Lapa nav atrasta — AK Fitness" description="Šī lapa neeksistē." path="/404.html" noindex>
+  <Nav cta={{ label: 'Sākt Tagad', href: `${HOME}#pricing` }} />
+  <main class="flex min-h-[70vh] items-center px-6 pt-32 pb-20">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="mb-4 font-mono text-xs uppercase tracking-widest text-brand">Kļūda 404</p>
+      <h1 class="mb-6 text-4xl font-semibold uppercase tracking-tight text-zinc-900 md:text-6xl dark:text-white">Lapa nav atrasta</h1>
+      <p class="mb-10 text-lg text-zinc-600 dark:text-zinc-400">Iespējams, saite ir novecojusi vai adrese ievadīta kļūdaini.</p>
+      <a href={HOME} class="press inline-block bg-[#d70c32] px-8 py-4 font-semibold uppercase tracking-widest text-white hover:bg-brand-dark">Uz sākumlapu</a>
+    </div>
+  </main>
+  <Footer variant="page" />
+</Base>
