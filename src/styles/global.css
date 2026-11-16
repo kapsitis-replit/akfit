@@ -1,0 +1,28 @@
+/* AK Fitness: global styles (Tailwind v4 entry point).
+   Phase 2 moves the surviving parts of the legacy app.css in here. */
+@import "tailwindcss";
+
+/* Self-hosted variable fonts (replace the Google Fonts request). */
+@import "@fontsource-variable/plus-jakarta-sans";
+@import "@fontsource-variable/jetbrains-mono";
+
+/* Only scan the Astro sources: the legacy root *.html pages and the private
+   pages in public/ are not built by Tailwind. */
+@source not "../../public";
+@source not "../../*.html";
+@source not "../../plans";
+
+/* The site toggles a `dark` class on <html> (same as the old darkMode: 'class'). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Plus Jakarta Sans Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, Consolas, monospace;
+
+  --color-brand: #d70c32;
+  --color-brand-dark: #b30a2a;
+
+  /* Motion tokens (from the animation audit) */
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+}

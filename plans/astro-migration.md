@@ -1,6 +1,6 @@
 # Plan: migrate akfitness.lv to Astro (with React islands for Magic UI)
 
-- **Status:** proposed
+- **Status:** Phase 1 done on `feat/astro` (scaffold builds, private files verified byte-identical). Phase 0 steps 2 and 4 wait on Zeabur access. Baseline: `plans/baseline.md`
 - **Written against:** `main` @ `548a2a2` (includes the hero scroll-pause fix, PR #4)
 - **Deploys:** Zeabur builds from GitHub `kapsitis-replit/akfit`, so **a merge to the deployed branch is a production release**
 - **Branch for the work:** `feat/astro` (this plan lives on `plan/astro-migration`)
@@ -51,9 +51,8 @@ akfit/
 │  ├─ robots.txt
 │  ├─ ak-logo-white.png
 │  ├─ anketa.html          # private flow, moved unchanged
-│  └─ dokumenti-priv-8kq2f/
-│     ├─ paraksts.html
-│     └─ ligums-*.html     # templates must stay byte-identical for n8n
+│  ├─ paraksts.html        # served at the ROOT today (see Phase 0 step 2)
+│  └─ ligums-*.html        # templates must stay byte-identical for n8n
 ├─ src/
 │  ├─ styles/global.css    # Tailwind v4 entry + the surviving parts of app.css
 │  ├─ layouts/
@@ -100,13 +99,18 @@ Each phase ends in something deployable or reviewable. Do not start a phase unti
 
 ### Phase 0: Sync and safety (½ day)
 1. **Start from the latest GitHub `main`.** `git pull` first: the hero scroll-pause fix (`548a2a2`) lives on GitHub. A stale local checkout looks like it is missing it.
-2. **Fix the ignored `_headers` file.** Caddy does not read Netlify/Cloudflare `_headers`. Verified: `/dokumenti-priv-8kq2f/paraksts.html` is served **without** `X-Robots-Tag`. Add the equivalent to the Caddyfile on Zeabur:
+2. **Fix the private-page protection. The README's description of it is wrong.** Verified on production 2026-11-16:
+   - There is **no** `dokumenti-priv-8kq2f/` folder. The private pages are served from the **site root**: `/anketa.html`, `/paraksts.html`, `/ligums-coaching-full.html`, `/ligums-coaching-workouts.html`, `/ligums-consultation.html`. Any unknown path, including `/dokumenti-priv-8kq2f/…`, returns the coming-soon page with **HTTP 200** (a soft 404).
+   - So `robots.txt` (`Disallow: /dokumenti-priv-8kq2f/`) protects nothing, and Caddy ignores the Netlify-style `_headers` file anyway.
+   - `anketa.html` and `paraksts.html` carry `<meta name="robots" content="noindex, nofollow">`. The three `ligums-*` templates **do not**.
+
+   Fix in the Caddy config on Zeabur (keeping the URLs, because n8n and sent links depend on them):
    ```
-   @priv path /dokumenti-priv-8kq2f/*
+   @priv path /anketa.html /paraksts.html /ligums-*.html
    header @priv X-Robots-Tag "noindex, nofollow"
    header @priv Cache-Control "no-store"
    ```
-   (Separate from the migration, but do it now; it applies to the current site too.)
+   Also add those paths to `robots.txt`, and make unknown paths return a real 404. Separate from the migration, but do it now: it applies to the current site too.
 3. Record a **baseline**: Lighthouse mobile scores, plus a DevTools Performance trace (4× CPU throttle) while scrolling `indexreal.html` top to bottom. Save the numbers in `plans/baseline.md`.
 4. In the Zeabur dashboard, note **which branch** the service deploys from (presumably `main`), and whether Zeabur supports a second service or environment that deploys a different branch (for the preview in Phase 6). Also note where the Caddy config for step 2 lives: the repo, or the Zeabur service settings.
 
@@ -165,7 +169,7 @@ All work happens on `feat/astro`. **Nothing reaches the deployed branch until st
 2. Create a **second Zeabur service** (or environment) in the same project, connected to the same repo but deploying the `feat/astro` branch, on a temporary domain (e.g. the generated `*.zeabur.app` URL). Configure it as a static Astro build: build command `npm ci && npm run build`, output directory `dist/`. Zeabur usually detects Astro from `package.json`. Confirm the detected settings rather than assuming. Add the `@priv` header rule from Phase 0 there too.
 3. Run every check in §6 against that preview URL.
 4. Open a PR `feat/astro` → `main` and merge it. The existing production service rebuilds from `main`. Its build settings must already match step 2, because the repo now has a `package.json` and is no longer a plain static folder. Check the service's build settings **before** merging.
-5. Smoke-test https://www.akfitness.lv right after the deploy: the homepage, one service page with a test form submission, and `/dokumenti-priv-8kq2f/paraksts.html` headers.
+5. Smoke-test https://www.akfitness.lv right after the deploy: the homepage, one service page with a test form submission, and the `/paraksts.html` response headers.
 6. **Rollback:** revert the merge commit on `main` (`git revert -m 1 <merge-sha>` + push), or point the Zeabur service at the `pre-astro` tag. Then delete the preview service.
 4. Later, as a separate step: when the real landing page goes live, swap `index.astro` ↔ `indexreal.astro` and add a redirect `indexreal.html → /`.
 
@@ -185,7 +189,7 @@ All work happens on `feat/astro`. **Nothing reaches the deployed branch until st
 - [ ] `prefers-reduced-motion` (DevTools → Rendering): no movement, content fully visible.
 - [ ] Lighthouse mobile and 4× CPU-throttled scroll trace meet the Definition of Done and beat `plans/baseline.md`.
 - [ ] Network tab: no requests to `code.iconify.design`, `api.iconify.design` or `fonts.googleapis.com`.
-- [ ] `/dokumenti-priv-8kq2f/*` responses carry `X-Robots-Tag: noindex, nofollow`.
+- [ ] `/anketa.html`, `/paraksts.html` and `/ligums-*.html` respond with `X-Robots-Tag: noindex, nofollow`. An unknown path returns 404, not the coming-soon page.
 - [ ] Carousel works with mouse, touch and keyboard. No overlap with the headline at 768–1024 px (a current bug: "ZANE M." covers "ROBEŽAS" at about 800 px).
 
 ## 7. Risks

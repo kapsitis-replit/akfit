@@ -1,6 +1,17 @@
 # AK Fitness — website
 
-A fast, static multi-page site. No framework, no Node required.
+A fast, static multi-page site.
+
+> **Migration in progress (branch `feat/astro`)**: the site is moving to
+> [Astro](https://astro.build) (static output, same `.html` URLs). See
+> `plans/astro-migration.md`. On this branch:
+> - `npm install`, then `npm run dev` (live reload) or `npm run build` (output in `dist/`)
+> - `npm run check:private` after a build verifies the private pipeline pages in
+>   `public/` (`anketa`, `paraksts`, `ligums-*`) are copied byte-for-byte
+> - The legacy root `*.html` pages are still the reference copies until each is
+>   ported in Phase 3. They are **not** part of the Astro build.
+>
+> Everything below describes the current (pre-Astro) site on `main`.
 
 ## Pages
 | File | Purpose |

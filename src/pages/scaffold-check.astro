@@ -1,0 +1,37 @@
+---
+// Phase 1 scaffold check page: proves Tailwind v4, dark variant, self-hosted
+// fonts, build-time icons, remote image optimisation and a React island all
+// work. Not linked anywhere and marked noindex. Delete in Phase 2.
+import '@/styles/global.css';
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import HydrationProbe from '@/islands/HydrationProbe';
+---
+<!doctype html>
+<html lang="lv" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Scaffold check | AK Fitness</title>
+  </head>
+  <body class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-white font-sans p-8 space-y-6">
+    <h1 class="text-4xl font-semibold uppercase tracking-tight">
+      Astro <span class="text-brand">scaffold</span>
+    </h1>
+    <p class="font-mono text-xs uppercase tracking-widest text-zinc-400">JetBrains Mono, self-hosted</p>
+    <p class="flex items-center gap-3 text-brand">
+      <Icon name="solar:star-linear" width={24} />
+      <Icon name="solar:shield-check-linear" width={24} />
+      <Icon name="mdi:instagram" width={24} />
+    </p>
+    <Image
+      src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1600&auto=format&fit=crop"
+      alt="Gym"
+      width={800}
+      height={533}
+      class="max-w-md grayscale"
+    />
+    <HydrationProbe client:visible />
+  </body>
+</html>
