@@ -1,3 +1,0 @@
-# Cloudflare static assets: html_handling is "none" (keeps the .html URLs),
-# so the root needs an explicit rewrite to the home page.
-/  /index.html  200

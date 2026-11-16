@@ -1,15 +1,30 @@
 /anketa.html
   X-Robots-Tag: noindex, nofollow
   Cache-Control: no-store
+/anketa
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
 /paraksts.html
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
+/paraksts
   X-Robots-Tag: noindex, nofollow
   Cache-Control: no-store
 /ligums-coaching-full.html
   X-Robots-Tag: noindex, nofollow
   Cache-Control: no-store
+/ligums-coaching-full
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
 /ligums-coaching-workouts.html
   X-Robots-Tag: noindex, nofollow
   Cache-Control: no-store
+/ligums-coaching-workouts
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
 /ligums-consultation.html
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
+/ligums-consultation
   X-Robots-Tag: noindex, nofollow
   Cache-Control: no-store
