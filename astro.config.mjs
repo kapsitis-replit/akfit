@@ -14,6 +14,11 @@ export default defineConfig({
   },
   // Keep `/indexreal.html` etc. exactly as they are today.
   trailingSlash: 'ignore',
+  // OFF on purpose: Astro's HTML compression drops line breaks between text and
+  // inline tags (e.g. "ir\n<strong>distances" → "ir<strong>distances"), which
+  // glues words together in the legal pages and headings. Gzip on the server
+  // makes the size difference negligible.
+  compressHTML: false,
   integrations: [
     // React is used ONLY for islands in src/islands (Magic UI effects),
     // each hydrated with client:visible. Everything else ships zero JS.

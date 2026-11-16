@@ -1,0 +1,97 @@
+---
+/**
+ * Three stacked before/after cards; arrows or clicking a side card rotates them.
+ * Desktop only (hidden below lg), as on the legacy site.
+ * Timing is unchanged from legacy here; Phase 4 retunes it.
+ */
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import { testimonials } from '@/data/testimonials';
+
+// Position classes: 0 = centre, 1 = right, 2 = left. Mirrored in the script.
+const POS = [
+  '-translate-x-1/2 rotate-0 scale-100 opacity-100 z-30 cursor-default hover:opacity-100',
+  'translate-x-[20px] rotate-[6deg] scale-[0.85] opacity-40 z-10 cursor-pointer hover:opacity-80',
+  '-translate-x-[calc(100%+20px)] -rotate-[6deg] scale-[0.85] opacity-40 z-10 cursor-pointer hover:opacity-80',
+];
+const thumb = 'h-full w-full object-cover grayscale';
+const arrowBtn =
+  'flex h-12 w-12 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-600 shadow-xs transition-colors hover:border-brand hover:bg-brand hover:text-white focus:outline-hidden focus:ring-2 focus:ring-brand/50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-400';
+---
+<div class="relative hidden h-[480px] lg:col-span-4 lg:block">
+  <div data-carousel class="relative flex h-full w-full -translate-y-12 items-center justify-center py-8 perspective-normal lg:-translate-y-24">
+    {testimonials.map((t, i) => (
+      <div
+        data-card={i}
+        class:list={['absolute top-1/2 w-full max-w-[320px] -translate-y-1/2 transition-[transform,opacity] duration-500 ease-out', POS[i]]}
+      >
+        <div class="relative z-10 skew-y-[-2deg] border border-zinc-200 bg-white p-6 shadow-2xl shadow-black/10 transition-colors duration-300 dark:border-zinc-700 dark:bg-zinc-900 dark:shadow-black/50">
+          <div class="mb-4 flex items-start justify-between">
+            <h3 class="text-2xl font-medium uppercase italic tracking-tight text-zinc-900 transition-colors dark:text-white">{t.name}</h3>
+            <span class="border border-zinc-200 bg-zinc-100 px-2 py-1 font-mono text-xs text-zinc-600 transition-colors dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400">{t.duration}</span>
+          </div>
+          <div class="mb-4 grid grid-cols-2 gap-2">
+            <div class="relative aspect-[3/4] overflow-hidden bg-black">
+              <Image src={t.before} alt="Pirms" inferSize widths={[160, 320]} sizes="150px" class:list={[thumb, 'opacity-80 dark:opacity-60']} />
+              <span class="absolute bottom-2 left-2 bg-brand px-1 font-mono text-[10px] text-white">PIRMS</span>
+            </div>
+            <div class="relative aspect-[3/4] overflow-hidden bg-black">
+              <Image src={t.after} alt="Pēc" inferSize widths={[160, 320]} sizes="150px" class:list={[thumb, 'contrast-125']} />
+              <span class="absolute bottom-2 left-2 bg-zinc-800 px-1 font-mono text-[10px] text-white dark:bg-zinc-700">PĒC</span>
+            </div>
+          </div>
+          <p class="text-sm italic text-zinc-600 dark:text-zinc-400">{t.quote}</p>
+        </div>
+      </div>
+    ))}
+
+    <!-- Controls -->
+    <div class="absolute -bottom-8 left-1/2 z-40 flex -translate-x-1/2 gap-4">
+      <button type="button" data-carousel-move="-1" aria-label="Iepriekšējais" class={arrowBtn}>
+        <Icon name="solar:arrow-left-linear" width={20} height={20} aria-hidden="true" />
+      </button>
+      <button type="button" data-carousel-move="1" aria-label="Nākamais" class={arrowBtn}>
+        <Icon name="solar:arrow-right-linear" width={20} height={20} aria-hidden="true" />
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-carousel]');
+  if (root) {
+    const POS = [
+      ['-translate-x-1/2', 'rotate-0', 'scale-100', 'opacity-100', 'z-30', 'cursor-default', 'hover:opacity-100'],
+      ['translate-x-[20px]', 'rotate-[6deg]', 'scale-[0.85]', 'opacity-40', 'z-10', 'cursor-pointer', 'hover:opacity-80'],
+      ['-translate-x-[calc(100%+20px)]', '-rotate-[6deg]', 'scale-[0.85]', 'opacity-40', 'z-10', 'cursor-pointer', 'hover:opacity-80'],
+    ];
+    const cards = [...root.querySelectorAll<HTMLElement>('[data-card]')];
+    let positions = cards.map((_, i) => i); // card i is at position positions[i]
+    let isAnimating = false;
+
+    const render = () =>
+      cards.forEach((card, i) => {
+        POS.forEach((cls) => card.classList.remove(...cls));
+        card.classList.add(...POS[positions[i]]);
+      });
+
+    // direction 1 = next (centre goes left, right comes to centre); -1 = previous.
+    const move = (direction: number) => {
+      if (isAnimating) return;
+      isAnimating = true;
+      positions = positions.map((p) => (direction === 1 ? [2, 0, 1][p] : [1, 2, 0][p]));
+      render();
+      setTimeout(() => (isAnimating = false), 500);
+    };
+
+    root.querySelectorAll<HTMLElement>('[data-carousel-move]').forEach((btn) =>
+      btn.addEventListener('click', () => move(Number(btn.dataset.carouselMove))),
+    );
+    cards.forEach((card, i) =>
+      card.addEventListener('click', () => {
+        if (positions[i] === 1) move(1);
+        if (positions[i] === 2) move(-1);
+      }),
+    );
+  }
+</script>

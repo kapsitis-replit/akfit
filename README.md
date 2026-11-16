@@ -8,8 +8,10 @@ A fast, static multi-page site.
 > - `npm install`, then `npm run dev` (live reload) or `npm run build` (output in `dist/`)
 > - `npm run check:private` after a build verifies the private pipeline pages in
 >   `public/` (`anketa`, `paraksts`, `ligums-*`) are copied byte-for-byte
-> - The legacy root `*.html` pages are still the reference copies until each is
->   ported in Phase 3. They are **not** part of the Astro build.
+> - Pages are in `src/pages/`. **Edit content in `src/data/`** (`services.ts` for
+>   prices/features, `coaches.ts`, `testimonials.ts`, `site.ts` for links and the webhook)
+> - `npm run compare:text` / `npm run compare:styles` compare a running local
+>   build (`npm run preview`) with production, page by page
 >
 > Everything below describes the current (pre-Astro) site on `main`.
 

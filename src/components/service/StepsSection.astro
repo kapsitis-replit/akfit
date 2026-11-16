@@ -1,0 +1,32 @@
+---
+import type { Service } from '@/data/types';
+
+interface Props {
+  steps: Service['steps'];
+}
+const { steps } = Astro.props;
+const pad = (n: number) => String(n).padStart(2, '0');
+---
+<section
+  id={steps.id}
+  class:list={[
+    'relative z-10 border-b border-zinc-200 px-6 py-20 transition-colors duration-300 dark:border-white/5',
+    steps.tinted && 'bg-white dark:bg-zinc-900/30',
+  ]}
+>
+  <div class="mx-auto max-w-7xl">
+    <div class="mb-12 border-l-4 border-brand pl-6">
+      <h2 class="text-4xl font-semibold uppercase tracking-tight text-zinc-900 md:text-5xl dark:text-white">{steps.heading}</h2>
+      <p class="mt-2 font-mono text-xs uppercase tracking-widest text-zinc-500">{steps.subheading}</p>
+    </div>
+    <div class:list={['grid grid-cols-1 gap-6 md:grid-cols-2', steps.columns === 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-3']}>
+      {steps.items.map((step, i) => (
+        <div class="group border border-zinc-200 bg-zinc-50 p-8 transition-colors hover:border-brand dark:border-white/5 dark:bg-zinc-950/50">
+          <div class="mb-4 text-4xl font-bold text-zinc-300 transition-colors group-hover:text-brand dark:text-zinc-800">{pad(i + 1)}</div>
+          <h3 class="mb-2 text-lg font-semibold uppercase tracking-tight text-zinc-900 dark:text-white">{step.title}</h3>
+          <p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{step.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

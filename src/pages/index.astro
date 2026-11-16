@@ -1,20 +1,25 @@
-<!DOCTYPE html>
+---
+/**
+ * Coming-soon page served at / until launch (then the landing page moves here;
+ * see plans/astro-migration.md, Phase 6 step 4). Self-contained styles, as before.
+ */
+import '@fontsource-variable/plus-jakarta-sans';
+import '@fontsource-variable/jetbrains-mono';
+---
+<!doctype html>
 <html lang="lv">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AK Fitness — drīz būsim klāt</title>
-<meta name="description" content="Jaunā akfitness.lv drīz būs tiešsaistē. Jautājumiem par koučingu sazinies ar Annu vai Krišjāni tieši.">
-<meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AK Fitness — drīz būsim klāt</title>
+    <meta name="description" content="Jaunā akfitness.lv drīz būs tiešsaistē. Jautājumiem par koučingu sazinies ar Annu vai Krišjāni tieši." />
+    <meta name="robots" content="noindex" />
+    <style is:global>
   :root{
     --black:#09090b; --red:#d70c32; --line:#3f3f46;
     --z600:#52525b; --z400:#a1a1aa; --z300:#d4d4d8;
-    --sans:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,Arial,sans-serif;
-    --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
+    --sans:'Plus Jakarta Sans Variable',-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+    --mono:'JetBrains Mono Variable',ui-monospace,Consolas,monospace;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;}
@@ -84,8 +89,8 @@
     @keyframes rise{to{opacity:1; transform:none;}}
   }
 </style>
-</head>
-<body>
+  </head>
+  <body>
   <div class="wrap">
     <header class="top rise d1">
       <span class="tag">One60 Rīga · Online</span>
@@ -127,5 +132,5 @@
       SIA AKFITNESSLV &nbsp;·&nbsp; Reģ. Nr. 40203534097 &nbsp;·&nbsp; Rīga, LV-1011
     </footer>
   </div>
-</body>
+  </body>
 </html>

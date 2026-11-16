@@ -1,0 +1,14 @@
+---
+/** Small "← Back to …" link used at the top of service and coach heroes. */
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  href: string;
+  label: string;
+}
+const { href, label } = Astro.props;
+---
+<a href={href} class="mb-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-zinc-500 transition-colors hover:text-brand">
+  <Icon name="solar:arrow-left-linear" width={14} height={14} aria-hidden="true" />
+  {label}
+</a>

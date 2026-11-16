@@ -7,7 +7,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check:private": "node scripts/check-private.mjs"
+    "check:private": "node scripts/check-private.mjs",
+    "compare:text": "node scripts/compare-text.mjs",
+    "compare:styles": "node scripts/compare-styles.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^7.1.9",
@@ -26,6 +28,8 @@
   },
   "devDependencies": {
     "@types/react": "^19.3.0",
-    "@types/react-dom": "^19.3.0"
+    "@types/react-dom": "^19.3.0",
+    "node-html-parser": "^9.0.7",
+    "puppeteer-core": "^25.17.0"
   }
 }

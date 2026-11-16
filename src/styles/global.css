@@ -5,9 +5,10 @@
    ========================================================================== */
 @import "tailwindcss";
 
-/* Self-hosted variable fonts (replace the Google Fonts request). */
+/* Self-hosted variable font (replaces the Google Fonts request). The legacy
+   Tailwind pages never loaded JetBrains Mono, so `font-mono` stays the system
+   monospace stack (only the legal and coming-soon pages use JetBrains Mono). */
 @import "@fontsource-variable/plus-jakarta-sans";
-@import "@fontsource-variable/jetbrains-mono";
 
 /* Only scan the Astro sources: the legacy root *.html reference pages and the
    private pages in public/ are not part of the build. */
@@ -20,7 +21,7 @@
 
 @theme {
   --font-sans: "Plus Jakarta Sans Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-  --font-mono: "JetBrains Mono Variable", ui-monospace, Consolas, monospace;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
   --color-brand: #d70c32;
   --color-brand-dark: #b30a2a;
@@ -43,6 +44,11 @@
   input::placeholder,
   textarea::placeholder {
     color: var(--color-zinc-400);
+  }
+  /* Icons are inline <svg data-icon> (astro-icon). The legacy <iconify-icon>
+     kept its size in flex rows; an SVG would shrink next to long text. */
+  svg[data-icon] {
+    flex-shrink: 0;
   }
   /* v4 buttons default to cursor: default; v3 used pointer. */
   button:not(:disabled),
@@ -155,3 +161,9 @@ button[type="submit"] {
   /* Results-image captions slide up on hover: drop the motion, keep the reveal */
   [class~="group-hover:translate-y-0"] { transition: none !important; }
 }
+
+/* NOTE on hero/section gradients: markup uses `via-transparent dark:via-zinc-950/90`.
+   Under Tailwind v3, `dark:from-*` silently dropped the `via` stop in dark mode, so
+   production's dark overlay ran solid → 80%. v4 keeps `via`, so the extra
+   `dark:via-zinc-950/90` reproduces the original dark-mode look exactly. Remove it
+   to let more of the background photo show through in dark mode. */

@@ -1,6 +1,6 @@
 # Plan: migrate akfitness.lv to Astro (with React islands for Magic UI)
 
-- **Status:** Phases 0–2 done on `feat/astro`. Next: Phase 3 (pages). Baseline: `plans/baseline.md`
+- **Status:** Phases 0–3 done on `feat/astro`. Next: Phase 4 (motion). Baseline: `plans/baseline.md`
 - **Written against:** `main` @ `548a2a2` (includes the hero scroll-pause fix, PR #4)
 - **Deploys:** Zeabur builds from GitHub `kapsitis-replit/akfit`, so **a merge to the deployed branch is a production release**
 - **Branch for the work:** `feat/astro` (this plan lives on `plan/astro-migration`)
@@ -147,7 +147,31 @@ The original Phase 2 checklist:
 4. Build `Nav`, `Footer`, `ThemeToggle` (with the 180° spin), and `ContactForm` (port `handleFormSubmit` and keep the payload `{name,email,message,package}` and the endpoint **identical**).
 5. Replace `<iconify-icon icon="solar:…">` with `<Icon name="solar:…" />` across the components.
 
-### Phase 3: Pages (2–3 days)
+### Phase 3: Pages (2–3 days): ✅ done
+**What landed:** all 10 public pages are Astro pages. The legacy root `*.html`, `app.css`, `app.js`, `tailwind.*` and `treninu-plani.js` are removed from this branch (they remain on `main`).
+- **Service pages** (`online-coaching`, `treninu-coaching`, `fitnesa-konsultacija`, `treninu-plani`) are one `ServicePage` layout plus section components in `src/components/service/`, with content in `src/data/services.ts`. **Prices, features, steps and form labels are now edited there, in one place.**
+- **Coach pages**: the `CoachPage` layout plus `src/data/coaches.ts`.
+- **Landing page** (`indexreal`): one component per section in `src/components/home/`. The carousel is `TestimonialCarousel.astro` plus `src/data/testimonials.ts` (no inline `onclick`, animates transform/opacity only).
+- **Legal pages**: the `Legal` layout plus `src/styles/legal.css`, with bodies copied verbatim. **Coming-soon** `/` is `src/pages/index.astro`.
+- **Program map**: `src/scripts/program-map.js`, bundled with the page.
+- Content was extracted from the legacy HTML by script, not retyped.
+
+**Verified against production** (`npm run compare:text`, `npm run compare:styles`, headless Chrome, dark and light, 1280 px and 375 px):
+- Visible text is identical on every page. The intended exceptions: the placeholder "Seko Mums" social heading is hidden, and the dead hidden link to `/ms66180866.txt` (404) is removed.
+- Computed styles match. Remaining diffs are imperceptible: v4 oklch colours ±1–2 RGB units, and the red→pink gradient interpolated in oklab. The legal and coming-soon pages have 0 differences.
+- Carousel (arrows + clicking side cards), FAQ accordion, program map and contact form work. All local links, assets and anchor targets exist. Private files are still byte-identical.
+- Lighthouse mobile on the local build: `indexreal` scores 99 (was 86), weighs 222 KB (was 2,146 KB), LCP 1.96 s (was 3.60 s), main-thread 1.09 s (was 3.03 s). Service and coach pages score 100. Confirm on the Zeabur preview in Phase 6.
+
+**Tailwind v3 → v4 differences found and neutralised** (so pages look the same):
+- `dark:from-*` silently dropped `via-transparent` in v3. The hero/section overlays get `dark:via-zinc-950/90` to keep the original dark-mode look (see the note in `global.css`).
+- v3 let a responsive `md:text-*` override a base `leading-*`. v4 doesn't, so affected headings and ledes get explicit `md:leading-*` (seven elements).
+- `font-mono` was never JetBrains Mono on the Tailwind pages. It stays the system monospace stack.
+- Inline SVG icons shrank in flex rows where `<iconify-icon>` did not. Fixed with `svg[data-icon] { flex-shrink: 0 }`.
+- Astro's `compressHTML` glued words together across line breaks ("ir<strong>distances"), so it is disabled in `astro.config.mjs`.
+
+**Other changes:** the Treniņu Plāni nav button reads "Iegādāties" (it follows each service's main button). All images go through `astro:assets` (WebP, responsive `srcset`; the 1.7 MB coach PNG now ships as a right-sized WebP). Result photos without alt text get `alt=""`.
+
+The original Phase 3 checklist:
 Order: lowest risk first, so the shell is proven before the big page.
 1. `privatuma-politika`, `pakalpojuma-noteikumi` → `Legal.astro`. Check that the `#atteikums` anchor still works.
 2. `treneris-anna`, `treneris-krisjanis` → one `CoachProfile` template + `data/coaches.ts`.

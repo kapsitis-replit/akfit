@@ -1,0 +1,96 @@
+---
+import { Image } from 'astro:assets';
+import ContactForm from '@/components/ContactForm.astro';
+/** Landing page: 10. FAQ (ported from indexreal.html). */
+import { Icon } from 'astro-icon/components';
+---
+<section class="dark:bg-transparent dark:border-zinc-900 transition-colors duration-300 bg-transparent z-10 border-zinc-200 border-t pt-20 pb-20 relative" id="faq">
+  <div class="absolute inset-0 z-[-1] overflow-hidden pointer-events-none">
+    <Image src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1600&auto=format&fit=crop&sat=-100" alt="" inferSize widths={[640, 960, 1280, 1600]} sizes="100vw" class="animate-slow-pan dark:opacity-100 transition-opacity duration-500 opacity-40 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-t from-zinc-50 dark:from-zinc-950 via-transparent dark:via-zinc-950/90 to-zinc-50/80 dark:to-zinc-950/80 transition-colors duration-300"></div>
+  </div>
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="border-[#d70c32] border-l-4 mb-12 pl-6">
+      <h2 class="text-4xl md:text-5xl font-semibold uppercase tracking-tight text-zinc-900 dark:text-white transition-colors">
+        Biežāk Uzdotie Jautājumi
+      </h2>
+      <p class="text-zinc-500 mt-2 font-mono uppercase tracking-widest text-xs">
+        Viss, Kas Jāzina
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      <details class="group border border-zinc-200 dark:border-white/5 bg-white dark:bg-zinc-950 open:border-[#d70c32] transition-colors">
+        <summary class="flex justify-between items-center cursor-pointer p-6 font-medium uppercase text-zinc-600 dark:text-zinc-300 group-hover:text-zinc-900 dark:group-hover:text-white select-none transition-colors">
+          Vai jūs sastādāt ēdienkartes?
+          <Icon name="solar:alt-arrow-down-linear" width={20} height={20} class="transition-transform group-open:rotate-180 text-[#d70c32]" aria-hidden="true" />
+        </summary>
+        <div class="px-6 pb-6 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed transition-colors">
+          Jā, "Pilna Pake" ietver detalizētu uztura plānu. Tomēr mēs arī
+          mācām elastīgā uztura principus, lai tu varētu sasniegt mērķus,
+          neatsakoties no sociālās dzīves.
+        </div>
+      </details>
+
+      <details class="group border border-zinc-200 dark:border-white/5 bg-white dark:bg-zinc-950 open:border-[#d70c32] transition-colors">
+        <summary class="flex cursor-pointer uppercase dark:text-zinc-300 group-hover:text-zinc-900 dark:group-hover:text-white select-none transition-colors font-medium text-zinc-600 pt-6 pr-6 pb-6 pl-6 items-center justify-between">
+          Zāle vai Mājas?
+          <Icon name="solar:alt-arrow-down-linear" width={20} height={20} class="transition-transform group-open:rotate-180 text-[#d70c32]" aria-hidden="true" />
+        </summary>
+        <div class="px-6 pb-6 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed transition-colors">
+          Der abi varianti. Mēs pielāgojam programmu pieejamajam inventāram.
+          Tomēr nopietnai muskuļu masas audzēšanai sporta zāle ir ieteicama.
+        </div>
+      </details>
+
+      <details class="group border border-zinc-200 dark:border-white/5 bg-white dark:bg-zinc-950 open:border-[#d70c32] transition-colors">
+        <summary class="flex cursor-pointer uppercase dark:text-zinc-300 group-hover:text-zinc-900 dark:group-hover:text-white select-none transition-colors font-medium text-zinc-600 pt-6 pr-6 pb-6 pl-6 items-center justify-between">
+          Ko darīt, ja man ir traumas?
+          <Icon name="solar:alt-arrow-down-linear" width={20} height={20} class="transition-transform group-open:rotate-180 text-[#d70c32]" aria-hidden="true" />
+        </summary>
+        <div class="px-6 pb-6 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed transition-colors">
+          Mēs strādājam, apejot tās. Kustība bieži vien ir zāles. Mēs
+          modificēsim vingrinājumus, lai nodrošinātu treniņus bez sāpēm,
+          vienlaikus rehabilitējoties.
+        </div>
+      </details>
+
+      <details class="group border border-zinc-200 dark:border-white/5 bg-white dark:bg-zinc-950 open:border-[#d70c32] transition-colors">
+        <summary class="flex justify-between items-center cursor-pointer p-6 font-medium uppercase text-zinc-600 dark:text-zinc-300 group-hover:text-zinc-900 dark:group-hover:text-white select-none transition-colors">
+          Kā notiek saziņa?
+          <Icon name="solar:alt-arrow-down-linear" width={20} height={20} class="transition-transform group-open:rotate-180 text-[#d70c32]" aria-hidden="true" />
+        </summary>
+        <div class="px-6 pb-6 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed transition-colors">
+          Visa saziņa notiek CoachRx aplikācijā — tur atrodas Tavi treniņi,
+          piezīmes un ziņas vienuviet. Uz jautājumiem atbildam darba dienās
+          24 stundu laikā, un treniņus pārskatām 1–3 dienu laikā.
+        </div>
+      </details>
+    </div>
+
+    <!-- Contact Form Section -->
+    <div class="dark:border-white/5 dark:bg-zinc-950 md:p-10 flex flex-col transition-colors shadow-black/5 dark:shadow-none overflow-hidden bg-white border-zinc-200 border mt-12 pt-8 pr-8 pb-8 pl-8 relative shadow-xl" id="contact">
+      <div class="absolute top-0 left-0 w-full h-1 bg-[#d70c32]"></div>
+
+      <div class="text-center mb-8">
+        <span class="text-xs font-mono uppercase tracking-widest text-[#d70c32]">
+          Palika jautājumi?
+        </span>
+        <h3 class="text-3xl md:text-4xl font-semibold text-zinc-900 dark:text-white uppercase tracking-tight mt-2">
+          Neatradi Atbildi?
+        </h3>
+        <p class="text-zinc-500 dark:text-zinc-400 text-sm md:text-base mt-4 font-medium leading-relaxed max-w-md mx-auto md:leading-[1.5rem]">
+          Ja augstāk minētie jautājumi neatbildēja uz tavējo — aizpildi formu, un mēs ar tevi personīgi sazināsimies.
+        </p>
+      </div>
+
+      <ContactForm
+        packageName="Jautājums no Kontaktformas"
+        subject="Jauns jautājums no AK Fitness kontaktformas"
+        messagePlaceholder="Kā mēs varam palīdzēt?"
+        buttonLabel="Nosūtīt Ziņu"
+        arrow
+      />
+    </div>
+  </div>
+</section>

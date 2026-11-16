@@ -1,0 +1,49 @@
+---
+/**
+ * Shell for the legal pages (privacy policy, terms). These keep their own
+ * dark, document-style CSS (src/styles/legal.css) instead of Tailwind, exactly
+ * as on the legacy site. The page body goes in the default slot and the footer
+ * lines in the "footer" slot.
+ */
+import '@fontsource-variable/plus-jakarta-sans';
+import '@fontsource-variable/jetbrains-mono';
+import '@/styles/legal.css';
+import { HOME, SITE_URL } from '@/data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+}
+const { title, description, path } = Astro.props;
+const favicon =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2309090b'/%3E%3Ctext x='50' y='70' font-family='Arial,sans-serif' font-size='54' font-weight='700' text-anchor='middle' fill='%23d70c32'%3EAK%3C/text%3E%3C/svg%3E";
+---
+<!doctype html>
+<html lang="lv">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(path, SITE_URL).href} />
+    <meta name="theme-color" content="#09090b" />
+    <link rel="icon" href={favicon} />
+  </head>
+  <body>
+    <header>
+      <div class="head-in">
+        <img src="/ak-logo-white.png" alt="AK Fitness Coaching" width="1311" height="432" />
+        <a class="back" href={HOME}>&larr; Atpakaļ uz sākumu</a>
+      </div>
+    </header>
+
+    <slot />
+
+    <footer>
+      <div class="foot-in">
+        <slot name="footer" />
+      </div>
+    </footer>
+  </body>
+</html>
