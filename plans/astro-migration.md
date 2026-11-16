@@ -1,6 +1,6 @@
 # Plan: migrate akfitness.lv to Astro (with React islands for Magic UI)
 
-- **Status:** Phases 0–5 done. Phase 6 moved hosting from Zeabur (shutting down 2026-12-31) to **Cloudflare Workers static assets**; the preview passed all checks. Next: domain cutover (see "Phase 6 (revised)"). Baseline: `plans/baseline.md`
+- **Status:** **Launched 2026-11-16.** akfitness.lv and www are served by the Cloudflare Worker `akfit` (Astro build), and DNS is on Cloudflare. Remaining: move n8n off Zeabur before 2026-12-01 (see "Phase 6 (revised)"). Baseline: `plans/baseline.md`
 - **Written against:** `main` @ `548a2a2` (includes the hero scroll-pause fix, PR #4)
 - **Deploys:** Zeabur builds from GitHub `kapsitis-replit/akfit`, so **a merge to the deployed branch is a production release**
 - **Branch for the work:** `feat/astro` (this plan lives on `plan/astro-migration`)
@@ -235,7 +235,16 @@ Zeabur announced on 2026-10-17 that it is shutting down: services on shared clus
   - The contact form POSTs a byte-identical JSON payload to `/webhook/lead`, matching live (intercepted, nothing sent).
   - Lighthouse mobile, back to back on the same machine: indexreal 96 vs live 85, online-coaching 100 vs 94. Single runs on this machine vary by ±10 points.
 
-**Remaining (domain cutover):**
+**Cutover log (2026-11-16, UTC):**
+- Zone `akfitness.lv` added to Cloudflare (Free plan, Bot Preference Sync off). The quick scan missed the DKIM record `google._domainkey`, which was added by hand and checked byte-for-byte. The pre-cutover records are in `plans/dns-before-cutover.txt`.
+- **07:40** Nameservers changed in NIC.lv (the domain is registered directly with NIC; there is no separate registrar). **NIC dropped its hosted A/MX records immediately, but the .lv registry only published the new delegation at 07:51.** That left a ~10-minute gap with no A and no MX. Next time: lower expectations of an atomic switch at NIC, and do it outside business hours.
+- **07:54** The Cloudflare zone became active, but the proxied records failed TLS because the edge certificate wasn't issued yet. The A and www records were switched to DNS-only (straight to Zeabur) until the certificate went live at **07:55**.
+- **~08:00** The www CNAME and the apex A were deleted and immediately replaced by Worker Custom Domains `www.akfitness.lv` and `akfitness.lv` (a few seconds' gap each).
+- Verified on the live domain: all 16 URLs return 200 on both hostnames, `/nope` returns 404, the private pages send noindex + no-store, and MX / DKIM / verification TXT are served by Cloudflare.
+- **Rollback now:** delete both Custom Domains and recreate `A @ 43.131.62.16` and `CNAME www → akfitness.lv` as DNS-only (works only until Zeabur pauses on 2026-12-01). Or redeploy an older Worker version from Deployments.
+- The domain is paid until **2027-02-05** (renew at NIC.lv).
+
+**Remaining (original cutover checklist, for reference):**
 1. Add the `akfitness.lv` zone to Cloudflare (free plan) and check that the imported records include **MX `smtp.google.com`** and the `google-site-verification` TXT.
 2. At the .lv registrar, change the nameservers from `ns1/ns2.dns.lv` to the two Cloudflare nameservers.
 3. Once the zone is active, add Custom Domains `akfitness.lv` and `www.akfitness.lv` to the Worker. This replaces the A record pointing at Zeabur (`43.131.62.16`).
