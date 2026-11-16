@@ -101,18 +101,25 @@ Each phase ends in something deployable or reviewable. Do not start a phase unti
 1. **Start from the latest GitHub `main`.** `git pull` first: the hero scroll-pause fix (`548a2a2`) lives on GitHub. A stale local checkout looks like it is missing it.
 2. **Fix the private-page protection. The README's description of it is wrong.** Verified on production 2026-11-16:
    - There is **no** `dokumenti-priv-8kq2f/` folder. The private pages are served from the **site root**: `/anketa.html`, `/paraksts.html`, `/ligums-coaching-full.html`, `/ligums-coaching-workouts.html`, `/ligums-consultation.html`. Any unknown path, including `/dokumenti-priv-8kq2f/…`, returns the coming-soon page with **HTTP 200** (a soft 404).
-   - So `robots.txt` (`Disallow: /dokumenti-priv-8kq2f/`) protects nothing, and Caddy ignores the Netlify-style `_headers` file anyway.
+   - So `robots.txt` (`Disallow: /dokumenti-priv-8kq2f/`) protects nothing. Zeabur's static hosting **does** support a Netlify-style `_headers` file (via its Caddy `zeaburextension`), but the only rule in it targets that non-existent folder, so it never applies.
    - `anketa.html` and `paraksts.html` carry `<meta name="robots" content="noindex, nofollow">`. The three `ligums-*` templates **do not**.
+   - `/_headers` itself is publicly downloadable (HTTP 200), so whatever it lists is visible to anyone.
 
-   Fix in the Caddy config on Zeabur (keeping the URLs, because n8n and sent links depend on them):
+   Fix in the repo (no Zeabur dashboard change needed), keeping the URLs because n8n and sent links depend on them. Replace `_headers` with:
    ```
-   @priv path /anketa.html /paraksts.html /ligums-*.html
-   header @priv X-Robots-Tag "noindex, nofollow"
-   header @priv Cache-Control "no-store"
+   /anketa.html
+     X-Robots-Tag: noindex, nofollow
+     Cache-Control: no-store
+   /paraksts.html
+     X-Robots-Tag: noindex, nofollow
+     Cache-Control: no-store
+   /ligums-*
+     X-Robots-Tag: noindex, nofollow
+     Cache-Control: no-store
    ```
-   Also add those paths to `robots.txt`, and make unknown paths return a real 404. Separate from the migration, but do it now: it applies to the current site too.
+   Then confirm with `curl -sI https://www.akfitness.lv/paraksts.html` that the header appears. If the wildcard isn't honoured, list the three `ligums-*.html` files explicitly. Also update `robots.txt` to disallow those paths instead of the phantom folder. Adding a `404.html` gives unknown paths a proper page instead of the coming-soon page. Zeabur documents that it still returns status 200, so this improves the page, not the status code. Separate from the migration, but do it on `main` now: it applies to the current site too.
 3. Record a **baseline**: Lighthouse mobile scores, plus a DevTools Performance trace (4× CPU throttle) while scrolling `indexreal.html` top to bottom. Save the numbers in `plans/baseline.md`.
-4. In the Zeabur dashboard, note **which branch** the service deploys from (presumably `main`), and whether Zeabur supports a second service or environment that deploys a different branch (for the preview in Phase 6). Also note where the Caddy config for step 2 lives: the repo, or the Zeabur service settings.
+4. Zeabur facts (from the dashboard, 2026-11-16): one service `akfit` (static/HTML detection), source `kapsitis-replit/akfit`, server Tencent Frankfurt. Domains: `akfitness.lv`, `www.akfitness.lv` **and `akfittest.zeabur.app`, all on the same production service**, so `akfittest` is *not* a preview environment. Still to read off the service's **Settings** tab: the deployed branch (presumably `main`).
 
 ### Phase 1: Scaffold (½ day)
 1. `git switch -c feat/astro`. Create the Astro project in the repo root (`npm create astro@latest -- --template minimal`), add `@astrojs/react`, `@tailwindcss/vite`, `astro-icon`, `@fontsource-variable/plus-jakarta-sans`, `@fontsource-variable/jetbrains-mono`.
@@ -166,7 +173,7 @@ Optional, if time allows: rebuild the program map (`treninu-plani.js`, originall
 ### Phase 6: Launch (½ day)
 All work happens on `feat/astro`. **Nothing reaches the deployed branch until step 4**, because pushing there releases to production.
 1. Before merging anything: `git tag pre-astro origin/main && git push origin pre-astro`. That tag is the rollback point.
-2. Create a **second Zeabur service** (or environment) in the same project, connected to the same repo but deploying the `feat/astro` branch, on a temporary domain (e.g. the generated `*.zeabur.app` URL). Configure it as a static Astro build: build command `npm ci && npm run build`, output directory `dist/`. Zeabur usually detects Astro from `package.json`. Confirm the detected settings rather than assuming. Add the `@priv` header rule from Phase 0 there too.
+2. Create a **second Zeabur service** (or environment) in the same project, connected to the same repo but deploying the `feat/astro` branch, on a temporary domain (e.g. the generated `*.zeabur.app` URL). Zeabur auto-detects Astro from `package.json`. In the **Build Logs → Plan Meta**, confirm it chose a static plan with `outputDir` = `dist` (served by Caddy, so `_headers` keeps working), not a Node SSR server. `_headers` must live in `public/` so it lands at the root of `dist/`. Check `curl -sI <preview>/paraksts.html` shows `X-Robots-Tag`.
 3. Run every check in §6 against that preview URL.
 4. Open a PR `feat/astro` → `main` and merge it. The existing production service rebuilds from `main`. Its build settings must already match step 2, because the repo now has a `package.json` and is no longer a plain static folder. Check the service's build settings **before** merging.
 5. Smoke-test https://www.akfitness.lv right after the deploy: the homepage, one service page with a test form submission, and the `/paraksts.html` response headers.

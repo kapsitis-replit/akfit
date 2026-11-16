@@ -11,6 +11,7 @@ const PRIVATE = [
   'ligums-consultation.html',
   'robots.txt',
   'ak-logo-white.png',
+  '_headers',
 ];
 
 let failed = 0;
