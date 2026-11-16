@@ -3,6 +3,7 @@
 import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
 import TestimonialCarousel from './TestimonialCarousel.astro';
+import NumberTicker from '@/components/NumberTicker.astro';
 ---
 <header class="z-10 md:pt-48 md:pb-32 overflow-hidden dark:border-white/5 transition-colors duration-300 border-zinc-200 border-b pt-32 pr-6 pb-20 pl-6 relative">
   <!-- Background Image with Filter -->
@@ -30,7 +31,7 @@ import TestimonialCarousel from './TestimonialCarousel.astro';
         <Icon name="solar:star-linear" width={16} height={16} aria-hidden="true" />
         <Icon name="solar:star-linear" width={16} height={16} aria-hidden="true" />
         <span class="text-zinc-500 dark:text-zinc-400 text-xs font-mono uppercase tracking-widest ml-2">
-          1000+ Pārveidoti Ķermeņi
+          <NumberTicker value={1000} suffix="+" /> Pārveidoti Ķermeņi
         </span>
       </div>
 
@@ -59,6 +60,7 @@ import TestimonialCarousel from './TestimonialCarousel.astro';
       <div class="flex flex-col sm:flex-row gap-4 pt-4">
         <a href="#pricing" class="group relative px-8 py-4 bg-[#d70c32] hover:bg-[#b30a2a] text-white font-semibold uppercase tracking-widest transition-all">
           <span class="group-hover:translate-x-0 group-hover:translate-y-0 transition-transform border-white/20 border absolute top-0 right-0 bottom-0 left-0 translate-x-1 translate-y-1"></span>
+          <span class="cta-shimmer" aria-hidden="true"></span>
           <span class="text-center relative">Izvēlēties Plānu</span>
         </a>
         <a href="#about" class="px-8 py-4 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 font-medium uppercase tracking-widest hover:border-zinc-900 dark:hover:border-white hover:text-zinc-900 dark:hover:text-white transition-colors text-center">

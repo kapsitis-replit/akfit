@@ -1,6 +1,6 @@
 # Plan: migrate akfitness.lv to Astro (with React islands for Magic UI)
 
-- **Status:** Phases 0–4 done on `feat/astro`. Next: Phase 5 (Magic UI). Baseline: `plans/baseline.md`
+- **Status:** Phases 0–5 done on `feat/astro`. Next: Phase 6 (launch via a preview service). Baseline: `plans/baseline.md`
 - **Written against:** `main` @ `548a2a2` (includes the hero scroll-pause fix, PR #4)
 - **Deploys:** Zeabur builds from GitHub `kapsitis-replit/akfit`, so **a merge to the deployed branch is a production release**
 - **Branch for the work:** `feat/astro` (this plan lives on `plan/astro-migration`)
@@ -213,6 +213,13 @@ Optional, if time allows: rebuild the program map (`treninu-plani.js`, originall
 **Explicitly excluded:** Globe, Particles, Meteors, Ripple, Confetti (continuous), Warp Background. They run continuously on canvas/many elements and contradict goal 3.
 
 **Budget gate:** after Phase 5, `indexreal` must still pass the Definition of Done. If an island breaks the budget, replace it with a vanilla port.
+
+**Done.** How it landed:
+- **Number Ticker went through the budget gate and became a vanilla port.** The registry React version (React + `motion`) shipped ~264 KB raw / ~83 KB gzipped of JS. The hero ticker is above the fold, so `client:visible` hydrates it immediately on load. Lighthouse mobile measured 3.3 s of main-thread work (vs ~2.2–2.8 s without it) and one run reached TBT 404 ms. `src/components/NumberTicker.astro` keeps the same behaviour in under 1 KB: it counts once when in view with an exponential ease-out over 1.6 s, uses lv-LV formatting, and does nothing under reduced motion. Unlike the registry version, the HTML carries the **final** number, so no-JS visitors and crawlers never see 0, and an invisible `::before` copy of the number fixes the width, so the line never shifts (CLS 0). `motion` was uninstalled. `@astrojs/react` stays installed but no page ships React now.
+- **Where:** "1000+ Pārveidoti Ķermeņi" (hero) and the numeric coach stats ("10+", "500+"; "MSc"/"BSc"/"S&C" stay text). **"-8kg" was skipped:** it sits inside a testimonial quote sentence in a side card of the carousel, where a counting number reads as a glitch, not a stat.
+- **Shimmer:** CSS-only port of Shimmer Button on "Izvēlēties Plānu" (`.cta-shimmer` in `global.css`). A soft white band sweeps across once every 4 s (1.1 s sweep, `ease-in-out`). Only `translate` animates, in a clipped layer. It pauses while scrolling and is off under reduced motion.
+- **Measurements are noisy on this machine today:** the Phase 3 build itself now scores 91–94 with TBT ~300 ms (it scored 99 earlier). The Phase 5 build scored 87–100 in the same session. Re-measure on the Zeabur preview in Phase 6.
+- `compare:text` shows "1000+" → "1000 +" on indexreal and the coach pages. That comes from the script inserting a space between tags; the rendered HTML has no space.
 
 ### Phase 6: Launch (½ day)
 All work happens on `feat/astro`. **Nothing reaches the deployed branch until step 4**, because pushing there releases to production.

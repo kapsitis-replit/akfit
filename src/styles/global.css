@@ -140,6 +140,31 @@ html.reveal-ready [data-reveal].is-revealed {
   .group:hover .arrow-nudge { translate: 4px 0; }
 }
 
+/* ---- Hero CTA shimmer (CSS port of Magic UI's Shimmer Button) ----------- */
+/* A soft light band sweeps across the button once every 4s (1.1s sweep, then
+   idle). Only `translate` animates, inside its own clipped layer, so it stays
+   on the compositor. Paused while scrolling; off under reduced motion. */
+.cta-shimmer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.cta-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 45%;
+  background: linear-gradient(100deg, transparent 0%, rgb(255 255 255 / 0.28) 50%, transparent 100%);
+  translate: -110% 0;
+  animation: cta-shimmer 4s ease-in-out 1.2s infinite;
+}
+@keyframes cta-shimmer {
+  0%       { translate: -110% 0; }
+  28%, 100% { translate: 330% 0; }
+}
+html.is-scrolling .cta-shimmer::after { animation-play-state: paused; }
+
 /* ---- Press feedback on primary controls -------------------------------- */
 /* `.press` is the explicit opt-in for new components. The attribute selectors
    keep markup copied from the legacy pages working unchanged. */
@@ -193,6 +218,7 @@ button[type="submit"] {
   /* Reveal: opacity only, 200ms */
   html.reveal-ready [data-reveal] { translate: none; transition: opacity 200ms ease; }
   .color-reveal { transition: none !important; }
+  .cta-shimmer::after { animation: none !important; display: none; }
   /* Results-image captions slide up on hover: drop the motion, keep the reveal */
   [class~="group-hover:translate-y-0"] { transition: none !important; }
 }
