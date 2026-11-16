@@ -8,7 +8,7 @@ const LIVE = process.env.LIVE ?? 'https://www.akfitness.lv';
 const LOCAL = process.env.LOCAL ?? 'http://localhost:4321';
 
 const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
-const PAGES = (process.argv[2] ?? 'index,online-coaching,treninu-plani,treneris-anna,privatuma-politika').split(',');
+const PAGES = (process.argv[2] ?? 'indexreal,online-coaching,treninu-plani,treneris-anna,privatuma-politika,index').split(',');
 const WIDTH = Number(process.argv[3] ?? 1280);
 const PROPS = [
   'color', 'background-color', 'background-image', 'font-family', 'font-size', 'font-weight',
