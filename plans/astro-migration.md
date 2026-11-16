@@ -99,7 +99,7 @@ Each phase ends in something deployable or reviewable. Do not start a phase unti
 
 ### Phase 0: Sync and safety (½ day)
 1. **Start from the latest GitHub `main`.** `git pull` first: the hero scroll-pause fix (`548a2a2`) lives on GitHub. A stale local checkout looks like it is missing it.
-2. **Fix the private-page protection. The README's description of it is wrong.** Verified on production 2026-11-16:
+2. ✅ **Done 2026-11-16 in [PR #6](https://github.com/kapsitis-replit/akfit/pull/6)** (`_headers` lists the five pages explicitly; `robots.txt` no longer blocks them, so crawlers can see the noindex header). **Fix the private-page protection. The README's description of it is wrong.** Verified on production 2026-11-16:
    - There is **no** `dokumenti-priv-8kq2f/` folder. The private pages are served from the **site root**: `/anketa.html`, `/paraksts.html`, `/ligums-coaching-full.html`, `/ligums-coaching-workouts.html`, `/ligums-consultation.html`. Any unknown path, including `/dokumenti-priv-8kq2f/…`, returns the coming-soon page with **HTTP 200** (a soft 404).
    - So `robots.txt` (`Disallow: /dokumenti-priv-8kq2f/`) protects nothing. Zeabur's static hosting **does** support a Netlify-style `_headers` file (via its Caddy `zeaburextension`), but the only rule in it targets that non-existent folder, so it never applies.
    - `anketa.html` and `paraksts.html` carry `<meta name="robots" content="noindex, nofollow">`. The three `ligums-*` templates **do not**.
