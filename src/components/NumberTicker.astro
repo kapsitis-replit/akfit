@@ -1,0 +1,59 @@
+---
+/**
+ * Count-up number: a dependency-free port of Magic UI's Number Ticker.
+ *
+ * The React island version (React + motion, ~83 KB gzipped) pushed indexreal's
+ * Total Blocking Time to ~400 ms under Lighthouse mobile, breaking the budget in
+ * plans/astro-migration.md, so this does the same thing in ~1 KB:
+ * - The HTML holds the FINAL value (no-JS, crawlers and first paint are correct).
+ * - Counts up once, when scrolled into view, with a spring-like ease-out.
+ * - Latvian number formatting (lv-LV). An invisible ::before copy of the final
+ *   number (CSS content, so not in the page text) holds the width, letter-spacing
+ *   included, so nearby text never shifts while counting.
+ * - No animation under prefers-reduced-motion.
+ */
+interface Props {
+  value: number;
+  suffix?: string;
+  prefix?: string;
+  class?: string;
+}
+const { value, suffix = '', prefix = '', class: className } = Astro.props;
+const text = new Intl.NumberFormat('lv-LV').format(value);
+---
+<span class:list={['inline-block tabular-nums', className]}>{prefix}<span
+    class="inline-grid before:invisible before:col-start-1 before:row-start-1 before:content-[attr(data-ghost)]"
+    data-ghost={text}><span
+      data-ticker={value}
+      class="col-start-1 row-start-1 text-right">{text}</span></span>{suffix}</span>
+
+<script>
+  const els = document.querySelectorAll<HTMLElement>('[data-ticker]');
+  if (els.length && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const fmt = new Intl.NumberFormat('lv-LV');
+    const DURATION = 1600;
+    // Exponential ease-out: fast start, long soft settle (like the original spring).
+    const ease = (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
+
+    const run = (el: HTMLElement) => {
+      const target = Number(el.dataset.ticker);
+      const start = performance.now();
+      el.textContent = fmt.format(0);
+      const frame = (now: number) => {
+        const t = Math.min((now - start) / DURATION, 1);
+        el.textContent = fmt.format(Math.round(target * ease(t)));
+        if (t < 1) requestAnimationFrame(frame);
+      };
+      requestAnimationFrame(frame);
+    };
+
+    const io = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        io.unobserve(entry.target);
+        run(entry.target as HTMLElement);
+      }
+    });
+    els.forEach((el) => io.observe(el));
+  }
+</script>

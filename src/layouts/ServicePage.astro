@@ -1,0 +1,39 @@
+---
+/**
+ * Full service page from a `services.ts` entry. Optional sections render only
+ * when the entry has them. Content in the default slot goes between the hero
+ * and the steps (used by Treniņu Plāni for the program map).
+ */
+import Base from './Base.astro';
+import Nav from '@/components/Nav.astro';
+import Footer from '@/components/Footer.astro';
+import ServiceHero from '@/components/service/ServiceHero.astro';
+import StepsSection from '@/components/service/StepsSection.astro';
+import SplitSection from '@/components/service/SplitSection.astro';
+import FocusSection from '@/components/service/FocusSection.astro';
+import ApplySection from '@/components/service/ApplySection.astro';
+import type { Service } from '@/data/types';
+
+interface Props {
+  service: Service;
+}
+const { service } = Astro.props;
+const { meta } = service;
+---
+<Base
+  title={meta.title}
+  description={meta.description}
+  path={service.path}
+  ogTitle={meta.ogTitle}
+  ogDescription={meta.ogDescription}
+  ogImage={meta.ogImage}
+>
+  <Nav active="pricing" cta={{ label: service.hero.primaryCta.label, href: '#pieteikties' }} />
+  <ServiceHero hero={service.hero} />
+  <slot />
+  <StepsSection steps={service.steps} />
+  {service.split && <SplitSection split={service.split} />}
+  {service.focus && <FocusSection focus={service.focus} />}
+  <ApplySection apply={service.apply} />
+  <Footer variant="page" />
+</Base>

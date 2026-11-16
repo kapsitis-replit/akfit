@@ -1,0 +1,40 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import type { Service } from '@/data/types';
+
+interface Props {
+  split: NonNullable<Service['split']>;
+}
+const { split } = Astro.props;
+---
+<section class="relative z-10 border-b border-zinc-200 px-6 py-20 transition-colors duration-300 dark:border-white/5">
+  <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+    <div>
+      <p class="mb-3 font-mono text-xs uppercase tracking-widest text-brand">{split.eyebrow}</p>
+      <h2 class="mb-6 text-3xl font-semibold uppercase tracking-tight text-zinc-900 md:text-4xl dark:text-white">{split.heading}</h2>
+      <p class="mb-6 leading-relaxed text-zinc-600 dark:text-zinc-400">{split.intro}</p>
+      <ul class="space-y-4">
+        {split.items.map((item) => (
+          <li class="flex items-start gap-4">
+            <Icon name={item.icon} width={22} height={22} class="mt-1 min-w-[22px] text-brand" aria-hidden="true" />
+            <span class="text-sm text-zinc-600 dark:text-zinc-300">
+              <span class="font-medium text-zinc-900 dark:text-white">{item.title}</span>{' '}<Fragment set:html={item.text} />
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div class="relative">
+      <div class="absolute -top-4 -left-4 h-20 w-20 border-t-2 border-l-2 border-brand"></div>
+      <Image
+        src={split.image.src}
+        alt={split.image.alt}
+        inferSize
+        widths={[480, 800]}
+        sizes="(min-width: 1024px) 600px, 100vw"
+        class="h-[28rem] w-full object-cover contrast-125 grayscale"
+      />
+    </div>
+  </div>
+</section>

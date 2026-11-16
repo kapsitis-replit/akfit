@@ -1,0 +1,61 @@
+---
+import { Image } from 'astro:assets';
+import ColorHoverImage from '@/components/ColorHoverImage.astro';
+/** Landing page: 5. Results Gallery (ported from indexreal.html). */
+---
+<section class="z-10 dark:bg-transparent transition-colors duration-300 bg-transparent pt-20 pr-6 pb-20 pl-6 relative" id="results">
+  <div class="absolute inset-0 z-[-1] overflow-hidden pointer-events-none">
+    <Image src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=1600&auto=format&fit=crop&sat=-100" alt="" inferSize widths={[640, 960, 1280, 1600]} sizes="100vw" class="dark:opacity-100 transition-opacity duration-500 opacity-40 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-t from-zinc-50 dark:from-zinc-950 via-transparent dark:via-zinc-950/90 to-zinc-50/80 dark:to-zinc-950/80 transition-colors duration-300"></div>
+  </div>
+  <div class="max-w-7xl mx-auto">
+    <div class="border-[#d70c32] border-l-4 mb-12 pl-6" data-reveal>
+      <h2 class="text-4xl md:text-5xl font-semibold uppercase tracking-tight text-zinc-900 dark:text-white transition-colors">
+        Pierādījumi. Ne Solījumi.
+      </h2>
+      <p class="text-zinc-500 mt-2 font-mono uppercase tracking-widest text-xs">
+        Īsti klienti. Īsts darbs.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1" data-reveal-children>
+      <!-- Result 1 -->
+      <div class="relative group aspect-square bg-zinc-100 dark:bg-zinc-900 overflow-hidden">
+        <ColorHoverImage src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=800&auto=format&fit=crop" alt="" widths={[400, 800]} sizes="(min-width: 768px) 33vw, 100vw" />
+        <div class="absolute bottom-0 left-0 w-full bg-white/90 dark:bg-black/80 p-4 border-t border-[#d70c32] transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+          <p class="text-zinc-900 dark:text-white font-semibold uppercase">
+            Māris B. / 6 Mēneši
+          </p>
+          <p class="text-xs text-zinc-600 dark:text-zinc-400">
+            "Pazaudēju 15kg un beidzot jūtos enerģijas pilns ikdienā."
+          </p>
+        </div>
+      </div>
+      <!-- Result 2 -->
+      <div class="relative group aspect-square bg-zinc-100 dark:bg-zinc-900 overflow-hidden">
+        <ColorHoverImage src="https://images.unsplash.com/photo-1548690312-e3b507d8c110?q=80&w=800&auto=format&fit=crop" alt="" widths={[400, 800]} sizes="(min-width: 768px) 33vw, 100vw" />
+        <div class="absolute bottom-0 left-0 w-full bg-white/90 dark:bg-black/80 p-4 border-t border-[#d70c32] transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+          <p class="text-zinc-900 dark:text-white font-semibold uppercase">
+            Jana L. / 16 Nedēļas
+          </p>
+          <p class="text-xs text-zinc-600 dark:text-zinc-400">
+            "Muguras sāpes ir pazudušas. Beidzot esmu iemācījusies ēst
+            pareizi."
+          </p>
+        </div>
+      </div>
+      <!-- Result 3 -->
+      <div class="relative group aspect-square bg-zinc-100 dark:bg-zinc-900 overflow-hidden">
+        <ColorHoverImage src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop" alt="" widths={[400, 800]} sizes="(min-width: 768px) 33vw, 100vw" />
+        <div class="absolute bottom-0 left-0 w-full bg-white/90 dark:bg-black/80 p-4 border-t border-[#d70c32] transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+          <p class="text-zinc-900 dark:text-white font-semibold uppercase">
+            Dāvis R. / 1 Gads
+          </p>
+          <p class="text-xs text-zinc-600 dark:text-zinc-400">
+            "No 'skinny-fat' līdz muskuļotam augumam. Programma strādā."
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

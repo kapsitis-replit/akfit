@@ -1,0 +1,114 @@
+---
+/**
+ * Contact / application form.
+ * Posts JSON { name, email, message, package } to the n8n LEAD_WEBHOOK
+ * (identical payload to the legacy handleFormSubmit in app.js).
+ * Without JavaScript it falls back to a normal POST to formsubmit.co.
+ */
+import { Icon } from 'astro-icon/components';
+import { CONTACT_EMAIL, LEAD_WEBHOOK } from '@/data/site';
+
+interface Props {
+  /** Sent as `package`, e.g. "Online Coaching". */
+  packageName: string;
+  /** Subject for the no-JS formsubmit.co fallback email. */
+  subject?: string;
+  messagePlaceholder?: string;
+  buttonLabel?: string;
+  /** Show the arrow icon on the submit button (landing-page style). */
+  arrow?: boolean;
+}
+
+const {
+  packageName,
+  subject = `Jauns pieteikums: ${packageName}`,
+  messagePlaceholder = 'Kādi ir tavi mērķi?',
+  buttonLabel = 'Nosūtīt Pieteikumu',
+  arrow = false,
+} = Astro.props;
+
+const field =
+  'w-full rounded-none border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm text-zinc-900 transition-colors placeholder:text-zinc-400 focus:border-brand focus:outline-hidden dark:border-zinc-800 dark:bg-zinc-900 dark:text-white dark:focus:border-brand';
+---
+<form
+  action={`https://formsubmit.co/${CONTACT_EMAIL}`}
+  method="POST"
+  class="relative flex flex-col gap-4"
+  data-contact-form
+  data-package={packageName}
+  data-webhook={LEAD_WEBHOOK}
+  data-email={CONTACT_EMAIL}
+>
+  <input type="hidden" name="_captcha" value="false" />
+  <input type="hidden" name="_subject" value={subject} />
+
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <input type="text" name="name" placeholder="Tavs Vārds" aria-label="Tavs Vārds" autocomplete="name" required class={field} />
+    <input type="email" name="email" placeholder="E-pasts" aria-label="E-pasts" autocomplete="email" required class={field} />
+  </div>
+  <textarea name="message" placeholder={messagePlaceholder} aria-label={messagePlaceholder} required class:list={[field, 'h-32 resize-none']}></textarea>
+
+  <button
+    type="submit"
+    class="group mt-2 flex w-full items-center justify-center gap-2 bg-zinc-900 py-4 text-center text-xs font-semibold uppercase tracking-widest text-white transition-all duration-300 hover:bg-brand hover:text-white disabled:opacity-60 dark:bg-white dark:text-black dark:hover:bg-brand dark:hover:text-white"
+  >
+    <span data-label>{buttonLabel}</span>
+    {arrow && <Icon name="solar:arrow-right-linear" width={16} height={16} class="transition-transform group-hover:translate-x-1" aria-hidden="true" />}
+  </button>
+
+  <div
+    data-success
+    role="status"
+    aria-live="polite"
+    class="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center bg-white/95 opacity-0 transition-opacity duration-300 dark:bg-zinc-950/95"
+  >
+    <Icon name="solar:check-circle-bold" width={48} height={48} class="mb-2 text-zinc-900 dark:text-white" aria-hidden="true" />
+    <p class="text-sm font-semibold uppercase tracking-widest text-zinc-900 dark:text-white">Ziņa nosūtīta!</p>
+  </div>
+</form>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('form[data-contact-form]').forEach((form) => {
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const label = form.querySelector<HTMLElement>('[data-label]');
+      const success = form.querySelector<HTMLElement>('[data-success]');
+      const value = (name: string) =>
+        ((form.elements.namedItem(name) as HTMLInputElement | null)?.value ?? '').trim();
+
+      const payload = {
+        name: value('name'),
+        email: value('email'),
+        message: value('message'),
+        package: form.dataset.package ?? '',
+      };
+
+      // Remember the real label once, so a retry after a failure restores it.
+      if (label && !label.dataset.original) label.dataset.original = label.textContent ?? '';
+      const originalLabel = label?.dataset.original ?? '';
+      if (button) button.disabled = true;
+      if (label) label.textContent = 'Sūta…';
+
+      try {
+        const response = await fetch(form.dataset.webhook!, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!response.ok) throw new Error(`status ${response.status}`);
+
+        if (success) {
+          success.style.opacity = '1';
+          success.style.pointerEvents = 'auto';
+        }
+        form.reset();
+      } catch {
+        if (button) button.disabled = false;
+        if (label) label.textContent = originalLabel;
+        alert(`Neizdevās nosūtīt. Lūdzu mēģini vēlreiz vai raksti uz ${form.dataset.email}`);
+      }
+    });
+  });
+</script>

@@ -1,0 +1,230 @@
+/* ==========================================================================
+   AK Fitness: global styles (Tailwind v4 entry point)
+   Ported from the legacy app.css. The scroll-reveal system is NOT here: it is
+   rebuilt as the <Reveal> component in Phase 4 of plans/astro-migration.md.
+   ========================================================================== */
+@import "tailwindcss";
+
+/* Self-hosted variable font (replaces the Google Fonts request). The legacy
+   Tailwind pages never loaded JetBrains Mono, so `font-mono` stays the system
+   monospace stack (only the legal and coming-soon pages use JetBrains Mono). */
+@import "@fontsource-variable/plus-jakarta-sans";
+
+/* Only scan the Astro sources: the legacy root *.html reference pages and the
+   private pages in public/ are not part of the build. */
+@source not "../../public";
+@source not "../../*.html";
+@source not "../../plans";
+
+/* The site toggles a `dark` class on <html> (same as the old darkMode: 'class'). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Plus Jakarta Sans Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --color-brand: #d70c32;
+  --color-brand-dark: #b30a2a;
+
+  /* Motion tokens (from the animation audit) */
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+
+  /* Headline intro: fade + rise. The legacy 8px blur is removed (audit item 6). */
+  --animate-intro: intro 0.8s var(--ease-out-strong) 0.1s both;
+  @keyframes intro {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: none; }
+  }
+}
+
+/* ---- Tailwind v3 → v4 compatibility (keeps the old look) ---------------- */
+@layer base {
+  /* v4 placeholders default to 50% currentColor; v3 used gray-400. */
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-zinc-400);
+  }
+  /* Icons are inline <svg data-icon> (astro-icon). The legacy <iconify-icon>
+     kept its size in flex rows; an SVG would shrink next to long text. */
+  svg[data-icon] {
+    flex-shrink: 0;
+  }
+  /* v4 buttons default to cursor: default; v3 used pointer. */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* ---- Base ---------------------------------------------------------------- */
+html { scroll-behavior: smooth; }
+
+/* Thin scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #52525b; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-brand); }
+
+/* Custom noise texture */
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* <details> accordion marker reset */
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+
+/* ---- Logo glitch: one shot on hover ------------------------------------ */
+@media (hover: hover) and (pointer: fine) {
+  .glitch-hover:hover {
+    animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both;
+    color: var(--color-brand);
+  }
+}
+@keyframes glitch {
+  0%   { transform: translate(0); }
+  20%  { transform: translate(-2px, 2px); }
+  40%  { transform: translate(-2px, -2px); }
+  60%  { transform: translate(2px, 2px); }
+  80%  { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+/* ---- Slow background pan ------------------------------------------------ */
+/* PERF: scale stays constant (1.1) so only the offset animates: compositor
+   only, no re-rasterising the bitmap. Paused while scrolling (html.is-scrolling,
+   set by src/scripts/site.ts) and, from Phase 4, while off-screen. */
+@keyframes slow-pan {
+  0%   { transform: scale(1.1) translate(0, 0); }
+  50%  { transform: scale(1.1) translate(-1%, 1%); }
+  100% { transform: scale(1.1) translate(0, 0); }
+}
+.animate-slow-pan {
+  animation: slow-pan 25s ease-in-out infinite paused;
+  transform: scale(1.1);
+  backface-visibility: hidden;
+}
+/* Runs only while on screen (site.ts toggles .is-panning) and not scrolling. */
+.animate-slow-pan.is-panning { animation-play-state: running; will-change: transform; }
+html.is-scrolling .animate-slow-pan { animation-play-state: paused; }
+
+/* ---- Scroll reveal (driven by site.ts) ----------------------------------- */
+/* Uses the standalone `translate` property so it never fights `transform`
+   classes (skew etc.). Do not put data-reveal on elements with Tailwind
+   translate-* classes. will-change is not set: it would stay on forever. */
+html.reveal-ready [data-reveal] {
+  opacity: 0;
+  translate: 0 16px;
+  transition: opacity 400ms var(--ease-out-strong) var(--reveal-delay, 0ms),
+              translate 400ms var(--ease-out-strong) var(--reveal-delay, 0ms);
+}
+html.reveal-ready [data-reveal].is-revealed {
+  opacity: 1;
+  translate: none;
+}
+
+/* ---- Colour-on-hover photos ---------------------------------------------- */
+/* A colour copy of the image sits over the grayscale one and fades in. Only
+   opacity animates (never `filter`), and only on real hover devices. */
+.color-reveal { opacity: 0; }
+@media (hover: hover) and (pointer: fine) {
+  .color-reveal { transition: opacity 250ms ease; }
+  .group:hover .color-reveal { opacity: 1; }
+}
+
+/* "Skatīt pilnu profilu": nudge the arrow (transform) instead of animating gap. */
+.arrow-nudge { transition: translate 200ms var(--ease-out-strong); }
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .arrow-nudge { translate: 4px 0; }
+}
+
+/* ---- Hero CTA shimmer (CSS port of Magic UI's Shimmer Button) ----------- */
+/* A soft light band sweeps across the button once every 4s (1.1s sweep, then
+   idle). Only `translate` animates, inside its own clipped layer, so it stays
+   on the compositor. Paused while scrolling; off under reduced motion. */
+.cta-shimmer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.cta-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 45%;
+  background: linear-gradient(100deg, transparent 0%, rgb(255 255 255 / 0.28) 50%, transparent 100%);
+  translate: -110% 0;
+  animation: cta-shimmer 4s ease-in-out 1.2s infinite;
+}
+@keyframes cta-shimmer {
+  0%       { translate: -110% 0; }
+  28%, 100% { translate: 330% 0; }
+}
+html.is-scrolling .cta-shimmer::after { animation-play-state: paused; }
+
+/* ---- Press feedback on primary controls -------------------------------- */
+/* `.press` is the explicit opt-in for new components. The attribute selectors
+   keep markup copied from the legacy pages working unchanged. */
+.press,
+a[class~="bg-[#d70c32]"],
+button[class~="bg-[#d70c32]"],
+a[class~="bg-zinc-900"],
+button[type="submit"] {
+  transition: transform 160ms var(--ease-out-strong),
+              background-color 300ms ease,
+              color 300ms ease,
+              border-color 300ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .press:active,
+  a[class~="bg-[#d70c32]"]:active,
+  button[class~="bg-[#d70c32]"]:active,
+  a[class~="bg-zinc-900"]:active,
+  button[type="submit"]:active {
+    transform: scale(0.97);
+  }
+  /* Skewed nav CTA: keep the skew while pressing */
+  a[class~="skew-x-[-10deg]"]:active {
+    transform: skewX(-10deg) scale(0.97);
+  }
+}
+
+/* ---- Smooth FAQ accordion (progressive enhancement) --------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  html { interpolate-size: allow-keywords; }
+  details::details-content {
+    block-size: 0;
+    overflow: clip;
+    opacity: 0;
+    transition: block-size 300ms var(--ease-out-strong),
+                opacity 220ms ease,
+                content-visibility 300ms allow-discrete;
+  }
+  details[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+}
+
+/* ---- Reduced motion ------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-slow-pan { animation: none !important; }
+  .glitch-hover:hover { animation: none !important; }   /* keep colour, drop shake */
+  .animate-intro { animation: none !important; }
+  /* Reveal: opacity only, 200ms */
+  html.reveal-ready [data-reveal] { translate: none; transition: opacity 200ms ease; }
+  .color-reveal { transition: none !important; }
+  .cta-shimmer::after { animation: none !important; display: none; }
+  /* Results-image captions slide up on hover: drop the motion, keep the reveal */
+  [class~="group-hover:translate-y-0"] { transition: none !important; }
+}
+
+/* NOTE on hero/section gradients: markup uses `via-transparent dark:via-zinc-950/90`.
+   Under Tailwind v3, `dark:from-*` silently dropped the `via` stop in dark mode, so
+   production's dark overlay ran solid → 80%. v4 keeps `via`, so the extra
+   `dark:via-zinc-950/90` reproduces the original dark-mode look exactly. Remove it
+   to let more of the background photo show through in dark mode. */

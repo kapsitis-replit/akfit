@@ -1,0 +1,52 @@
+---
+/**
+ * Fixed top navigation.
+ * - On the landing page (`onHome`), links jump to sections on the same page.
+ * - On every other page, links go to those sections on the landing page (HOME).
+ */
+import ThemeToggle from './ThemeToggle.astro';
+import { HOME, NAV_LINKS, type NavId } from '@/data/site';
+
+interface Props {
+  onHome?: boolean;
+  /** Highlights a link in brand red (e.g. 'pricing' on service pages). */
+  active?: NavId;
+  cta?: { label: string; href: string };
+}
+
+const { onHome = false, active, cta = { label: 'Sākt Tagad', href: '#pricing' } } = Astro.props;
+const sectionHref = (id: string) => (onHome ? `#${id}` : `${HOME}#${id}`);
+const logoHref = onHome ? '#' : HOME;
+
+const linkBase = 'text-xs font-medium uppercase tracking-widest transition-colors';
+const linkIdle = 'text-zinc-600 dark:text-zinc-400 hover:text-brand dark:hover:text-brand';
+---
+<nav class="fixed top-0 z-50 w-full border-b border-zinc-200 bg-white/80 transition-colors duration-300 dark:border-white/5 dark:bg-zinc-950/80">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+    <a href={logoHref} class="glitch-hover group text-xl font-semibold uppercase tracking-tighter text-zinc-900 dark:text-white">
+      AK <span class="text-brand transition-colors group-hover:text-zinc-900 dark:group-hover:text-white">FITNESS</span>
+    </a>
+
+    <div class="hidden items-center gap-8 md:flex">
+      {NAV_LINKS.map((link) => (
+        <a
+          href={sectionHref(link.id)}
+          class:list={[linkBase, link.id === active ? 'text-brand' : linkIdle]}
+          aria-current={link.id === active ? 'page' : undefined}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+
+    <div class="flex items-center gap-4">
+      <ThemeToggle />
+      <a
+        href={cta.href}
+        class="skew-x-[-10deg] border border-transparent bg-zinc-900 px-5 py-2 text-xs font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:border-brand hover:bg-brand hover:text-white dark:bg-white dark:text-black dark:hover:bg-brand dark:hover:text-white"
+      >
+        <span class="block skew-x-[10deg]">{cta.label}</span>
+      </a>
+    </div>
+  </div>
+</nav>

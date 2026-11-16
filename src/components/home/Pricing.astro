@@ -1,0 +1,105 @@
+---
+/** Landing page: 4. Signature Offer / Programs (ported from indexreal.html). */
+import { Icon } from 'astro-icon/components';
+---
+<section class="dark:bg-zinc-900 border-y dark:border-white/5 z-10 transition-colors duration-300 bg-zinc-100 border-zinc-200 pt-20 pb-20 relative" id="pricing">
+  <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
+    <div class="border-[#d70c32] border-l-4 mb-12 pl-6" data-reveal>
+      <h2 class="text-4xl md:text-5xl font-semibold uppercase tracking-tight text-zinc-900 dark:text-white transition-colors">
+        Pakalpojumi
+      </h2>
+      <p class="text-zinc-500 mt-2 font-mono uppercase tracking-widest text-xs">
+        Treniņu Programmas
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 gap-x-6 gap-y-6 items-start" data-reveal-children> 
+      <!-- Option 1: Online Coaching -->
+      <div class="h-full">
+        <div class="flex flex-col h-full bg-white dark:bg-zinc-900 border-2 border-[#d70c32] shadow-2xl shadow-[#d70c32]/10 p-8 relative transition-colors duration-300">
+          <div class="absolute top-0 right-0 bg-[#d70c32] text-white text-[10px] font-semibold uppercase px-3 py-1">Populārākais</div>
+          <div class="mb-4">
+            <span class="text-xs font-mono uppercase tracking-widest text-[#d70c32]">Visaptveroši</span>
+            <h3 class="text-3xl font-semibold text-zinc-900 dark:text-white uppercase tracking-tight mt-1">Online Coaching</h3>
+          </div>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-wide leading-relaxed mb-4">Visaptveroša pieeja neatkarīgi no atrašanās vietas</p>
+          <div class="mb-6 flex items-baseline gap-2">
+            <span class="text-4xl font-semibold text-zinc-900 dark:text-white tracking-tight">€239</span>
+            <span class="text-xs text-zinc-500 dark:text-zinc-400 font-mono uppercase tracking-widest">/ mēn</span>
+          </div>
+          <ul class="flex-1 mb-8 space-y-4">
+            <li class="flex gap-3 items-start text-sm font-medium text-zinc-900 dark:text-white"><Icon name="solar:check-circle-bold" width={16} height={16} class="text-[#d70c32] mt-0.5 min-w-[16px]" aria-hidden="true" /> Individuāls treniņu un uztura plāns</li>
+            <li class="flex gap-3 items-start text-sm font-medium text-zinc-900 dark:text-white"><Icon name="solar:check-circle-bold" width={16} height={16} class="text-[#d70c32] mt-0.5 min-w-[16px]" aria-hidden="true" /> Profesionāls atbalsts visā pasaulē</li>
+            <li class="flex gap-3 items-start text-sm font-medium text-zinc-900 dark:text-white"><Icon name="solar:check-circle-bold" width={16} height={16} class="text-[#d70c32] mt-0.5 min-w-[16px]" aria-hidden="true" /> Mobilā lietotne progresa pārskatīšanai</li>
+          </ul>
+          <a href="online-coaching.html" class="w-full py-4 bg-[#d70c32] text-white uppercase font-semibold text-xs tracking-widest hover:bg-[#b30a2a] transition-colors text-center mt-auto flex items-center justify-center gap-2">Uzzināt vairāk <Icon name="solar:arrow-right-linear" width={14} height={14} aria-hidden="true" /></a>
+        </div>
+      </div>
+
+      <!-- Option 3: Treniņu coaching -->
+      <div class="h-full">
+        <div class="flex flex-col h-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/5 hover:border-zinc-400 dark:hover:border-zinc-700 p-8 transition-colors">
+          <div class="mb-4">
+            <span class="text-xs font-mono uppercase tracking-widest text-zinc-500">Programma</span>
+            <h3 class="text-3xl font-semibold text-zinc-900 dark:text-white uppercase tracking-tight mt-1">Treniņu Coaching</h3>
+          </div>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-wide leading-relaxed mb-4">Personalizētas programmas ar uzraudzību</p>
+          <div class="mb-6 flex items-baseline gap-2">
+            <span class="text-4xl font-semibold text-zinc-900 dark:text-white tracking-tight">€135</span>
+            <span class="text-xs text-zinc-500 dark:text-zinc-400 font-mono uppercase tracking-widest">/ mēn</span>
+          </div>
+          <ul class="flex-1 mb-8 space-y-4">
+            <li class="flex gap-3 items-start text-sm text-zinc-600 dark:text-zinc-300"><Icon name="solar:check-circle-linear" width={16} height={16} class="text-zinc-400 dark:text-zinc-500 mt-0.5 min-w-[16px]" aria-hidden="true" /> Plāns pielāgots jūsu spējām</li>
+            <li class="flex gap-3 items-start text-sm text-zinc-600 dark:text-zinc-300"><Icon name="solar:check-circle-linear" width={16} height={16} class="text-zinc-400 dark:text-zinc-500 mt-0.5 min-w-[16px]" aria-hidden="true" /> Regulāra programmu maiņa un attīstība</li>
+            <li class="flex gap-3 items-start text-sm text-zinc-600 dark:text-zinc-300"><Icon name="solar:check-circle-linear" width={16} height={16} class="text-zinc-400 dark:text-zinc-500 mt-0.5 min-w-[16px]" aria-hidden="true" /> Atskaites stagnācijas novēršanai</li>
+          </ul>
+          <a href="treninu-coaching.html" class="w-full py-3 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 uppercase font-semibold text-xs tracking-widest hover:bg-zinc-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors text-center mt-auto flex items-center justify-center gap-2">Uzzināt vairāk <Icon name="solar:arrow-right-linear" width={14} height={14} aria-hidden="true" /></a>
+        </div>
+      </div>
+
+      <!-- Option 2: Vienreizējā konsultācija -->
+      <div class="h-full">
+        <div class="flex flex-col h-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/5 hover:border-zinc-400 dark:hover:border-zinc-700 p-8 transition-colors">
+          <div class="mb-4">
+            <span class="text-xs font-mono uppercase tracking-widest text-zinc-500">Konsultācija</span>
+            <h3 class="text-3xl font-semibold text-zinc-900 dark:text-white uppercase tracking-tight mt-1">Fitnesa Konsultācija</h3>
+          </div>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-wide leading-relaxed mb-4">Profesionālas atbildes uz specifiskiem jautājumiem</p>
+          <div class="mb-6 flex items-baseline gap-2">
+            <span class="text-4xl font-semibold text-zinc-900 dark:text-white tracking-tight">€89</span>
+            <span class="text-xs text-zinc-500 dark:text-zinc-400 font-mono uppercase tracking-widest">/ reize</span>
+          </div>
+          <ul class="flex-1 mb-8 space-y-4">
+            <li class="flex gap-3 items-start text-sm text-zinc-600 dark:text-zinc-300"><Icon name="solar:check-circle-linear" width={16} height={16} class="text-zinc-400 dark:text-zinc-500 mt-0.5 min-w-[16px]" aria-hidden="true" /> Padziļinātas atbildes par uzturu un treniņiem</li>
+            <li class="flex gap-3 items-start text-sm text-zinc-600 dark:text-zinc-300"><Icon name="solar:check-circle-linear" width={16} height={16} class="text-zinc-400 dark:text-zinc-500 mt-0.5 min-w-[16px]" aria-hidden="true" /> Skaidrība par aktīva dzīvesveida tēmām</li>
+            <li class="flex gap-3 items-start text-sm text-zinc-600 dark:text-zinc-300"><Icon name="solar:check-circle-linear" width={16} height={16} class="text-zinc-400 dark:text-zinc-500 mt-0.5 min-w-[16px]" aria-hidden="true" /> Praktiski padomi tūlītējai rīcībai</li>
+          </ul>
+          <a href="fitnesa-konsultacija.html" class="w-full py-3 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 uppercase font-semibold text-xs tracking-widest hover:bg-zinc-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors text-center mt-auto flex items-center justify-center gap-2">Uzzināt vairāk <Icon name="solar:arrow-right-linear" width={14} height={14} aria-hidden="true" /></a>
+        </div>
+      </div>
+
+      <!-- Option 4: Treniņu Plāni -->
+      <div class="h-full">
+        <div class="flex flex-col h-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/5 hover:border-zinc-400 dark:hover:border-zinc-700 p-8 transition-colors">
+          <div class="mb-4">
+            <span class="text-xs font-mono uppercase tracking-widest text-zinc-500">Plāni</span>
+            <h3 class="text-3xl font-semibold text-zinc-900 dark:text-white uppercase tracking-tight mt-1">Treniņu Plāni</h3>
+          </div>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-wide leading-relaxed mb-4">Gatavi plāni katram mērķim un līmenim</p>
+          <div class="mb-6 flex items-baseline gap-2">
+            <span class="text-xs text-zinc-500 dark:text-zinc-400 font-mono uppercase tracking-widest">no</span>
+            <span class="text-4xl font-semibold text-zinc-900 dark:text-white tracking-tight">€39</span>
+            <span class="text-xs text-zinc-500 dark:text-zinc-400 font-mono uppercase tracking-widest">/ plāns</span>
+          </div>
+          <ul class="flex-1 mb-8 space-y-4">
+            <li class="flex gap-3 items-start text-sm text-zinc-600 dark:text-zinc-300"><Icon name="solar:check-circle-linear" width={16} height={16} class="text-zinc-400 dark:text-zinc-500 mt-0.5 min-w-[16px]" aria-hidden="true" /> Mērķim un pieredzes līmenim pielāgots</li>
+            <li class="flex gap-3 items-start text-sm text-zinc-600 dark:text-zinc-300"><Icon name="solar:check-circle-linear" width={16} height={16} class="text-zinc-400 dark:text-zinc-500 mt-0.5 min-w-[16px]" aria-hidden="true" /> Iebūvēta progresija un periodizācija</li>
+            <li class="flex gap-3 items-start text-sm text-zinc-600 dark:text-zinc-300"><Icon name="solar:check-circle-linear" width={16} height={16} class="text-zinc-400 dark:text-zinc-500 mt-0.5 min-w-[16px]" aria-hidden="true" /> Māca principus, ne tikai vingrojumus</li>
+          </ul>
+          <a href="treninu-plani.html" class="w-full py-3 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 uppercase font-semibold text-xs tracking-widest hover:bg-zinc-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors text-center mt-auto flex items-center justify-center gap-2">Uzzināt vairāk <Icon name="solar:arrow-right-linear" width={14} height={14} aria-hidden="true" /></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

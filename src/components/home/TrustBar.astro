@@ -1,0 +1,26 @@
+---
+/** Landing page: 2. Trust Bar (ported from indexreal.html). */
+import { Icon } from 'astro-icon/components';
+---
+<div class="dark:border-white/5 dark:bg-zinc-950 z-10 transition-colors duration-300 bg-zinc-50 border-zinc-200 border-b relative">
+  <div class="max-w-7xl mx-auto py-8 px-6">
+    <div class="flex flex-wrap justify-center md:justify-between items-center gap-8 opacity-70 grayscale hover:grayscale-0 transition-all duration-500 text-zinc-800 dark:text-white">
+      <span class="text-sm font-semibold uppercase tracking-widest flex items-center gap-2">
+        <Icon name="solar:shield-check-linear" width={24} height={24} class="text-[#d70c32]" aria-hidden="true" />
+        Zinātnē Balstīts
+      </span>
+      <span class="text-sm font-semibold uppercase tracking-widest flex items-center gap-2">
+        <Icon name="solar:diploma-verified-linear" width={24} height={24} class="text-[#d70c32]" aria-hidden="true" />
+        Sertificēti Treneri
+      </span>
+      <span class="text-sm font-semibold uppercase tracking-widest flex items-center gap-2">
+        <Icon name="solar:fire-linear" width={24} height={24} class="text-[#d70c32]" aria-hidden="true" />
+        Individuāla Pieeja
+      </span>
+      <span class="text-sm font-semibold uppercase tracking-widest flex items-center gap-2">
+        <Icon name="solar:graph-new-up-linear" width={24} height={24} class="text-[#d70c32]" aria-hidden="true" />
+        Garantēts Rezultāts
+      </span>
+    </div>
+  </div>
+</div>

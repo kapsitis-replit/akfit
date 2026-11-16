@@ -1,0 +1,13 @@
+---
+/** Light/dark switch. Behaviour lives in src/scripts/site.ts ([data-theme-toggle]). */
+import { Icon } from 'astro-icon/components';
+---
+<button
+  type="button"
+  data-theme-toggle
+  aria-label="Mainīt tēmu"
+  class="p-2 text-zinc-600 dark:text-zinc-400 hover:text-brand transition-colors focus:outline-hidden focus-visible:outline-2 focus-visible:outline-brand"
+>
+  <Icon name="solar:sun-linear" width={20} height={20} class="hidden dark:block" aria-hidden="true" />
+  <Icon name="solar:moon-stars-linear" width={20} height={20} class="block dark:hidden" aria-hidden="true" />
+</button>

@@ -1,0 +1,6 @@
+# akfitness.lv DNS before cutover (2026-11-16, NS ns1/ns2.dns.lv)
+akfitness.lv A 43.131.62.16
+www CNAME akfitness.lv
+akfitness.lv MX 1 smtp.google.com
+akfitness.lv TXT "google-site-verification=vvnGDD8dxDT_h4nI2pnuhx4E3kkREi5eaF7w_U_uLV8"
+google._domainkey TXT "v=DKIM1;k=rsa;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxShPV32Ofl4ozmt+NN0QzE0NX4Y/SqmOZVuPCRYdqUVgHU99EdOgsZToyoGld6NU97tkaQNaR0hNsID4MAmRP2SHQBrUZsQ438F0TAIDfSJeYgXoj5OookCIeI9ddLwQiazv4fg6YsGKOUKZhJ7lq99NW8i/MvSM0NwWGfy1lRVesNRUZO63yYF+SWkXP7x0DX9PxPXLy/abGcDYaIwnRf8HvYBmlmYYLHahiufb10Ow3pw8d3GSoBVk9EpcW5ypXWTdHprmnETJ3RrY6uEAFPTh8RDBNvQJsE3i/KGWdm4rTF7SMNyN9IJziWmlBf/kyNa2VUBr1bQSoU0w3N87cwIDAQAB"
